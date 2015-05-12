@@ -32,7 +32,7 @@ public class Room {
     public Room() {
     }
 
-    public String[] stringRepresentation() {
+    public String[] toASCII() {
         return representation;
     }
 
