@@ -10,7 +10,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 class SuffixManager {
-	private ArrayList<Suffix> suffices;
+	private ArrayList<Suffix> suffices = new ArrayList<Suffix>();
+
+	public SuffixManager() {
+		try {
+			loadSufficesFromFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Item addRandomSuffix(Item item) {
 		Suffix suffix = getRandomSuffix();
@@ -31,9 +39,8 @@ class SuffixManager {
 		File csvData = new File("assets/suffices.csv");
 		CSVParser parser = CSVParser.parse(csvData, Charset.forName("UTF-8"), CSVFormat.RFC4180);
 
-		for (CSVRecord csvRecord : parser) {
-			System.out.println(csvRecord);
+		for (CSVRecord record : parser) {
+			suffices.add(new Suffix(record.get(0), Integer.parseInt(record.get(1)), Integer.parseInt(record.get(2))));
 		}
-
 	}
 }
