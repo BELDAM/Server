@@ -1,8 +1,6 @@
+package maps;
 
-import maps.Map;
-
-
-public class Main {
+public class MainMaps {
     public static void main(String[] args) {
         Map m = new Map("UBER MAP DE LA MORT");
         System.out.println(m);

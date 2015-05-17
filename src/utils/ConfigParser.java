@@ -17,23 +17,22 @@ public class ConfigParser {
     private ConfigParser() {
     }
     
-    private static List<String> coordinates;
+    private static List<String> lines;
     
-    public static List<String> coordinatesCSV() {
-        if (coordinates == null) {
+    public static List<String> csv(String filename) {
+        if (lines == null) {
             try {
-                coordinates =  new ArrayList<>();
-                URI uri = ClassLoader.getSystemClassLoader().getResource("assets/coordinates.csv").toURI();
-                try (BufferedReader reader = new BufferedReader(new FileReader(new File(uri)))) {
+                lines =  new ArrayList<>();
+                try (BufferedReader reader = new BufferedReader(new FileReader(new File(filename)))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
-                        coordinates.add(line);
+                        lines.add(line);
                     }
                 }
-            } catch (IOException | URISyntaxException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(ConfigParser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return coordinates;
+        return lines;
     }
 }

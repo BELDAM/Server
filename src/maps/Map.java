@@ -20,7 +20,7 @@ public class Map {
         rooms = new Room[NUMBER_OF_ROOMS_X][NUMBER_OF_ROOMS_Y];
         representation = new String[37];
 
-        for (String line : ConfigParser.coordinatesCSV()) {
+        for (String line : ConfigParser.csv("assets/coordinates.csv")) {
             String[] tokens = line.split(";");
 
             int x = Integer.parseInt(tokens[0]);
