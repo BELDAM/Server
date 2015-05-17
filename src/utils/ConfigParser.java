@@ -23,7 +23,7 @@ public class ConfigParser {
         if (coordinates == null) {
             try {
                 coordinates =  new ArrayList<>();
-                URI uri = ClassLoader.getSystemClassLoader().getResource("ressources/coordinates.csv").toURI();
+                URI uri = ClassLoader.getSystemClassLoader().getResource("assets/coordinates.csv").toURI();
                 try (BufferedReader reader = new BufferedReader(new FileReader(new File(uri)))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
