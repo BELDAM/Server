@@ -1,0 +1,92 @@
+package maps;
+
+import utils.ConfigParser;
+
+public class Map {
+
+    private static String TOP_BOTTOM_BORDER = "+------------------------------------------------------"
+            + "--------------------------------------------------------++-----+";
+
+    private static int NUMBER_OF_ROOMS_X = 10;
+    private static int NUMBER_OF_ROOMS_Y = 6;
+
+    private Room[][] rooms;
+    private String name;
+
+    private String[] representation;
+
+    public Map(String name) {
+        this.name = name;
+        rooms = new Room[NUMBER_OF_ROOMS_X][NUMBER_OF_ROOMS_Y];
+        representation = new String[37];
+
+        for (String line : ConfigParser.csv("assets/coordinates.csv")) {
+            String[] tokens = line.split(";");
+
+            int x = Integer.parseInt(tokens[0]);
+            int y = Integer.parseInt(tokens[1]);
+            Room room = new Room();
+            rooms[x][y] = room;
+
+            for (int i = 2; i < tokens.length; i++) {
+                switch (tokens[i]) {
+                    case "N":
+                        room.makeLink(rooms[x][y - 1], Room.NORTH);
+                        break;
+                    case "S":
+                        room.makeLink(rooms[x][y + 1], Room.SOUTH);
+                        break;
+                    case "W":
+                        room.makeLink(rooms[x - 1][y], Room.WEST);
+                        break;
+                    case "E":
+                        room.makeLink(rooms[x + 1][y], Room.EAST);
+                        break;
+                }
+            }
+        }
+
+        updateRepresentation();
+    }
+
+    public String[] toASCII() {
+        return representation;
+    }
+
+    @Override
+    public String toString() {
+        return String.join("\r\n", representation);
+    }
+
+    private void updateRepresentation() {
+        String result = "";
+        int l = 1;
+        int m = 0;
+        for (int i = 0; i < NUMBER_OF_ROOMS_Y; i++) {
+            for (int k = 0; k < 6; k++) {
+                for (int j = 0; j < NUMBER_OF_ROOMS_X; j++) {
+                    if (rooms[j][i] != null) {
+                        result += rooms[j][i].toASCII()[k];
+                    } else {
+                        result += "           ";
+                    }
+                }
+                representation[l] = "| " + result.substring(0, result.length() - 2) + " ||";
+                if (m < name.length()) {
+                    representation[l] += "  " + name.charAt(m) + "  ";
+                    m++;
+                } else if (m == name.length()) {
+                    representation[l] += "-----";
+                    m++;
+                } else {
+                    representation[l] += "     ";
+                }
+                representation[l] += "|";
+                result = "";
+                l++;
+            }
+        }
+        representation[0] = TOP_BOTTOM_BORDER;
+        representation[36] = TOP_BOTTOM_BORDER;
+    }
+}
