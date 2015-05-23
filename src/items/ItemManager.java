@@ -30,7 +30,16 @@ public class ItemManager {
 		CSVParser parser = CSVParser.parse(csvData, Charset.forName("UTF-8"), CSVFormat.RFC4180);
 
 		for (CSVRecord record : parser) {
-			items.add(new Item(record.get(0), Integer.parseInt(record.get(1)), Integer.parseInt(record.get(2))));
+			BodyPart bodyPart;
+
+			try {
+				bodyPart = BodyPart.valueOf(record.get(1));
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+				bodyPart = BodyPart.TORSO;
+			}
+
+			items.add(new Item(record.get(0), bodyPart, Integer.parseInt(record.get(2)), Integer.parseInt(record.get(3))));
 		}
 	}
 }

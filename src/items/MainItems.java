@@ -11,5 +11,9 @@ public class MainItems {
 		SuffixManager sm = new SuffixManager();
 		sm.addRandomSuffix(item);
 		System.out.println(item);
+		sm.addRandomSuffix(item);
+		System.out.println(item);
+		sm.addRandomSuffix(item);
+		System.out.println(item);
 	}
 }

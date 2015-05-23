@@ -19,17 +19,9 @@ class SuffixManager {
 		}
 	}
 
-	public Item addRandomSuffix(Item item) {
+	public void addRandomSuffix(Item item) {
 		Suffix suffix = getRandomSuffix();
-		item.accept(this);
-		// Take a random suffix and add its stats
-		// Visit the item to add stats
-
-		return item; // Allow to chain
-	}
-
-	public void visit(Item item) {
-		System.out.println("Visiting " + item);
+		item.addSuffix(suffix);
 	}
 
 	private Suffix getRandomSuffix() {
