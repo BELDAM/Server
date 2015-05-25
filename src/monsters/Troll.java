@@ -14,8 +14,8 @@ import items.Item;
  */
 public class Troll extends Monster{
 
-    public Troll(int HP, String name, int strength) {
-        super(HP, name, strength);
+    public Troll(int HP, String name, int strength, int defense, int level) {
+        super(HP, name, strength, defense, level);
         Item arme = new Item("Gourdin", BodyPart.RIGHT_HAND, 2, 1);
         Item armure = new Item("pagne", BodyPart.LEGS, 0, 1);
         items.add(arme);
