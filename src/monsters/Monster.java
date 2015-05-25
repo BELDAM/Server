@@ -18,6 +18,7 @@ public class Monster {
     protected int HP;
     protected String name;
     protected int strength;
+    protected int giveXP;
     LinkedList<Item> items;
     
     public Monster(int HP, String name, int strength)
@@ -52,6 +53,10 @@ public class Monster {
         drop.add(items.get(idDrop));
       }
       return drop;  
+    }
+    boolean isDead()
+    {
+        return HP == 0;
     }
     
     
