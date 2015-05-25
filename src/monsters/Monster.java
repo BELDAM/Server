@@ -16,16 +16,20 @@ import java.util.Random;
  */
 public class Monster {
     protected int HP;
+    protected int level;
     protected String name;
     protected int strength;
+    protected int defense;
     protected int giveXP;
     LinkedList<Item> items;
     
-    public Monster(int HP, String name, int strength)
+    public Monster(int HP, String name, int strength, int defense, int level)
     {
+        this.level = level;
         this.HP = HP;
         this.name = name;
         this.strength = strength;
+        this.defense = defense;
         items = new LinkedList();
     }
     public void attack()

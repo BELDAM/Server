@@ -11,8 +11,8 @@ package monsters;
  */
 public class Dragon extends Monster{
 
-    public Dragon(int HP, String name, int strength) {
-        super(HP, name, strength);
+    public Dragon(int HP, String name, int strength, int defense, int level) {
+        super(HP, name, strength, defense, level);
     }
     
     
