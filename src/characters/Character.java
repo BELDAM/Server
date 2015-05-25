@@ -7,7 +7,7 @@ import java.util.LinkedList;
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public abstract class Character {
+public abstract class Character implements CharacterFightInterface {
     String name;
     char symbol;
     int life;
@@ -68,6 +68,13 @@ public abstract class Character {
     public LinkedList<Item> getItems() {
         return items;
     }
+
+    public abstract void takeDammage(int dammage);
+
+    public abstract void die();
+
+    public abstract void attack(CharacterFightInterface character);
+
 
     @Override
     public String toString() {
