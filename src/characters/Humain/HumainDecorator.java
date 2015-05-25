@@ -5,4 +5,6 @@ package characters.Humain;
  */
 public abstract class HumainDecorator implements HumainInterface {
     HumainInterface humain;
+
+
 }

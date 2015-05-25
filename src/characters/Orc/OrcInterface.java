@@ -1,10 +1,10 @@
 package characters.Orc;
 
-import characters.*;
+import Interface.FightInterface;
 
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public interface OrcInterface {
+public interface OrcInterface extends FightInterface {
 
 }
