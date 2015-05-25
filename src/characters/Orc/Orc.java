@@ -1,6 +1,6 @@
 package characters.Orc;
 
-import characters.CharacterFightInterface;
+import Interface.FightInterface;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -11,7 +11,7 @@ public class Orc extends characters.Character implements OrcInterface {
     }
 
     @Override
-    public void takeDammage(int dammage) {
+    public void takeDmg(int dmg) {
 
     }
 
@@ -21,7 +21,7 @@ public class Orc extends characters.Character implements OrcInterface {
     }
 
     @Override
-    public void attack(CharacterFightInterface character) {
+    public void attack(FightInterface character) {
 
     }
 }

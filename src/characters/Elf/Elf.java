@@ -1,6 +1,6 @@
 package characters.Elf;
 
-import characters.CharacterFightInterface;
+import Interface.FightInterface;
 
 /**
  * Created by bastiangardel on 21.05.15.
@@ -16,7 +16,7 @@ public class Elf extends characters.Character implements ElfInterface {
     }
 
     @Override
-    public void takeDammage(int dammage) {
+    public void takeDmg(int dmg) {
 
     }
 
@@ -26,7 +26,7 @@ public class Elf extends characters.Character implements ElfInterface {
     }
 
     @Override
-    public void attack(CharacterFightInterface character) {
+    public void attack(FightInterface character) {
 
     }
 

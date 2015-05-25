@@ -1,5 +1,6 @@
 package characters;
 
+import Interface.FightInterface;
 import items.Item;
 
 import java.util.LinkedList;
@@ -7,7 +8,7 @@ import java.util.LinkedList;
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public abstract class Character implements CharacterFightInterface {
+public abstract class Character implements FightInterface {
     String name;
     char symbol;
     int life;
@@ -69,11 +70,11 @@ public abstract class Character implements CharacterFightInterface {
         return items;
     }
 
-    public abstract void takeDammage(int dammage);
+    public abstract void takeDmg(int dmg);
 
     public abstract void die();
 
-    public abstract void attack(CharacterFightInterface character);
+    public abstract void attack(FightInterface character);
 
 
     @Override

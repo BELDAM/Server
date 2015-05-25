@@ -1,11 +1,11 @@
 package characters.Elf;
 
-import characters.CharacterFightInterface;
+import Interface.FightInterface;
 
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public abstract interface ElfInterface extends CharacterFightInterface {
+public abstract interface ElfInterface extends FightInterface {
 
     public int getSpeed();
 
