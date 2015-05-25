@@ -3,5 +3,5 @@ package characters.Orc;
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public class Orc {
+public class Orc extends AbstractOrc {
 }
