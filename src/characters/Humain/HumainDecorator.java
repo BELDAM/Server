@@ -3,5 +3,6 @@ package characters.Humain;
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public class HumainDecorator implements InterfaceHumain {
+public abstract class HumainDecorator implements HumainInterface {
+    HumainInterface humain;
 }
