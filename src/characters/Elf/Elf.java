@@ -1,4 +1,4 @@
-package characters;
+package characters.Elf;
 
 /**
  * Created by bastiangardel on 21.05.15.
