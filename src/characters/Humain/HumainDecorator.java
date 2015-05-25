@@ -3,5 +3,5 @@ package characters.Humain;
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public class HumainDecorator extends AbstractHumain {
+public class HumainDecorator implements InterfaceHumain {
 }
