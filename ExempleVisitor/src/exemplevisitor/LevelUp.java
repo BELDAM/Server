@@ -11,6 +11,11 @@ package exemplevisitor;
  */
 public class LevelUp implements IVisitor{
     @Override
+    public void visit(IVisitable o) {
+        o.accept(this);
+    }
+
+    @Override
     public void visit(Mage o) {
         o.level++;
         o.setSpirit();

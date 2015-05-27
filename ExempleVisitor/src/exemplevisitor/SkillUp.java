@@ -11,6 +11,11 @@ package exemplevisitor;
  */
 public class SkillUp implements IVisitor {
     @Override
+    public void visit(IVisitable o) {
+        o.accept(this);
+    }
+
+    @Override
     public void visit(Mage o) {
         o.learnSpell("Boule de feu rang " + o.level);
     }
