@@ -13,9 +13,11 @@ import java.util.LinkedList;
  */
 public class Warrior extends PlayerClass implements IVisitable{
 
+    private int rage;
     public Warrior(String name, int level, int HP, int spirit, int strength) {
         super(name, level, HP, spirit, strength);
         this.spells = new LinkedList();
+        rage = 100;
         this.spells.add("frappe puissante rang 1");
     }
     public void setSpirit()
@@ -31,9 +33,13 @@ public class Warrior extends PlayerClass implements IVisitable{
     public void accept(IVisitor visitor) {
         visitor.visit(this);
     }
-        public String toString()
+    public String toString()
     {
-        return "Warrior " + super.toString();
+        return "Warrior Rage " + rage + " "+super.toString();
     }
+    public void setRage(){    
+        this.rage = this.rage + 10;
+    }
+    
     
 }

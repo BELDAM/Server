@@ -11,7 +11,8 @@ import java.util.LinkedList;
  *
  * @author Simon
  */
-public class PlayerClass {
+public class PlayerClass{
+
     protected String name;
     protected int level;
     protected int HP;
@@ -19,30 +20,31 @@ public class PlayerClass {
     protected int strength;
     protected LinkedList spells;
 
-    public PlayerClass(String name, int level,int HP, int spirit, int strength) {
+    public PlayerClass(String name, int level, int HP, int spirit, int strength) {
         this.name = name;
         this.level = level;
         this.HP = HP;
         this.spirit = spirit;
         this.strength = strength;
     }
+
     @Override
-    public String toString()
-    {
-        return name + " " + level + "\nSpirit : " +spirit +"\nStrength : "+ strength + "\nSpells "+  spelllist();
+    public String toString() {
+        return name + " " + level + "\nSpirit : " + spirit + "\nStrength : " + strength + "\nSpells " + spelllist();
     }
-    public void learnSpell(String s)
-    {
-        this.spells.add(s);
+
+    public void learnSpell(String s) {
+        if (!this.spells.contains(s)) {
+            this.spells.add(s);
+        }
     }
-    private String spelllist()
-    {
+
+    private String spelllist() {
         String tmp = "";
         for (Object spell : spells) {
             tmp += "\n - " + spell;
         }
         return tmp;
     }
-    
-    
+
 }

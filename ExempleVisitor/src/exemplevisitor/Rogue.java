@@ -13,9 +13,11 @@ import java.util.LinkedList;
  */
 public class Rogue extends PlayerClass implements IVisitable{
 
+    private int energy;
     public Rogue(String name, int level, int HP, int spirit, int strength) {
         super(name, level, HP, spirit, strength);
         this.spells = new LinkedList();
+        energy = 150;
         this.spells.add("Estropier rang 1");
     }
 
@@ -29,11 +31,16 @@ public class Rogue extends PlayerClass implements IVisitable{
     }
     public void setStrength()
     {
-        strength =  strength + strength * level/3;
+        strength =  strength + strength * level/4;
     }
+    @Override
     public String toString()
     {
-        return "Rogue " + super.toString();
+        return "Rogue Energy "+ energy + " " + super.toString();
+    }
+    public void setEnergy()
+    {
+        this.energy += 10;
     }
     
 }

@@ -9,26 +9,27 @@ package exemplevisitor;
  *
  * @author Simon
  */
-public class SkillUp implements IVisitor{
-
-    @Override
-    public void visit(IVisitable o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+public class SkillUp implements IVisitor {
     @Override
     public void visit(Mage o) {
-        o.learnSpell("Boule de feu rang 2");
+        o.learnSpell("Boule de feu rang " + o.level);
     }
 
     @Override
     public void visit(Warrior o) {
-        o.learnSpell("coup de pied");
+        if (o.level == 2) {
+            o.learnSpell("Coup de pied");
+        }
     }
 
     @Override
     public void visit(Rogue o) {
-        o.learnSpell("camouflage");
+        if (o.level == 2) {
+            o.learnSpell("Camouflage");
+        }else if (o.level == 3)
+        {
+            o.learnSpell("Assassina");
+        }
     }
-    
+
 }

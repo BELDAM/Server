@@ -18,20 +18,37 @@ public class ExempleVisitor {
         // TODO code application logic here
         LevelUp levelup = new LevelUp();
         SkillUp skillUp = new SkillUp();
-        Mage Xaaram = new Mage("Xaaram", 1, 10, 5, 2);
-        Warrior BinaryBrain = new Warrior("BinaryBrain", 1, 15, 2, 9);
-        System.out.println(Xaaram.toString());
-        System.out.println(BinaryBrain.toString());
+        Mage Xaaram = new Mage("Xaaram", 1, 10, 7, 2);
         Xaaram.accept(levelup);
-        BinaryBrain.accept(levelup);
+        Warrior BinaryBrain = new Warrior("BinaryBrain", 1, 15, 2, 9);
+        Rogue Gweezer7 = new Rogue("Gweezer7", 1, 12, 5, 5);
         System.out.println(Xaaram.toString());
         System.out.println(BinaryBrain.toString());
+        System.out.println(Gweezer7.toString());
+        
+        
+        
+        BinaryBrain.accept(levelup);
+        Gweezer7.accept(levelup);
+        System.out.println("");
+        System.out.println("");
+        System.out.println(Xaaram.toString());
+        System.out.println("");
+        System.out.println(BinaryBrain.toString());
+        System.out.println("");
+        System.out.println(Gweezer7.toString());
+        
         
         Xaaram.accept(skillUp);
         BinaryBrain.accept(skillUp);
-        
+        Gweezer7.accept(skillUp);
+        System.out.println("");
+        System.out.println("");
         System.out.println(Xaaram.toString());
+        System.out.println("");
         System.out.println(BinaryBrain.toString());
+        System.out.println("");
+        System.out.println(Gweezer7.toString());
     }
     
 }

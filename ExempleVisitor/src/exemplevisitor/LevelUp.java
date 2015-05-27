@@ -10,17 +10,12 @@ package exemplevisitor;
  * @author Simon
  */
 public class LevelUp implements IVisitor{
-
-    @Override
-    public void visit(IVisitable o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public void visit(Mage o) {
         o.level++;
         o.setSpirit();
         o.setStrength();
+        o.setMana();
     }
 
     @Override
@@ -28,6 +23,7 @@ public class LevelUp implements IVisitor{
         o.level++;
         o.setSpirit();
         o.setStrength();
+        o.setRage();
     }
 
     @Override
@@ -35,6 +31,7 @@ public class LevelUp implements IVisitor{
         o.level++;
         o.setSpirit();
         o.setStrength();
+        o.setEnergy();
     }
     
 }
