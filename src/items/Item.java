@@ -15,6 +15,22 @@ public class Item {
 		this.defense = defense;
 	}
 
+	public BodyPart getBodyPart() {
+		return bodyPart;
+	}
+
+	public int getDefense() {
+		return defense;
+	}
+
+	public int getAttack() {
+		return attack;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public void addSuffix(Suffix suffix) {
 		this.name += " " + suffix.name();
 		this.attack += suffix.attack();
