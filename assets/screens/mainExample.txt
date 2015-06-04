@@ -1,5 +1,5 @@
 +------------------------------------------------------------------------------+------------+-------------------+-----+
-| Lorem ipsum dolor sit amet tempus consectetur. Na venenatis euismo ultricies | companions |         .-----.   |Stuff|
+| Lorem ipsum dolor sit amet tempus consectetur. Na venenatis euismo ultricies | Companions |         .-----.   |Stuff|
 | ullamcorper dui. Curabitur tempor, lectus id sodales pharetra, sapien sem se +------------+         |/"""\|   +-----+
 | ementum ut eros at gravida. Mauris eget diam auctor, commodo?                | Simon    S |         |[* *]|         |
 |                                                                              | Léow     L |         |\___/|         |
