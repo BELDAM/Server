@@ -12,7 +12,7 @@ There is two sets of commands. One for the explore mode and one for the fight mo
 help                   # Show this help
 say <message>          # Send a message to your companions
 move <direction>       # Move somewhere. Directions are: "north", "south", "east", "west"
-engage <id>            # Start a fight against a given monster. The monster have to be in the same room as you
+engage <id>            # Start a fight against a given monster. The monster have to be in your room.
 map                    # Show the map
 drop <id>              # Drop a given item on the ground
 take <id>              # Take a given item from the ground
