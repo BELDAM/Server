@@ -7,6 +7,9 @@ import Interface.FightInterface;
  */
 public class Mage extends HumainDecorator{
 
+    private int mana;
+    private static final int MANA = 3;
+
     public Mage(HumainInterface humainInterface) {
         humain = humainInterface;
     }
@@ -24,5 +27,13 @@ public class Mage extends HumainDecorator{
     @Override
     public void die() {
 
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 }

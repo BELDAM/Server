@@ -7,8 +7,8 @@ import Interface.FightInterface;
  */
 public class Elf extends characters.Character implements ElfInterface {
 
-    int speed;
-    static final int SPEED = 3;
+    private int speed;
+    private static final int SPEED = 3;
 
     public Elf(String name, char symbol) {
         super(name, symbol);

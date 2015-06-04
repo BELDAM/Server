@@ -25,4 +25,14 @@ public class Warrior extends OrcDecorator {
     public void die() {
 
     }
+
+    @Override
+    public int getRage() {
+        return 0;
+    }
+
+    @Override
+    public void setRage(int rage) {
+
+    }
 }
