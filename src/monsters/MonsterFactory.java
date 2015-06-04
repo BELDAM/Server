@@ -23,12 +23,18 @@ public class MonsterFactory {
         Random rand = new Random();
         level = rand.nextInt((groupeLevel+groupeSize - 2) + 1) + 2;
         int HP = 5;
-        HP += HP * (level/3);
         int strength = 10;
-        int defense = 2;
+        int intelligence = 3;
+        int magicalDefence = 2;
+        int physicalDefance = 2;
+        
+        
+        HP += HP * (level/3);
         strength += strength * (level/2);
-        defense += defense * (level/5);
-        return new Troll(HP, "Troll", strength, defense, level);
+        physicalDefance += physicalDefance * (level/3);
+        magicalDefence += magicalDefence * (level/5);
+        
+        return new Troll(HP, "Troll", strength, intelligence, magicalDefence ,physicalDefance, level);
     }
     
 }

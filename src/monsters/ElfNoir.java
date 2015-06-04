@@ -14,8 +14,8 @@ import items.Item;
  */
 public class ElfNoir extends Monster{
 
-    public ElfNoir(int HP, String name, int strength, int defense, int level) {
-        super(HP, name, strength, defense, level);
+    public ElfNoir(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
+        super(HP, name, strength,intelligence, physicalDefence, magicalDefence, level);
         Item arme = new Item("Bow", BodyPart.RIGHT_HAND, 3, 1);
         Item legs = new Item("soft pants", BodyPart.LEGS, 0, 1);
         Item cheast = new Item("soft cheast", BodyPart.LEGS, 0, 1);

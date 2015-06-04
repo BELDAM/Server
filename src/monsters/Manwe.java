@@ -9,11 +9,8 @@ package monsters;
  *
  * @author Simon
  */
-public class Dragon extends Monster{
-
-    public Dragon(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
+public class Manwe extends Monster{
+    public Manwe(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
         super(HP, name, strength,intelligence, physicalDefence, magicalDefence, level);
-    }
-    
-    
+    }    
 }

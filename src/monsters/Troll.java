@@ -14,13 +14,17 @@ import java.util.Random;
  */
 public class Troll extends Monster {
 
-    public Troll(int HP, String name, int strength, int defense, int level) {
-        super(HP, name, strength, defense, level);
-        Random rand = new Random();
-        ItemManager itemManager = new ItemManager() ;
-        int nbrDrop = rand.nextInt((3) + 1);
-        while(items.size() < nbrDrop)
-        {
+    public Troll(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
+        super(HP, name, strength,intelligence, physicalDefence, magicalDefence, level);
+        //http://stackoverflow.com/questions/3745760/java-generating-a-random-numbers-with-a-logarithmic-distribution
+        int maxN = 5;
+        int t = 1 << (maxN); // 2^maxN
+        int n = maxN
+                - ((int) (Math.log((Math.random() * t))
+                / Math.log(2))); // maxN - log2(1..maxN)
+        System.out.println("n=" + n);
+        ItemManager itemManager = new ItemManager();
+        while (items.size() < n + 2) {
             items.add(itemManager.getRandomItem());
         }
     }

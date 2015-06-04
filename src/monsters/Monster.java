@@ -23,81 +23,76 @@ public class Monster implements FightInterface{
     protected String name;
     protected int strength;
     protected int intelligence;
-    protected int PhysicalDefence;
-    protected int MagicalDefence;
+    protected int physicalDefence;
+    protected int magicalDefence;
     protected int giveXP;
     LinkedList<Item> items;
-    
-    public Monster(int HP, String name, int strength, int defense, int level)
-    {
+
+    public Monster(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
         this.dead = false;
         this.level = level;
         this.intelligence = 0;
         this.HP = HP;
         this.name = name;
         this.strength = strength;
-        this.PhysicalDefence = defense;
+        this.physicalDefence = physicalDefence;
+        this.magicalDefence = magicalDefence;
         items = new LinkedList();
     }
+
     @Override
-    public void takeDmg(int dmg)
-    {
+    public void takeDmg(int dmg) {
         int dmgTaken;
         HP = HP - dmg;
-        if(HP <= 0)
-        {
+        if (HP <= 0) {
             HP = 0;
             dead = true;
         }
     }
-
-    public LinkedList dropItem()
-    {
-      Random rand = new Random();
-      int idDrop;
-      int max = items.size();
-      int nbrDrop = rand.nextInt((max - 0) + 1) + 0;
-      LinkedList<Item> drop = new LinkedList();
-      for(int i = 0 ; i < nbrDrop ; i++)
-      {     
-        idDrop = rand.nextInt((max - 0) + 1) + 0;
-        drop.add(items.get(idDrop));
-      }
-      return drop;  
+    public LinkedList dropItem() {
+        Random rand = new Random();
+        int idDrop;
+        int max = items.size();
+        int nbrDrop = rand.nextInt(max);
+        LinkedList<Item> drop = new LinkedList();
+        for (int i = 0; i < nbrDrop; i++) {
+            idDrop = rand.nextInt((max - 0) + 1) + 0;
+            drop.add(items.get(idDrop));
+        }
+        return drop;
     }
-    boolean isDead()
-    {
+
+    public boolean isDead() {
         return HP == 0;
     }
 
     @Override
     public void attack(FightInterface character) {
-        if(!isDead())
-        {
+        if (!isDead()) {
             character.takeDmg(strength * level);
-        }
-        else
-        {
+        } else {
             System.out.println("you are dead");
         }
     }
-    @Override
-    public void addItem(Item newItem){
+    public void addItem(Item newItem) {
         BodyPart newPart = newItem.getBodyPart();
 
         // Check if the slot is empty so the character can carry the new item
         for (Item item : items) {
             BodyPart usedPart = item.getBodyPart();
-            if (newPart == usedPart ||
-                ((newPart == BodyPart.RIGHT_HAND || newPart == BodyPart.LEFT_HAND) && usedPart == BodyPart.BOTH_HANDS) ||
-                ((usedPart == BodyPart.RIGHT_HAND || usedPart == BodyPart.LEFT_HAND) && newPart == BodyPart.BOTH_HANDS)
-                ) {
+            if (newPart == usedPart
+                    || ((newPart == BodyPart.RIGHT_HAND || newPart == BodyPart.LEFT_HAND) && usedPart == BodyPart.BOTH_HANDS)
+                    || ((usedPart == BodyPart.RIGHT_HAND || usedPart == BodyPart.LEFT_HAND) && newPart == BodyPart.BOTH_HANDS)) {
                 // TODO Send error to the player (Slot "Right hand" already used by item.toString())
                 System.out.println("Slot '" + newPart + "' already used by " + item.toString());
             }
         }
         items.add(newItem);
     }
-    
-    
+     @Override
+    public String toString() {
+        return name + ": ,level[" + level + "] ,life[" + HP + "], Strength[" + strength + "], intelligence[" + intelligence + "]";
+    }
+
+
 }

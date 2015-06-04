@@ -59,7 +59,6 @@ public abstract class Character implements FightInterface {
     public void setSymbol(char symbol) {
         this.symbol = symbol;
     }
-
     public void addItem(Item newItem){
         BodyPart newPart = newItem.getBodyPart();
 
