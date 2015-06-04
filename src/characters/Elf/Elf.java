@@ -17,12 +17,12 @@ public class Elf extends characters.Character implements ElfInterface {
 
     @Override
     public void takeDmg(int dmg) {
-
+        //TODO implementation
     }
 
     @Override
     public void attack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override

@@ -13,22 +13,24 @@ public class Hunter extends ElfDecorator {
 
     @Override
     public int getSpeed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return elf.getSpeed();
     }
 
     @Override
     public void setSpeed(int speed) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        elf.setSpeed(speed);
     }
 
     @Override
     public void attack(FightInterface character) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO implementation
     }
 
     @Override
     public void takeDmg(int dmg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO implementation
     }
 
     @Override

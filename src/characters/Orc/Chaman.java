@@ -16,12 +16,12 @@ public class Chaman extends OrcDecorator {
 
     @Override
     public void attack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override
     public void takeDmg(int dmg) {
-
+        //TODO implementation
     }
 
     @Override
