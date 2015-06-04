@@ -13,10 +13,12 @@ public class Humain extends characters.Character implements HumainInterface {
     @Override
     public void takeDmg(int dmg) {
 
+      //TODO implementation
     }
 
     @Override
     public void attack(FightInterface character) {
 
+        //TODO implementation
     }
 }
