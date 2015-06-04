@@ -5,22 +5,24 @@
  */
 package monsters;
 
-import items.BodyPart;
-import items.Item;
+import items.ItemManager;
+import java.util.Random;
 
 /**
  *
  * @author Simon
  */
-public class Troll extends Monster{
+public class Troll extends Monster {
 
     public Troll(int HP, String name, int strength, int defense, int level) {
         super(HP, name, strength, defense, level);
-        Item arme = new Item("Gourdin", BodyPart.RIGHT_HAND, 2, 1);
-        Item armure = new Item("pagne", BodyPart.LEGS, 0, 1);
-        items.add(arme);
-        items.add(armure);
+        Random rand = new Random();
+        ItemManager itemManager = new ItemManager() ;
+        int nbrDrop = rand.nextInt((3) + 1);
+        while(items.size() < nbrDrop)
+        {
+            items.add(itemManager.getRandomItem());
+        }
     }
-    
-    
+
 }

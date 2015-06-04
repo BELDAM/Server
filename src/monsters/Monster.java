@@ -5,6 +5,8 @@
  */
 package monsters;
 
+import Interface.FightInterface;
+import items.BodyPart;
 import items.Item;
 import static java.util.Collections.list;
 import java.util.LinkedList;
@@ -14,31 +16,39 @@ import java.util.Random;
  *
  * @author Simon
  */
-public class Monster {
+public class Monster implements FightInterface{
     protected int HP;
     protected int level;
+    protected boolean dead;
     protected String name;
     protected int strength;
-    protected int defense;
+    protected int intelligence;
+    protected int PhysicalDefence;
+    protected int MagicalDefence;
     protected int giveXP;
     LinkedList<Item> items;
     
     public Monster(int HP, String name, int strength, int defense, int level)
     {
+        this.dead = false;
         this.level = level;
+        this.intelligence = 0;
         this.HP = HP;
         this.name = name;
         this.strength = strength;
-        this.defense = defense;
+        this.PhysicalDefence = defense;
         items = new LinkedList();
     }
-    public void attack()
-    {
-        
-    }
+    @Override
     public void takeDmg(int dmg)
     {
-        
+        int dmgTaken;
+        HP = HP - dmg;
+        if(HP <= 0)
+        {
+            HP = 0;
+            dead = true;
+        }
     }
     public void die()
     {
@@ -61,6 +71,35 @@ public class Monster {
     boolean isDead()
     {
         return HP == 0;
+    }
+
+    @Override
+    public void attack(FightInterface character) {
+        if(!isDead())
+        {
+            character.takeDmg(strength * level);
+        }
+        else
+        {
+            System.out.println("you are dead");
+        }
+    }
+    @Override
+    public void addItem(Item newItem){
+        BodyPart newPart = newItem.getBodyPart();
+
+        // Check if the slot is empty so the character can carry the new item
+        for (Item item : items) {
+            BodyPart usedPart = item.getBodyPart();
+            if (newPart == usedPart ||
+                ((newPart == BodyPart.RIGHT_HAND || newPart == BodyPart.LEFT_HAND) && usedPart == BodyPart.BOTH_HANDS) ||
+                ((usedPart == BodyPart.RIGHT_HAND || usedPart == BodyPart.LEFT_HAND) && newPart == BodyPart.BOTH_HANDS)
+                ) {
+                // TODO Send error to the player (Slot "Right hand" already used by item.toString())
+                System.out.println("Slot '" + newPart + "' already used by " + item.toString());
+            }
+        }
+        items.add(newItem);
     }
     
     
