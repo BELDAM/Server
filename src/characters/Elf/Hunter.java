@@ -7,6 +7,10 @@ import Interface.FightInterface;
  */
 public class Hunter extends ElfDecorator {
 
+    public Hunter(ElfInterface elfInterface) {
+        elf = elfInterface;
+    }
+
     @Override
     public int getSpeed() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
