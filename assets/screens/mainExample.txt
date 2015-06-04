@@ -6,8 +6,8 @@
 | > move east                                                                  | Sacha    b |          -----          |
 | Enean molestie, sem ac tempus venenatis, nisl ligula egestas mauris, posuere | Karim    k | .-----. .-----. .-----. |
 | Fusce dignissim eros nec neque posuere, vitae rutrum nisi mollis. Integer al | Bastian  B | | ..-o| |/"""\| |o-.. | |
-| > move south                                                                 +------------+ |//  || |\   /| ||  \\| |
-|                                                                                           | |*---'| |!###!| |'---*| |
+|                                                                              +------------+ |//  || |\   /| ||  \\| |
+| > move south                                                                              | |*---'| |!###!| |'---*| |
 | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod ex a ex consequat, a |  -----   -----   -----  |
 | In sodales faucibus sapien, sed iaculis orci lobortis ac. Sed finibus vel leosit amet     | .-----. .-----. .-----. |
 | fermentum quam vehicula et. Suspendisse est neque, ultricies ac quam nec, convallis       | |     | |/"""\| | --- | |
