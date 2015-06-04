@@ -21,11 +21,6 @@ public class Elf extends characters.Character implements ElfInterface {
     }
 
     @Override
-    public void die() {
-
-    }
-
-    @Override
     public void attack(FightInterface character) {
 
     }

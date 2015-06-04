@@ -22,7 +22,8 @@ public class Paladin extends HumainDecorator {
     }
 
     @Override
-    public void die() {
-
+    public boolean isDead() {
+        return false;
     }
+
 }

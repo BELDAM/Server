@@ -9,6 +9,6 @@ public interface FightInterface {
 
     void takeDmg(int dmg);
 
-    void die();
+    public boolean isDead();
 
 }

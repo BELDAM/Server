@@ -16,11 +16,6 @@ public class Humain extends characters.Character implements HumainInterface {
     }
 
     @Override
-    public void die() {
-
-    }
-
-    @Override
     public void attack(FightInterface character) {
 
     }

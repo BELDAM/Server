@@ -25,8 +25,8 @@ public class Mage extends HumainDecorator{
     }
 
     @Override
-    public void die() {
-
+    public boolean isDead() {
+        return humain.isDead();
     }
 
     public int getMana() {

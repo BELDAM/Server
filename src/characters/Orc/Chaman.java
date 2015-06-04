@@ -2,8 +2,6 @@ package characters.Orc;
 
 import Interface.FightInterface;
 
-import java.security.PrivateKey;
-
 /**
  * Created by bastiangardel on 25.05.15.
  */
@@ -27,8 +25,8 @@ public class Chaman extends OrcDecorator {
     }
 
     @Override
-    public void die() {
-
+    public boolean isDead() {
+        return orc.isDead();
     }
 
     @Override

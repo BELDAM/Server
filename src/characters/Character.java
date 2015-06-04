@@ -13,6 +13,7 @@ public abstract class Character implements FightInterface {
     String name;
     char symbol;
     int life;
+    boolean dead;
     static final int LIFE = 10;
     int strength;
     static final int STRENGTH = 10;
@@ -87,8 +88,6 @@ public abstract class Character implements FightInterface {
 
     public abstract void takeDmg(int dmg);
 
-    public abstract void die();
-
     public abstract void attack(FightInterface character);
 
 
@@ -96,4 +95,7 @@ public abstract class Character implements FightInterface {
     public String toString() {
         return name + ": life[" + life + "], Strength[" + strength + "], Symbol[" + symbol + "]";
     }
+
+
+    public boolean isDead(){return dead;};
 }

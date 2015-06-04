@@ -31,11 +31,6 @@ public class Orc extends characters.Character implements OrcInterface {
     }
 
     @Override
-    public void die() {
-
-    }
-
-    @Override
     public void attack(FightInterface character) {
 
     }

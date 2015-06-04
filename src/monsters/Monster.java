@@ -8,7 +8,7 @@ package monsters;
 import Interface.FightInterface;
 import items.BodyPart;
 import items.Item;
-import static java.util.Collections.list;
+
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -50,10 +50,7 @@ public class Monster implements FightInterface{
             dead = true;
         }
     }
-    public void die()
-    {
-        
-    }
+
     public LinkedList dropItem()
     {
       Random rand = new Random();

@@ -22,8 +22,8 @@ public class Warrior extends OrcDecorator {
     }
 
     @Override
-    public void die() {
-
+    public boolean isDead() {
+        return orc.isDead();
     }
 
     @Override
