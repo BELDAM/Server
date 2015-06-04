@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import userInterface.Screens;
+import userInterface.Writer;
 
 public class ConnectionHandler implements Runnable {
 
@@ -51,8 +52,10 @@ public class ConnectionHandler implements Runnable {
         out.write(Screens.characterCreationScreen());
         out.flush();
         String[] lines = in.readLine().split(" ");
-        if (lines.length !=2) {
-            out.write("");
+        if (lines.length != 2) {
+            clearScreen();
+            out.write(Writer.WriteLine("caca", Writer.CENTER));
+            out.flush();
         }
     }
 
