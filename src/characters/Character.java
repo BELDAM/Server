@@ -10,13 +10,16 @@ import java.util.LinkedList;
  * Created by bastiangardel on 25.05.15.
  */
 public abstract class Character implements FightInterface {
-    String name;
-    char symbol;
-    int life;
-    boolean dead;
-    static final int LIFE = 10;
-    int strength;
-    static final int STRENGTH = 10;
+    private String name;
+    private char symbol;
+    private int life;
+    private static final int LIFE = 10;
+    private boolean dead;
+    private int strength;
+    private static final int STRENGTH = 10;
+    private int intelligence;
+    private static final int INTELLIGENCE = 10;
+
     LinkedList<Item> items;
 
     public Character(String name, char symbol) {
@@ -59,6 +62,15 @@ public abstract class Character implements FightInterface {
     public void setSymbol(char symbol) {
         this.symbol = symbol;
     }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
     public void addItem(Item newItem){
         BodyPart newPart = newItem.getBodyPart();
 
