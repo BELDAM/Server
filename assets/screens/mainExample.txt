@@ -1,37 +1,38 @@
-+------------------------------------------------------------------------------+-----+--------------------------+-----+
-|                                                                              | companions |         .-----.   |Stuff|
-|                                                                              +------------+         |/"""\|   +-----+
-|                                                                              | Simon    S |         |[* *]|         |
++------------------------------------------------------------------------------+------------+-------------------+-----+
+| Lorem ipsum dolor sit amet tempus consectetur. Na venenatis euismo ultricies | companions |         .-----.   |Stuff|
+| ullamcorper dui. Curabitur tempor, lectus id sodales pharetra, sapien sem se +------------+         |/"""\|   +-----+
+| ementum ut eros at gravida. Mauris eget diam auctor, commodo?                | Simon    S |         |[* *]|         |
 |                                                                              | Léow     L |         |\___/|         |
-|                                                                              | Sacha    b |          -----          |
-|                                                                              | Karim    k | .-----. .-----. .-----. |
-|                                                                              | Bastian  B | | ..-o| |/"""\| |o-.. | |
-|                                                                              +------------+ |//  || |\   /| ||  \\| |
+| > move east                                                                  | Sacha    b |          -----          |
+| Enean molestie, sem ac tempus venenatis, nisl ligula egestas mauris, posuere | Karim    k | .-----. .-----. .-----. |
+| Fusce dignissim eros nec neque posuere, vitae rutrum nisi mollis. Integer al | Bastian  B | | ..-o| |/"""\| |o-.. | |
+| > move south                                                                 +------------+ |//  || |\   /| ||  \\| |
 |                                                                                           | |*---'| |!###!| |'---*| |
-|                                                                                           |  -----   -----   -----  |
-|                                                                                           | .-----. .-----. .-----. |
-|                                                                                           | |     | |/"""\| | --- | |
-|                                                                                           | |-)---| ||.|.|| ||-o-|| |
+| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod ex a ex consequat, a |  -----   -----   -----  |
+| In sodales faucibus sapien, sed iaculis orci lobortis ac. Sed finibus vel leosit amet     | .-----. .-----. .-----. |
+| fermentum quam vehicula et. Suspendisse est neque, ultricies ac quam nec, convallis       | |     | |/"""\| | --- | |
+| posuere risus. Praesent id viverra sem.                                                   | |-)---| ||.|.|| ||-o-|| |
 |                                                                                           | |     | ||_|_|| | \_/ | |
 |                                                                                           |  -----   -----   -----  |
-|                                                                                           |         .-----.         |
+|                                          . . .                                            |         .-----.         |
 |                                                                                           |         |,,,  |   [1]   |
 |                                                                                           |         || |_ | [2|3|4] |
 |                                                                                           |         |[___)| [5|6|7] |
 |                                                                                           |          -----    [8]   |
-|                                                                                           +---------------+---------+
-|                                                                                           | HP:    13/20  |Statistic|
-|                                                                                           | Mana:  10/12  +---------+
+|                                                                                           +-------------------+-----+
+|                                          . . .                                            | Health [13/20]    |Stats|
+|                                                                                           | Mana   [10/12]    +-----+
 |                                                                                           |                         |
 |                                                                                           | Intelligence: 15        |
 |                                                                                           | Agility:      5         |
 |                                                                                           | Strength:     24        |
+|                                          . . .                                            |                         |
 |                                                                                           |                         |
 |                                                                                           |                         |
 |                                                                                           |                         |
 |                                                                                           |                         |
-|                                                                                           |                         |
-|                                                                                           |                         |
+|                                          . . .                                            |                         |
 |                                                                                           |                         |
 |                                                                                           |                         |
 +---------------------------------------------------------------------------------------------------------------------+
+> quit
