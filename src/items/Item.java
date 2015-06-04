@@ -32,9 +32,21 @@ public class Item {
 	}
 
 	public void addSuffix(Suffix suffix) {
-		this.name += " " + suffix.name();
-		this.attack += suffix.attack();
-		this.defense += suffix.defense();
+		if (suffix.name().charAt(0) != ',') {
+			name += " " + suffix.name();
+		} else {
+			name += suffix.name();
+		}
+
+		attack += suffix.attack();
+		defense += suffix.defense();
+
+		if (attack < 0) {
+			attack = 0;
+		}
+		if (defense < 0) {
+			defense = 0;
+		}
 	}
 
 	public String toString() {
