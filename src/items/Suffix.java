@@ -1,6 +1,6 @@
 package items;
 
-class Suffix {
+public class Suffix {
 	private String name;
 	private int attack;
 	private int defense;

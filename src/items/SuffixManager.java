@@ -8,7 +8,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
 
-class SuffixManager {
+public class SuffixManager {
 	private ArrayList<Suffix> suffices = new ArrayList<Suffix>();
 
 	public SuffixManager() {
