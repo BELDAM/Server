@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import userInterface.Screens;
@@ -52,9 +54,15 @@ public class ConnectionHandler implements Runnable {
         out.write(Screens.characterCreationScreen());
         out.flush();
         String[] lines = in.readLine().split(" ");
-        if (lines.length != 2) {
+        CharsetEncoder asciiEncoder = Charset.forName("US-ASCII").newEncoder();
+        if (lines.length != 2 || lines[0].length() < 2 || lines[1].length() != 1
+                || !asciiEncoder.canEncode(lines[0]) || !asciiEncoder.canEncode(lines[1])) {
             clearScreen();
-            out.write(Writer.WriteLine("caca", Writer.CENTER));
+            createCharacter();
+        } else {
+            clearScreen();
+            String[] message = {"Choose your race", "", "ELF - DWARF - HUMAN"};
+            out.write(Writer.Write(message, Writer.CENTER));
             out.flush();
         }
     }

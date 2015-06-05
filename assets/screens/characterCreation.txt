@@ -17,10 +17,10 @@
 |                                                                                                                     |
 |                                          Choose your name and your avatar                                           |
 |                                                                                                                     |
-|                                          type: <name> <avatar>                                                      |
+|                                          syntax: <name> <avatar>                                                    |
 |                                                                                                                     |
-|                                                                                                                     |
-|                                                                                                                     |
+|                                          name length must be greater than one                                       |
+|                                          avatar must be an ASCII character                                          |
 |                                                                                                                     |
 |                                                                                                                     |
 |                                                                                                                     |
