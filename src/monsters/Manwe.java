@@ -5,12 +5,19 @@
  */
 package monsters;
 
+import Visitors.IVisitor;
+
 /**
  *
  * @author Simon
  */
 public class Manwe extends Monster{
-    public Manwe(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
-        super(HP, name, strength,intelligence, physicalDefence, magicalDefence, level);
-    }    
+    public Manwe(int level) {
+        super(level);
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+
+    }
 }

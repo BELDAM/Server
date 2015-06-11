@@ -22,20 +22,7 @@ public class MonsterFactory {
         int level;
         Random rand = new Random();
         level = rand.nextInt((groupeLevel+groupeSize - 2) + 1) + 2;
-        int HP = 10;
-        int strength = 10;
-        int intelligence = 3;
-        int magicalDefence = 2;
-        int physicalDefence = 2;
-        
-        
-        HP += HP * (level/3);
-        strength += level * 2;
-        physicalDefence += level ;
-        magicalDefence += level/2;
-        intelligence += level;
-        
-        return new Troll(HP, "Troll", strength, intelligence, magicalDefence ,physicalDefence, level);
+        return new Troll(level);
     }
     public Dragon createDragon()
     {
@@ -44,20 +31,7 @@ public class MonsterFactory {
         int level;
         Random rand = new Random();
         level = rand.nextInt((groupeLevel+groupeSize - 3) + 2) + 3;
-        int HP = 25;
-        int strength = 15;
-        int intelligence = 10;
-        int magicalDefence = 12;
-        int physicalDefence = 12;
-
-
-        HP += level * 1.5;
-        strength += level * 1.5;
-        intelligence += intelligence += level;
-        physicalDefence += level ;
-        magicalDefence += level;
-
-        return new Dragon(HP, "Dragon", strength, intelligence, magicalDefence ,physicalDefence, level);
+        return new Dragon(level);
     }
     
 }

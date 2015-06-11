@@ -6,6 +6,7 @@
 package monsters;
 
 import Interface.FightInterface;
+import Visitors.init;
 import items.BodyPart;
 import items.Item;
 
@@ -16,7 +17,7 @@ import java.util.Random;
  *
  * @author Simon
  */
-public class Monster implements FightInterface{
+public abstract class Monster implements FightInterface{
     protected int HP;
     protected int level;
     protected boolean dead;
@@ -28,17 +29,88 @@ public class Monster implements FightInterface{
     protected int giveXP;
     LinkedList<Item> items;
 
-    public Monster(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
+    public Monster(int level) {
         this.dead = false;
         this.level = level;
-        this.intelligence = intelligence;
-        this.HP = HP;
-        this.name = name;
-        this.strength = strength;
-        this.physicalDefence = physicalDefence;
-        this.magicalDefence = magicalDefence;
         items = new LinkedList();
     }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public int getPhysicalDefence() {
+        return physicalDefence;
+    }
+
+    public void setPhysicalDefence(int physicalDefence) {
+        this.physicalDefence = physicalDefence;
+    }
+
+    public int getMagicalDefence() {
+        return magicalDefence;
+    }
+
+    public void setMagicalDefence(int magicalDefence) {
+        this.magicalDefence = magicalDefence;
+    }
+
+    public int getGiveXP() {
+        return giveXP;
+    }
+
+    public void setGiveXP(int giveXP) {
+        this.giveXP = giveXP;
+    }
+
+    public LinkedList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(LinkedList<Item> items) {
+        this.items = items;
+    }
+
 
     @Override
     public void takeDmg(int dmg) {

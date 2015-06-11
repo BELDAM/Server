@@ -6,8 +6,8 @@
 package monsters;
 
 import Visitors.IVisitor;
+import Visitors.init;
 import items.ItemManager;
-import java.util.Random;
 
 /**
  *
@@ -15,19 +15,16 @@ import java.util.Random;
  */
 public class Troll extends Monster {
 
-    public Troll(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
-        super(HP, name, strength, intelligence, physicalDefence, magicalDefence, level);
+    public Troll(int level) {
+        super(level);
         //http://stackoverflow.com/questions/3745760/java-generating-a-random-numbers-with-a-logarithmic-distribution
         int maxN = 5;
         int t = 1 << (maxN); // 2^maxN
-        int n = maxN
-                - ((int) (Math.log((Math.random() * t))
-                / Math.log(2))); // maxN - log2(1..maxN)
+        int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)
         System.out.println("n=" + n);
         ItemManager itemManager = new ItemManager();
         //while (items.size() < n + 2) {
             addItem(itemManager.getRandomItem());
-
         //}
 
         for(int i = 0; i < items.size(); i++)
@@ -35,6 +32,7 @@ public class Troll extends Monster {
             this.strength += items.get(i).getAttack();
             this.physicalDefence += items.get(i).getDefense();
         }
+        accept(new init());
 
     }
 
