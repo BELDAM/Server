@@ -18,6 +18,16 @@ public class Warrior extends OrcDecorator {
     }
 
     @Override
+    public void magiclAttack(FightInterface character) {
+
+    }
+
+    @Override
+    public void takeMagicDmg(int dmg) {
+
+    }
+
+    @Override
     public void takeDmg(int dmg) {
 
     }

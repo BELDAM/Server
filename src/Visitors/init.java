@@ -49,11 +49,32 @@ public class init implements IVisitor{
 
     @Override
     public void visit(ElfNoir o) {
+        int level = o.getLevel();
+        o.setHP(8);
+        o.setStrength(4);
+        o.setMagicalDefence(2);
+        o.setPhysicalDefence(2);
+        o.setIntelligence(10);
+        o.setName("Elf noir");
+        o.setGiveXP(10);
 
+        o.setHP(o.getHP() + o.getHP() * level/4);
+        o.setStrength(o.getStrength() + o.getStrength() * level / 5);
+        o.setPhysicalDefence(o.getPhysicalDefence() + level);
+        o.setMagicalDefence(o.getMagicalDefence() + level / 2);
+        o.setIntelligence(o.getIntelligence() + level);
+        o.setGiveXP(o.getGiveXP() + level * 5);
     }
 
     @Override
     public void visit(Manwe o) {
-
+        int level = o.getLevel();
+        o.setHP(200);
+        o.setStrength(10);
+        o.setMagicalDefence(10);
+        o.setPhysicalDefence(10);
+        o.setIntelligence(100);
+        o.setName("Manwe");
+        o.setGiveXP(1000);
     }
 }

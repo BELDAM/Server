@@ -40,4 +40,14 @@ public class Orc extends characters.Character implements OrcInterface {
     public void attack(FightInterface character) {
 
     }
+
+    @Override
+    public void magiclAttack(FightInterface character) {
+
+    }
+
+    @Override
+    public void takeMagicDmg(int dmg) {
+
+    }
 }

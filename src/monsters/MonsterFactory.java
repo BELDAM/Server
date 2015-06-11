@@ -33,5 +33,13 @@ public class MonsterFactory {
         level = rand.nextInt((groupeLevel+groupeSize - 3) + 2) + 3;
         return new Dragon(level);
     }
+    public Manwe createManwe()
+    {
+        int groupeLevel = 5;
+        int groupeSize = 5;
+        int level;
+        Random rand = new Random();
+        return new Manwe(100);
+    }
     
 }

@@ -9,6 +9,8 @@ import Visitors.IVisitor;
 public interface FightInterface {
 
     void attack(FightInterface character);
+    public void magiclAttack(FightInterface character);
+    public void takeMagicDmg(int dmg);
     void takeDmg(int dmg);
     void accept(IVisitor visitor);
     public boolean isDead();

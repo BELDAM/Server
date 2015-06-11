@@ -27,4 +27,14 @@ public class Humain extends characters.Character implements HumainInterface {
 
         //TODO implementation
     }
+
+    @Override
+    public void magiclAttack(FightInterface character) {
+
+    }
+
+    @Override
+    public void takeMagicDmg(int dmg) {
+
+    }
 }

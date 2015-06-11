@@ -34,20 +34,7 @@ public abstract class Monster implements FightInterface{
         this.dead = false;
         this.level = level;
         items = new LinkedList();
-        int maxN = 5;
-        int t = 1 << (maxN); // 2^maxN
-        int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)
-        System.out.println("n=" + n);
-        ItemManager itemManager = new ItemManager();
-        //while (items.size() < n + 2) {
-        addItem(itemManager.getRandomItem());
-        //}
 
-        for(int i = 0; i < items.size(); i++)
-        {
-            this.strength += items.get(i).getAttack();
-            this.physicalDefence += items.get(i).getDefense();
-        }
     }
 
     public int getHP() {
@@ -138,6 +125,33 @@ public abstract class Monster implements FightInterface{
             dead = true;
         }
     }
+    public void takeMagicDmg(int dmg){
+        int dmgTaken = dmg - magicalDefence;
+        if(dmgTaken <= 0)
+            dmgTaken = 0;
+        HP = HP - dmgTaken;
+        if (HP <= 0) {
+            HP = 0;
+            dead = true;
+        }
+    }
+
+    @Override
+    public void attack(FightInterface character) {
+        if (!isDead()) {
+            character.takeDmg(strength);
+        } else {
+            System.out.println("you are dead");
+        }
+    }
+    @Override
+    public void magiclAttack(FightInterface character) {
+        if (!isDead()) {
+            character.takeDmg(intelligence);
+        } else {
+            System.out.println("you are dead");
+        }
+    }
     public LinkedList dropItem() {
         Random rand = new Random();
         int idDrop;
@@ -153,15 +167,6 @@ public abstract class Monster implements FightInterface{
 
     public boolean isDead() {
         return HP == 0;
-    }
-
-    @Override
-    public void attack(FightInterface character) {
-        if (!isDead()) {
-            character.takeDmg(strength * level);
-        } else {
-            System.out.println("you are dead");
-        }
     }
     public void addItem(Item newItem) {
         BodyPart newPart = newItem.getBodyPart();

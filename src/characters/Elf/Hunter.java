@@ -29,6 +29,16 @@ public class Hunter extends ElfDecorator {
     }
 
     @Override
+    public void magiclAttack(FightInterface character) {
+
+    }
+
+    @Override
+    public void takeMagicDmg(int dmg) {
+
+    }
+
+    @Override
     public void takeDmg(int dmg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //TODO implementation

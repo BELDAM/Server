@@ -32,6 +32,16 @@ public class Elf extends characters.Character implements ElfInterface {
     }
 
     @Override
+    public void magiclAttack(FightInterface character) {
+
+    }
+
+    @Override
+    public void takeMagicDmg(int dmg) {
+
+    }
+
+    @Override
     public int getSpeed() {
         return speed;
     }
