@@ -9,6 +9,7 @@ import Interface.FightInterface;
 import Visitors.init;
 import items.BodyPart;
 import items.Item;
+import items.ItemManager;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -33,6 +34,20 @@ public abstract class Monster implements FightInterface{
         this.dead = false;
         this.level = level;
         items = new LinkedList();
+        int maxN = 5;
+        int t = 1 << (maxN); // 2^maxN
+        int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)
+        System.out.println("n=" + n);
+        ItemManager itemManager = new ItemManager();
+        //while (items.size() < n + 2) {
+        addItem(itemManager.getRandomItem());
+        //}
+
+        for(int i = 0; i < items.size(); i++)
+        {
+            this.strength += items.get(i).getAttack();
+            this.physicalDefence += items.get(i).getDefense();
+        }
     }
 
     public int getHP() {

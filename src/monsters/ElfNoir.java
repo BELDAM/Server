@@ -21,6 +21,6 @@ public class ElfNoir extends Monster{
 
     @Override
     public void accept(IVisitor visitor) {
-
+        visitor.visit(this);
     }
 }
