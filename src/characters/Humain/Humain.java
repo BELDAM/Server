@@ -29,7 +29,7 @@ public class Humain extends characters.Character implements HumainInterface {
     }
 
     @Override
-    public void magiclAttack(FightInterface character) {
+    public void magicAttack(FightInterface character) {
 
     }
 

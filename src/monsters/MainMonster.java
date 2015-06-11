@@ -16,6 +16,6 @@ public class MainMonster {
         System.out.println(d1.toString());
         System.out.println(m1.toString());
         m1.attack(t1);
-        m1.magiclAttack(t1);
+        m1.magicAttack(t1);
     }
 }

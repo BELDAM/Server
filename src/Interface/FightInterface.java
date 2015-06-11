@@ -1,6 +1,5 @@
 package Interface;
 
-import items.Item;
 import Visitors.IVisitor;
 
 /**
@@ -9,7 +8,7 @@ import Visitors.IVisitor;
 public interface FightInterface {
 
     void attack(FightInterface character);
-    public void magiclAttack(FightInterface character);
+    public void magicAttack(FightInterface character);
     public void takeMagicDmg(int dmg);
     void takeDmg(int dmg);
     void accept(IVisitor visitor);

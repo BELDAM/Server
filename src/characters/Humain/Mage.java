@@ -22,7 +22,7 @@ public class Mage extends HumainDecorator{
     }
 
     @Override
-    public void magiclAttack(FightInterface character) {
+    public void magicAttack(FightInterface character) {
 
     }
 

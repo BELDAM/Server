@@ -6,10 +6,8 @@
 package monsters;
 
 import Interface.FightInterface;
-import Visitors.init;
 import items.BodyPart;
 import items.Item;
-import items.ItemManager;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -19,9 +17,9 @@ import java.util.Random;
  * @author Simon
  */
 public abstract class Monster implements FightInterface{
-    protected int HP;
-    protected int level;
-    protected boolean dead;
+    private int HP;
+    private int level;
+    private boolean dead;
     protected String name;
     protected int strength;
     protected int intelligence;
@@ -145,7 +143,7 @@ public abstract class Monster implements FightInterface{
         }
     }
     @Override
-    public void magiclAttack(FightInterface character) {
+    public void magicAttack(FightInterface character) {
         if (!isDead()) {
             character.takeDmg(intelligence);
         } else {

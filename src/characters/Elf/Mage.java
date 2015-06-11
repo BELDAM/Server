@@ -29,7 +29,7 @@ public class Mage extends ElfDecorator {
     }
 
     @Override
-    public void magiclAttack(FightInterface character) {
+    public void magicAttack(FightInterface character) {
 
     }
 

@@ -6,8 +6,6 @@
 package monsters;
 
 import Visitors.IVisitor;
-import items.BodyPart;
-import items.Item;
 
 /**
  *

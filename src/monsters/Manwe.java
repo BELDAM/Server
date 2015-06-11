@@ -54,18 +54,18 @@ public class Manwe extends Monster{
             }
             else
             {
-                System.out.println("j attaque demain");
+                System.out.println(this.name + " : j attaquerai demain");
             }
         } else {
             System.out.println("you are dead");
         }
     }
-    public void magiclAttack(FightInterface character)
+    public void magicAttack(FightInterface character)
     {
         if (!isDead()) {
             Random rand = new Random();
             int attack = rand.nextInt(100);
-            if(attack > 2) {
+            if(attack > 90) {
                 character.takeMagicDmg(intelligence);
                 if(character.isDead())
                 {
@@ -74,7 +74,7 @@ public class Manwe extends Monster{
             }
             else
             {
-                System.out.println("j attaque demain");
+                System.out.println(this.name + " : j attaquerai demain");
             }
         } else {
             System.out.println("you are dead");
