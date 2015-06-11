@@ -1,6 +1,7 @@
 package characters.Humain;
 
 import Interface.FightInterface;
+import Visitors.IVisitor;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -24,6 +25,11 @@ public class Mage extends HumainDecorator{
     public void takeDmg(int dmg) {
 
         //TODO implementation
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+
     }
 
     @Override
