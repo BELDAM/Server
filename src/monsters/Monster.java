@@ -31,7 +31,7 @@ public class Monster implements FightInterface{
     public Monster(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
         this.dead = false;
         this.level = level;
-        this.intelligence = 0;
+        this.intelligence = intelligence;
         this.HP = HP;
         this.name = name;
         this.strength = strength;
@@ -42,8 +42,10 @@ public class Monster implements FightInterface{
 
     @Override
     public void takeDmg(int dmg) {
-        int dmgTaken;
-        HP = HP - dmg;
+        int dmgTaken = dmg - physicalDefence;
+        if(dmgTaken <= 0)
+            dmgTaken = 0;
+        HP = HP - dmgTaken;
         if (HP <= 0) {
             HP = 0;
             dead = true;
@@ -89,9 +91,18 @@ public class Monster implements FightInterface{
         }
         items.add(newItem);
     }
-     @Override
+    @Override
     public String toString() {
-        return name + ": ,level[" + level + "] ,life[" + HP + "], Strength[" + strength + "], intelligence[" + intelligence + "]";
+        return name + ": ,level[" + level + "] ,life[" + HP + "], Strength[" + strength + "], intelligence[" + intelligence + "]" + "\r\n" + toStringItems();
+    }
+    public String toStringItems()
+    {
+        String tmp = "";
+        for(int i = 0 ; i < items.size() ; i++)
+        {
+            tmp += items.get(i).toString() + "\r\n";
+        }
+        return tmp;
     }
 
 
