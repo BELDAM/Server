@@ -36,7 +36,7 @@ public class Hunter extends ElfDecorator {
 
     @Override
     public void accept(IVisitor visitor) {
-
+        //TODO implementation
     }
 
     @Override

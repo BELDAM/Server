@@ -29,7 +29,7 @@ public class Mage extends HumainDecorator{
 
     @Override
     public void accept(IVisitor visitor) {
-
+        //TODO implementation
     }
 
     @Override

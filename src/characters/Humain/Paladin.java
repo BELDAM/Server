@@ -24,7 +24,7 @@ public class Paladin extends HumainDecorator {
 
     @Override
     public void accept(IVisitor visitor) {
-
+        //TODO implementation
     }
 
     @Override

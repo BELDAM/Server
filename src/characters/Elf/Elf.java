@@ -23,7 +23,7 @@ public class Elf extends characters.Character implements ElfInterface {
 
     @Override
     public void accept(IVisitor visitor) {
-
+        //TODO implementation
     }
 
     @Override

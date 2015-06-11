@@ -19,7 +19,7 @@ public class Humain extends characters.Character implements HumainInterface {
 
     @Override
     public void accept(IVisitor visitor) {
-
+        //TODO implementation
     }
 
     @Override

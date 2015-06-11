@@ -33,7 +33,7 @@ public class Orc extends characters.Character implements OrcInterface {
 
     @Override
     public void accept(IVisitor visitor) {
-
+        //TODO implementation
     }
 
     @Override

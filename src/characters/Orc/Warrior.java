@@ -24,7 +24,7 @@ public class Warrior extends OrcDecorator {
 
     @Override
     public void accept(IVisitor visitor) {
-
+        //TODO implementation
     }
 
     @Override
