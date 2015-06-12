@@ -45,6 +45,7 @@ public class ConnectionHandler implements Runnable {
             out.flush();
             in.readLine();
             createCharacter();
+            currentMap = GameManager.getInstance().getWorldMap();
             mainLoop();
         } catch (IOException ex) {
             Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,13 +81,14 @@ public class ConnectionHandler implements Runnable {
             String race = in.readLine();
             CharacterFactory factory = new CharacterFactory();
             player = factory.createCharacter(name_avatar[0], name_avatar[1].charAt(0), race);
+            GameManager.getInstance().registerNewPlayer(player);
         } while (player == null);
     }
 
     private void mainLoop() throws IOException {
         while (running) {
             clearScreen();
-            out.write(Screens.emptyScreen());
+            out.write(currentMap.toString());
             out.flush();
 
             String[] command = in.readLine().split(" ");
@@ -111,7 +113,7 @@ public class ConnectionHandler implements Runnable {
                         running = false;
                 }
             } catch (RuntimeException e) {
-                System.out.println("incorrect command");
+                System.out.println("invalid command");
             }
         }
     }

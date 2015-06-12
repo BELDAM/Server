@@ -60,7 +60,7 @@ public class Map {
 
     @Override
     public String toString() {
-        return String.join("\r\n", representation);
+        return String.join("\r\n", representation) + "\r\n";
     }
 
     private void updateRepresentation() {
