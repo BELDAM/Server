@@ -1,3 +1,23 @@
-Sword,RIGHT_HAND,4,0
 Shield,LEFT_HAND,1,6
+The Protectator,LEFT_HAND,0,5
 Katana,BOTH_HANDS,6,1
+Doombringer,BOTH_HANDS,10,5
+Sword,RIGHT_HAND,4,0
+Purifier,RIGHT_HAND,8,2
+Smasher,BOTH_HANDS,5,0
+Fairly War Axe,BOTH_HANDS,3,2
+Bronzed Chestguard,TORSO,0,10
+Protector's Tunic,TORSO,0,2
+Thornmail,TORSO,3,5
+Silver Epaulette,SHOULDERS,0,4
+Spiked Epaulette,SHOULDERS,2,3
+Lead Sabatons,FEET,0,3
+Greatboots,FEET,1,1
+Necromancer Mask,HEAD,4,0
+Bucket Helm,HEAD,0,5
+Sapphire Crowns,HEAD,2,1
+Red Turbans,HEAD,0,0
+Leather Kilt,LEGS,0,2
+Arcane Skirt,LEGS,3,0
+Blood-Forged Greaves,LEGS,2,4
+Golden Platelegs,LEGS,0,4

@@ -1,6 +1,7 @@
 package characters.Humain;
 
 import Interface.FightInterface;
+import Visitors.IVisitor;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -17,8 +18,23 @@ public class Humain extends characters.Character implements HumainInterface {
     }
 
     @Override
+    public void accept(IVisitor visitor) {
+        //TODO implementation
+    }
+
+    @Override
     public void attack(FightInterface character) {
 
         //TODO implementation
+    }
+
+    @Override
+    public void magicAttack(FightInterface character) {
+
+    }
+
+    @Override
+    public void takeMagicDmg(int dmg) {
+
     }
 }

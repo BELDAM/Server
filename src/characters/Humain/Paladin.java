@@ -1,6 +1,7 @@
 package characters.Humain;
 
 import Interface.FightInterface;
+import Visitors.IVisitor;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -17,8 +18,23 @@ public class Paladin extends HumainDecorator {
     }
 
     @Override
+    public void magicAttack(FightInterface character) {
+
+    }
+
+    @Override
+    public void takeMagicDmg(int dmg) {
+
+    }
+
+    @Override
     public void takeDmg(int dmg) {
 
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+        //TODO implementation
     }
 
     @Override

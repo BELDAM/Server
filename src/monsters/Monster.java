@@ -16,10 +16,10 @@ import java.util.Random;
  *
  * @author Simon
  */
-public class Monster implements FightInterface{
-    protected int HP;
-    protected int level;
-    protected boolean dead;
+public abstract class Monster implements FightInterface{
+    private int HP;
+    private int level;
+    private boolean dead;
     protected String name;
     protected int strength;
     protected int intelligence;
@@ -28,25 +28,126 @@ public class Monster implements FightInterface{
     protected int giveXP;
     LinkedList<Item> items;
 
-    public Monster(int HP, String name, int strength,int intelligence, int physicalDefence,int magicalDefence, int level) {
+    public Monster(int level) {
         this.dead = false;
         this.level = level;
-        this.intelligence = 0;
-        this.HP = HP;
-        this.name = name;
-        this.strength = strength;
-        this.physicalDefence = physicalDefence;
-        this.magicalDefence = magicalDefence;
         items = new LinkedList();
+
     }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public int getPhysicalDefence() {
+        return physicalDefence;
+    }
+
+    public void setPhysicalDefence(int physicalDefence) {
+        this.physicalDefence = physicalDefence;
+    }
+
+    public int getMagicalDefence() {
+        return magicalDefence;
+    }
+
+    public void setMagicalDefence(int magicalDefence) {
+        this.magicalDefence = magicalDefence;
+    }
+
+    public int getGiveXP() {
+        return giveXP;
+    }
+
+    public void setGiveXP(int giveXP) {
+        this.giveXP = giveXP;
+    }
+
+    public LinkedList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(LinkedList<Item> items) {
+        this.items = items;
+    }
+
 
     @Override
     public void takeDmg(int dmg) {
-        int dmgTaken;
-        HP = HP - dmg;
+        int dmgTaken = dmg - physicalDefence;
+        if(dmgTaken <= 0)
+            dmgTaken = 0;
+        HP = HP - dmgTaken;
         if (HP <= 0) {
             HP = 0;
             dead = true;
+        }
+    }
+    public void takeMagicDmg(int dmg){
+        int dmgTaken = dmg - magicalDefence;
+        if(dmgTaken <= 0)
+            dmgTaken = 0;
+        HP = HP - dmgTaken;
+        if (HP <= 0) {
+            HP = 0;
+            dead = true;
+        }
+    }
+
+    @Override
+    public void attack(FightInterface character) {
+        if (!isDead()) {
+            character.takeDmg(strength);
+        } else {
+            System.out.println("you are dead");
+        }
+    }
+    @Override
+    public void magicAttack(FightInterface character) {
+        if (!isDead()) {
+            character.takeDmg(intelligence);
+        } else {
+            System.out.println("you are dead");
         }
     }
     public LinkedList dropItem() {
@@ -65,15 +166,6 @@ public class Monster implements FightInterface{
     public boolean isDead() {
         return HP == 0;
     }
-
-    @Override
-    public void attack(FightInterface character) {
-        if (!isDead()) {
-            character.takeDmg(strength * level);
-        } else {
-            System.out.println("you are dead");
-        }
-    }
     public void addItem(Item newItem) {
         BodyPart newPart = newItem.getBodyPart();
 
@@ -89,9 +181,18 @@ public class Monster implements FightInterface{
         }
         items.add(newItem);
     }
-     @Override
+    @Override
     public String toString() {
-        return name + ": ,level[" + level + "] ,life[" + HP + "], Strength[" + strength + "], intelligence[" + intelligence + "]";
+        return name + ": ,level[" + level + "] ,life[" + HP + "], Strength[" + strength + "], intelligence[" + intelligence + "]" + "\r\n" + toStringItems();
+    }
+    public String toStringItems()
+    {
+        String tmp = "";
+        for(int i = 0 ; i < items.size() ; i++)
+        {
+            tmp += items.get(i).toString() + "\r\n";
+        }
+        return tmp;
     }
 
 

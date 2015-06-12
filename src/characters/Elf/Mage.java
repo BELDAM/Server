@@ -1,6 +1,7 @@
 package characters.Elf;
 
 import Interface.FightInterface;
+import Visitors.IVisitor;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -28,8 +29,23 @@ public class Mage extends ElfDecorator {
     }
 
     @Override
+    public void magicAttack(FightInterface character) {
+
+    }
+
+    @Override
+    public void takeMagicDmg(int dmg) {
+
+    }
+
+    @Override
     public void takeDmg(int dmg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO implementation
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
         //TODO implementation
     }
 

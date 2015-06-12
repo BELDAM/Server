@@ -15,26 +15,31 @@ public class MonsterFactory {
 
     public MonsterFactory() {
     }
-    Troll createTroll()
+    public Troll createTroll()
     {
         int groupeLevel = 5;
         int groupeSize = 5;
         int level;
         Random rand = new Random();
         level = rand.nextInt((groupeLevel+groupeSize - 2) + 1) + 2;
-        int HP = 5;
-        int strength = 10;
-        int intelligence = 3;
-        int magicalDefence = 2;
-        int physicalDefance = 2;
-        
-        
-        HP += HP * (level/3);
-        strength += strength * (level/2);
-        physicalDefance += physicalDefance * (level/3);
-        magicalDefence += magicalDefence * (level/5);
-        
-        return new Troll(HP, "Troll", strength, intelligence, magicalDefence ,physicalDefance, level);
+        return new Troll(level);
+    }
+    public Dragon createDragon()
+    {
+        int groupeLevel = 5;
+        int groupeSize = 5;
+        int level;
+        Random rand = new Random();
+        level = rand.nextInt((groupeLevel+groupeSize - 3) + 2) + 3;
+        return new Dragon(level);
+    }
+    public Manwe createManwe()
+    {
+        int groupeLevel = 5;
+        int groupeSize = 5;
+        int level;
+        Random rand = new Random();
+        return new Manwe(100);
     }
     
 }
