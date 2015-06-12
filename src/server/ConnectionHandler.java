@@ -12,12 +12,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import userInterface.Screens;
 import userInterface.Writer;
+import characters.Character;
 
 public class ConnectionHandler implements Runnable {
 
     private Socket connection;
     private BufferedReader in;
     private BufferedWriter out;
+
+    private Character player;
 
     public ConnectionHandler(Socket socket) {
         try {
@@ -35,7 +38,6 @@ public class ConnectionHandler implements Runnable {
             out.write(Screens.titleScreen());
             out.flush();
             in.readLine();
-            clearScreen();
             createCharacter();
         } catch (IOException ex) {
             Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,20 +53,26 @@ public class ConnectionHandler implements Runnable {
     }
 
     private void createCharacter() throws IOException {
-        out.write(Screens.characterCreationScreen());
-        out.flush();
-        String[] lines = in.readLine().split(" ");
+        String[] nameAvatar;
         CharsetEncoder asciiEncoder = Charset.forName("US-ASCII").newEncoder();
-        if (lines.length != 2 || lines[0].length() < 2 || lines[1].length() != 1
-                || !asciiEncoder.canEncode(lines[0]) || !asciiEncoder.canEncode(lines[1])) {
+        do {
             clearScreen();
-            createCharacter();
-        } else {
+            out.write(Screens.characterCreationScreen());
+            out.flush();
+
+            nameAvatar = in.readLine().split(" ");
+        } while (nameAvatar.length != 2 || nameAvatar[0].length() < 2 || nameAvatar[1].length() != 1
+                || !asciiEncoder.canEncode(nameAvatar[0]) || !asciiEncoder.canEncode(nameAvatar[1]));
+
+        String[] message = {"Choose your race", "", "ELF - HUMAN - ORC"};
+        do {
             clearScreen();
-            String[] message = {"Choose your race", "", "ELF - DWARF - HUMAN"};
             out.write(Writer.Write(message, Writer.CENTER));
             out.flush();
-        }
+
+            String race = in.readLine();
+            //player = 
+        } while (player == null);
     }
 
     private void clearScreen() throws IOException {
