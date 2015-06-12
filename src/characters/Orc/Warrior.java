@@ -14,22 +14,22 @@ public class Warrior extends OrcDecorator {
 
     @Override
     public void attack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override
     public void magicAttack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override
     public void takeMagicDmg(int dmg) {
-
+        //TODO implementation
     }
 
     @Override
     public void takeDmg(int dmg) {
-
+        //TODO implementation
     }
 
     @Override
@@ -44,11 +44,11 @@ public class Warrior extends OrcDecorator {
 
     @Override
     public int getRage() {
-        return 0;
+        return orc.getRage();
     }
 
     @Override
     public void setRage(int rage) {
-
+        orc.setRage(rage);
     }
 }

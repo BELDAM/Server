@@ -28,7 +28,7 @@ public class Orc extends characters.Character implements OrcInterface {
 
     @Override
     public void takeDmg(int dmg) {
-
+        //TODO implementation
     }
 
     @Override
@@ -38,16 +38,16 @@ public class Orc extends characters.Character implements OrcInterface {
 
     @Override
     public void attack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override
     public void magicAttack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override
     public void takeMagicDmg(int dmg) {
-
+        //TODO implementation
     }
 }

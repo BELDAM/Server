@@ -30,11 +30,11 @@ public class Humain extends characters.Character implements HumainInterface {
 
     @Override
     public void magicAttack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override
     public void takeMagicDmg(int dmg) {
-
+        //TODO implementation
     }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SuffixManager {
-	private ArrayList<Suffix> suffices = new ArrayList<Suffix>();
+	private ArrayList<Suffix> suffices = new ArrayList<>();
 
 	public SuffixManager() {
 		try {

@@ -30,12 +30,12 @@ public class Hunter extends ElfDecorator {
 
     @Override
     public void magicAttack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override
     public void takeMagicDmg(int dmg) {
-
+        //TODO implementation
     }
 
     @Override

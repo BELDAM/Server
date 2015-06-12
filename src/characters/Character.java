@@ -20,9 +20,9 @@ public abstract class Character implements FightInterface {
     private int intelligence;
     private static final int INTELLIGENCE = 10;
 
-    LinkedList<Item> items;
+    private LinkedList<Item> items;
 
-    public Character(String name, char symbol) {
+    protected Character(String name, char symbol) {
         this.name = name;
         this.symbol = symbol;
 

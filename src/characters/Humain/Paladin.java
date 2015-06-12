@@ -19,17 +19,17 @@ public class Paladin extends HumainDecorator {
 
     @Override
     public void magicAttack(FightInterface character) {
-
+        //TODO implementation
     }
 
     @Override
     public void takeMagicDmg(int dmg) {
-
+        //TODO implementation
     }
 
     @Override
     public void takeDmg(int dmg) {
-
+        //TODO implementation
     }
 
     @Override

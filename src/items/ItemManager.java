@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ItemManager {
-	private ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Item> items = new ArrayList<>();
 
 	public ItemManager() {
 		try {
