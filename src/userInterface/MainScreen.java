@@ -1,6 +1,6 @@
 package userInterface;
 
-public class MainScreen extends Screen {
+public class MainScreen implements Screen {
 	private Inventory inventory;
 
 	public MainScreen() {
