@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 import userInterface.Screens;
 import userInterface.Writer;
 import characters.Character;
+import characters.CharacterFactory;
+import maps.Map;
 
 public class ConnectionHandler implements Runnable {
 
@@ -21,12 +23,16 @@ public class ConnectionHandler implements Runnable {
     private BufferedWriter out;
 
     private Character player;
+    private Map currentMap;
+
+    private boolean running;
 
     public ConnectionHandler(Socket socket) {
         try {
             connection = socket;
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             out = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
+            running = true;
         } catch (IOException ex) {
             Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,6 +45,7 @@ public class ConnectionHandler implements Runnable {
             out.flush();
             in.readLine();
             createCharacter();
+            mainLoop();
         } catch (IOException ex) {
             Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -53,16 +60,16 @@ public class ConnectionHandler implements Runnable {
     }
 
     private void createCharacter() throws IOException {
-        String[] nameAvatar;
+        String[] name_avatar;
         CharsetEncoder asciiEncoder = Charset.forName("US-ASCII").newEncoder();
         do {
             clearScreen();
             out.write(Screens.characterCreationScreen());
             out.flush();
 
-            nameAvatar = in.readLine().split(" ");
-        } while (nameAvatar.length != 2 || nameAvatar[0].length() < 2 || nameAvatar[1].length() != 1
-                || !asciiEncoder.canEncode(nameAvatar[0]) || !asciiEncoder.canEncode(nameAvatar[1]));
+            name_avatar = in.readLine().split(" ");
+        } while (name_avatar.length != 2 || name_avatar[0].length() < 2 || name_avatar[1].length() != 1
+                || !asciiEncoder.canEncode(name_avatar[0]) || !asciiEncoder.canEncode(name_avatar[1]));
 
         String[] message = {"Choose your race", "", "ELF - HUMAN - ORC"};
         do {
@@ -71,8 +78,42 @@ public class ConnectionHandler implements Runnable {
             out.flush();
 
             String race = in.readLine();
-            //player = 
+            CharacterFactory factory = new CharacterFactory();
+            player = factory.createCharacter(name_avatar[0], name_avatar[1].charAt(0), race);
         } while (player == null);
+    }
+
+    private void mainLoop() throws IOException {
+        while (running) {
+            clearScreen();
+            out.write(Screens.emptyScreen());
+            out.flush();
+
+            String[] command = in.readLine().split(" ");
+            try {
+                switch (Command.valueOf(command[0].toUpperCase())) {
+                    case MOVE:
+                        switch (Direction.valueOf(command[1].toUpperCase())) {
+                            case EAST:
+                                System.out.println("east");
+                                break;
+                            case WEST:
+                                System.out.println("west");
+                                break;
+                            case NORTH:
+                                System.out.println("north");
+                                break;
+                            case SOUTH:
+                                System.out.println("south");
+                        }
+                        break;
+                    case QUIT:
+                        running = false;
+                }
+            } catch (RuntimeException e) {
+                System.out.println("incorrect command");
+            }
+        }
     }
 
     private void clearScreen() throws IOException {

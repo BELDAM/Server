@@ -1,6 +1,8 @@
 package maps;
 
 import utils.ConfigParser;
+import characters.Character;
+import java.util.ArrayList;
 
 public class Map {
 
@@ -15,10 +17,13 @@ public class Map {
 
     private String[] representation;
 
+    private ArrayList<Character> players;
+
     public Map(String name) {
         this.name = name;
         rooms = new Room[NUMBER_OF_ROOMS_X][NUMBER_OF_ROOMS_Y];
         representation = new String[37];
+        players = new ArrayList<>();
 
         for (String line : ConfigParser.csv("assets/coordinates.csv")) {
             String[] tokens = line.split(";");
@@ -88,5 +93,9 @@ public class Map {
         }
         representation[0] = TOP_BOTTOM_BORDER;
         representation[36] = TOP_BOTTOM_BORDER;
+    }
+
+    public void addPlayer(Character player) {
+        players.add(player);
     }
 }

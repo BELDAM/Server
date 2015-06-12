@@ -1,18 +1,25 @@
 package server;
 
-public class GameManager implements Runnable{
+import maps.Map;
 
-    private ConnectionListener listener;
+public class GameManager {
 
-    public GameManager() {
-        listener = new ConnectionListener();
+    private Map worldMap;
+
+    private GameManager() {
+        worldMap = new Map("overworld");
     }
 
-    public void startGame() {
-        new Thread(listener).start();
+    public GameManager getInstance() {
+        return Holder.instance;
     }
 
-    @Override
-    public void run() {
+    public Map getWorldMap() {
+        return worldMap;
+    }
+
+    private static class Holder {
+
+        private static final GameManager instance = new GameManager();
     }
 }

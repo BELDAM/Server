@@ -39,6 +39,6 @@ public class Writer {
                     baseLines[height + i] = newLine;
                 }
         }
-        return String.join("\r\n", baseLines);
+        return String.join("\r\n", baseLines) + "\r\n";
     }
 }
