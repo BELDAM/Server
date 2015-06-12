@@ -7,14 +7,14 @@ public class MainScreen implements Screen {
 		inventory = new Inventory();
 	}
 
-        @Override
+	@Override
 	public String[] toAscii() {
 		accept(inventory);
 
 		return new String[0];
 	}
 
-        @Override
+	@Override
 	public void drawOver(String[] block, int posX, int posY) {
 		// TODO Modify ASCII and draw it
 	}
@@ -23,10 +23,10 @@ public class MainScreen implements Screen {
 	public void accept(UIElement inventory) {
 		inventory.visit(this);
 	}
-        
-        @Override
-        public String toString()
-        {
-            return "skfjhgjsdfgsh"; //TODO need a printable version
-        }
+
+	@Override
+	public String toString()
+	{
+		return Screens.mainScreen(); //TODO need a printable version
+	}
 }

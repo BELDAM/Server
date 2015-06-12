@@ -1,5 +1,7 @@
 package userInterface;
 
+import java.util.Arrays;
+
 public class Writer {
 
     public static final int CENTER = 1;

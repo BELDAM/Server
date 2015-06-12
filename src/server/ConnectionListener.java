@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ConnectionListener implements Runnable {
 
-    public final int TELNET_PORT = 23;
+    public final int TELNET_PORT = 23000;
 
     private ServerSocket socket;
     private boolean running = true;

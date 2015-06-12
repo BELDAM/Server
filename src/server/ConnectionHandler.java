@@ -46,7 +46,6 @@ public class ConnectionHandler implements Runnable {
             out.write(Screens.titleScreen());
             out.flush();
             in.readLine();
-            
             createCharacter();
             
             currentMap = GameManager.getInstance().getWorldMap();
@@ -132,6 +131,47 @@ public class ConnectionHandler implements Runnable {
                 System.out.println("invalid command");
             }
         }
+    }
+
+    private void drawMainInterface() throws IOException {
+        String screen = Screens.mainScreen();
+
+        String[] block = {
+            "+-----------------------------+",
+            "|                             |",
+            "|  Hi!                        |",
+            "|  I'm a new block of text!   |",
+            "|  How are you, today?        |",
+            "|                             |",
+            "+-----------------------------+",
+        };
+
+        screen = Screens.modify(screen, block, 3, 2);
+
+        String[] block2 = {
+            "+--------------------------+",
+            "|                          |",
+            "|  Hello!                  |",
+            "|  I'm good today, thanks! |",
+            "|                          |",
+            "+--------------------------+",
+        };
+
+        screen = Screens.modify(screen, block2, 24, 7);
+
+        String[] block3 = {
+            "+--------------------------+",
+            "|                          |",
+            "|  Hey!                    |",
+            "|  I should be in the      |",
+            "|  bottom right corner!    |",
+            "|                          |",
+            "+--------------------------+",
+        };
+
+        out.write(Screens.modify(screen, block3, -2, -2));
+
+        out.flush();
     }
 
     private void clearScreen() throws IOException {

@@ -12,8 +12,6 @@ public class Screens {
     private static String characterCreationScreen;
     private static String emptyScreen;
 
-    private static String currentScreen;
-
     private Screens() {
     }
 
@@ -82,20 +80,19 @@ public class Screens {
             Logger.getLogger(Screens.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        currentScreen = screen;
-
         return screen;
     }
 
     /**
      * Modify the current displayed screen, inserting a block of text over the current screen.
+     * @param currentScreen Screen you want to write on
      * @param newText New block of text
      * @param posX Position x from left border. If x < 0, position from right border
      * @param posY Position y from top border. If y < 0, position from bottom border
      * @return The new screen
      */
-    public static String modify(String[] newText, int posX, int posY) {
-        String[] lines = Screens.currentScreen.split("\r\n");
+    public static String modify(String currentScreen, String[] newText, int posX, int posY) {
+        String[] lines = currentScreen.split("\r\n");
 
         for (int i = 0; i < newText.length; i++) {
             char[] chars;
@@ -126,8 +123,6 @@ public class Screens {
             }
         }
 
-        currentScreen = String.join("\r\n", lines);
-
-        return currentScreen;
+        return String.join("\r\n", lines);
     }
 }
