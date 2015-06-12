@@ -15,6 +15,7 @@ import userInterface.Writer;
 import characters.Character;
 import characters.CharacterFactory;
 import maps.Map;
+import userInterface.MainScreen;
 
 public class ConnectionHandler implements Runnable {
 
@@ -24,6 +25,7 @@ public class ConnectionHandler implements Runnable {
 
     private Character player;
     private Map currentMap;
+    private MainScreen mainScreen;
 
     private boolean running;
 
@@ -46,6 +48,7 @@ public class ConnectionHandler implements Runnable {
             in.readLine();
             createCharacter();
             currentMap = GameManager.getInstance().getWorldMap();
+            mainScreen = new MainScreen();
             mainLoop();
         } catch (IOException ex) {
             Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +91,7 @@ public class ConnectionHandler implements Runnable {
     private void mainLoop() throws IOException {
         while (running) {
             clearScreen();
-            out.write(currentMap.toString());
+            out.write(mainScreen.toString());
             out.flush();
 
             String[] command = in.readLine().split(" ");
