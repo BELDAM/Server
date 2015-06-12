@@ -49,12 +49,12 @@ public class Manwe extends Monster{
                 character.takeDmg(strength);
                 if(character.isDead())
                 {
-                    System.out.println("manwe slane someone");
+                    System.out.println("Manwe slained someone.");
                 }
             }
             else
             {
-                System.out.println(this.name + " : j attaquerai demain");
+                System.out.println(this.name + " : J'attaquerai demain.");
             }
         } else {
             System.out.println("you are dead");
@@ -69,12 +69,12 @@ public class Manwe extends Monster{
                 character.takeMagicDmg(intelligence);
                 if(character.isDead())
                 {
-                    System.out.println("manwe slane someone");
+                    System.out.println("Manwe slained someone.");
                 }
             }
             else
             {
-                System.out.println(this.name + " : j attaquerai demain");
+                System.out.println(this.name + " : J'attaquerai demain.");
             }
         } else {
             System.out.println("you are dead");
