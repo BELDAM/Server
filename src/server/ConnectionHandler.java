@@ -46,9 +46,16 @@ public class ConnectionHandler implements Runnable {
             out.write(Screens.titleScreen());
             out.flush();
             in.readLine();
+            
             createCharacter();
+            
             currentMap = GameManager.getInstance().getWorldMap();
             mainScreen = new MainScreen();
+            
+            clearScreen();
+            out.write(mainScreen.toString());
+            out.flush();
+            
             mainLoop();
         } catch (IOException ex) {
             Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,10 +97,6 @@ public class ConnectionHandler implements Runnable {
 
     private void mainLoop() throws IOException {
         while (running) {
-            clearScreen();
-            out.write(mainScreen.toString());
-            out.flush();
-
             String[] command = in.readLine().split(" ");
             try {
                 switch (Command.valueOf(command[0].toUpperCase())) {
@@ -111,6 +114,16 @@ public class ConnectionHandler implements Runnable {
                             case SOUTH:
                                 System.out.println("south");
                         }
+                        break;
+                    case MAP:
+                        clearScreen();
+                        out.write(currentMap.toString());
+                        out.flush();
+                        break;
+                    case MAIN:
+                        clearScreen();
+                        out.write(mainScreen.toString());
+                        out.flush();
                         break;
                     case QUIT:
                         running = false;

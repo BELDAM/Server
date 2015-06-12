@@ -27,6 +27,6 @@ public class MainScreen implements Screen {
         @Override
         public String toString()
         {
-            return null; //TODO need a printable version
+            return "skfjhgjsdfgsh"; //TODO need a printable version
         }
 }

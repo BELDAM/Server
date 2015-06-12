@@ -3,5 +3,7 @@ package server;
 public enum Command {
 
     MOVE,
-    QUIT
+    QUIT,
+    MAIN,
+    MAP
 }
