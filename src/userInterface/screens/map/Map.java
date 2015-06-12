@@ -1,10 +1,12 @@
-package maps;
+package userInterface.screens.map;
 
 import utils.ConfigParser;
 import characters.Character;
 import java.util.ArrayList;
+import userInterface.screens.Screen;
+import userInterface.screens.UIElement;
 
-public class Map {
+public class Map implements Screen{
 
     private static String TOP_BOTTOM_BORDER = "+------------------------------------------------------"
             + "--------------------------------------------------------++-----+";
@@ -97,5 +99,15 @@ public class Map {
 
     public void addPlayer(Character player) {
         players.add(player);
+    }
+
+    @Override
+    public void accept(UIElement element) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void drawOver(String[] block, int posX, int posY) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

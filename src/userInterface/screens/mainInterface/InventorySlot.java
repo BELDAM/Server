@@ -1,4 +1,7 @@
-package userInterface;
+package userInterface.screens.mainInterface;
+
+import userInterface.screens.UIDrawContainer;
+import userInterface.screens.UIElement;
 
 public class InventorySlot implements UIElement {
 	@Override

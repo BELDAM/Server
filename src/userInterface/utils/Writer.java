@@ -1,6 +1,7 @@
-package userInterface;
+package userInterface.utils;
 
 import java.util.Arrays;
+import userInterface.screens.Screens;
 
 public class Writer {
 

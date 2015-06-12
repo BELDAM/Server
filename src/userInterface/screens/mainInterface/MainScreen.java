@@ -1,4 +1,8 @@
-package userInterface;
+package userInterface.screens.mainInterface;
+
+import userInterface.screens.Screen;
+import userInterface.screens.Screens;
+import userInterface.screens.UIElement;
 
 public class MainScreen implements Screen {
 	private Inventory inventory;
@@ -8,7 +12,7 @@ public class MainScreen implements Screen {
 	}
 
 	@Override
-	public String[] toAscii() {
+	public String[] toASCII() {
 		accept(inventory);
 
 		return new String[0];

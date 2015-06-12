@@ -1,4 +1,4 @@
-package userInterface;
+package userInterface.screens;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

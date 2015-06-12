@@ -1,4 +1,4 @@
-package maps;
+package userInterface.screens.map;
 
 public class Room {
 

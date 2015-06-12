@@ -1,7 +1,7 @@
 package server;
 
 import java.util.ArrayList;
-import maps.Map;
+import userInterface.screens.map.Map;
 import characters.Character;
 
 public class GameManager {

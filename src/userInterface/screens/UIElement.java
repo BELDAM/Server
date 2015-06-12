@@ -1,4 +1,4 @@
-package userInterface;
+package userInterface.screens;
 
 public interface UIElement {
 	int posX = 0;

@@ -1,4 +1,4 @@
-package userInterface;
+package userInterface.screens;
 
 public interface UIDrawContainer {
 	void accept(UIElement element);
