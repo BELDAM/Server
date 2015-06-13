@@ -27,7 +27,11 @@ public class GameManager {
         players.add(player);
         worldMap.addPlayer(player);
     }
-
+    
+    public ArrayList<Character> getPlayers() {
+        return players;
+    }
+    
     private static class Holder {
 
         private static final GameManager instance = new GameManager();
