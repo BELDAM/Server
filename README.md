@@ -25,7 +25,14 @@ quit                   # Quit the game
 help                          # Show this help
 say <message>                 # Send a message to your companions
 attack <id>                   # Attack a given monster
-cast <spell_id> <monster_id>  # Cast a given spell to a given monster
 map                           # Show the map
 quit                          # Quit the game
+```
+
+### Map Mode
+
+```
+help                          # Show this help
+say <message>                 # Send a message to your companions
+quit                          # Quit the map
 ```
