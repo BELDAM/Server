@@ -1,8 +1,8 @@
 package userInterface.screens;
 
 public interface Screen extends UIDrawContainer {
-	String[] toASCII();
+	String toASCII();
 
-        @Override
+	@Override
 	void accept(UIElement element);
 }

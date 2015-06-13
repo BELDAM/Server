@@ -4,23 +4,48 @@ import userInterface.screens.Screen;
 import userInterface.screens.Screens;
 import userInterface.screens.UIElement;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class MainScreen implements Screen {
-	private Inventory inventory;
+	private ArrayList<UIElement> pannels = new ArrayList<>();
+	private String ascii = "";
 
 	public MainScreen() {
-		inventory = new Inventory();
+		ascii = Screens.emptyScreen();
+
+		pannels.add(new Inventory(92, 0));
+		// pannels.add(new Stats());
+		// pannels.add(new Companions());
 	}
 
 	@Override
-	public String[] toASCII() {
-		accept(inventory);
+	public String toASCII() {
+		for (UIElement pannel: pannels) {
+			accept(pannel);
+		}
 
-		return new String[0];
+		return ascii;
 	}
 
 	@Override
 	public void drawOver(String[] block, int posX, int posY) {
-		// TODO Modify ASCII and draw it
+		String[] lines = ascii.split("\r\n");
+
+		for (int i = 0; i < block.length; i++) {
+			char[] chars;
+
+			chars = lines[i + posY].toCharArray();
+
+			for (int j = 0; j < block[i].length(); j++) {
+				chars[j + posX] = block[i].toCharArray()[j];
+			}
+
+			lines[i + posY] = new String(chars);
+		}
+
+		ascii = String.join("\r\n", lines);
 	}
 
 	@Override
@@ -31,6 +56,6 @@ public class MainScreen implements Screen {
 	@Override
 	public String toString()
 	{
-		return Screens.mainScreen(); //TODO need a printable version
+		return this.toASCII();
 	}
 }

@@ -82,47 +82,4 @@ public class Screens {
 
         return screen;
     }
-
-    /**
-     * Modify the current displayed screen, inserting a block of text over the current screen.
-     * @param currentScreen Screen you want to write on
-     * @param newText New block of text
-     * @param posX Position x from left border. If x < 0, position from right border
-     * @param posY Position y from top border. If y < 0, position from bottom border
-     * @return The new screen
-     */
-    public static String modify(String currentScreen, String[] newText, int posX, int posY) {
-        String[] lines = currentScreen.split("\r\n");
-
-        for (int i = 0; i < newText.length; i++) {
-            char[] chars;
-
-            if (posY >= 0) {
-                chars = lines[i + posY].toCharArray();
-            } else {
-                chars = lines[(lines.length - 1) - i + posY].toCharArray();
-            }
-
-            for (int j = 0; j < newText[i].length(); j++) {
-                if (posX >= 0) {
-                    chars[j + posX] = newText[i].toCharArray()[j];
-                } else {
-                    if (posY >= 0) {
-                        chars[(chars.length - 1) - j + posX] = newText[(newText.length - 1) - i].toCharArray()[j];
-                    } else {
-                        char[] newChars = newText[(newText.length - 1) - i].toCharArray();
-                        chars[(chars.length - 1) - j + posX] = newChars[(newChars.length - 1) - j];
-                    }
-                }
-            }
-
-            if (posY >= 0) {
-                lines[i + posY] = new String(chars);
-            } else {
-                lines[(lines.length - 1) - i + posY] = new String(chars);
-            }
-        }
-
-        return String.join("\r\n", lines);
-    }
 }

@@ -56,8 +56,8 @@ public class Map implements Screen{
         updateRepresentation();
     }
 
-    public String[] toASCII() {
-        return representation;
+    public String toASCII() {
+        return String.join("\r\n", representation);
     }
 
     @Override
