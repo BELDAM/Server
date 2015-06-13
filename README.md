@@ -22,17 +22,17 @@ quit                   # Quit the game
 ### Fight Mode
 
 ```
-help                          # Show this help
-say <message>                 # Send a message to your companions
-attack <id>                   # Attack a given monster
-map                           # Show the map
-quit                          # Quit the game
+help                   # Show this help
+say <message>          # Send a message to your companions
+attack <id>            # Attack a given monster
+map                    # Show the map
+quit                   # Quit the game
 ```
 
 ### Map Mode
 
 ```
-help                          # Show this help
-say <message>                 # Send a message to your companions
-quit                          # Quit the map
+help                   # Show this help
+say <message>          # Send a message to your companions
+quit                   # Quit the map
 ```
