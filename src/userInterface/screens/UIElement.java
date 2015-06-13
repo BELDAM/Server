@@ -11,11 +11,11 @@ public abstract class UIElement {
 	protected int posY = 0;
 	protected String ascii = "";
 
-	public abstract String toAscii();
+	public String toAscii() {
+		return ascii;
+	}
 
 	public abstract void visit(UIDrawContainer drawable);
-
-	public UIElement() {}
 
 	public UIElement(int posX, int posY) {
 		this.posX = posX;
@@ -24,10 +24,6 @@ public abstract class UIElement {
 
 	public UIElement(String filename, int posX, int posY) {
 		this(posX, posY);
-		fromFile(filename);
-	}
-
-	public UIElement(String filename) {
 		fromFile(filename);
 	}
 

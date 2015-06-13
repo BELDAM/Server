@@ -10,7 +10,7 @@ public class Inventory extends UIElement implements UIDrawContainer {
 	private ArrayList<InventorySlot> slot = new ArrayList<>();
 
 	Inventory(int posX, int posY) {
-		super("assets/screens/inventory.txt", posX, posY);
+		super("assets/panels/inventory.txt", posX, posY);
 
 		slot.add(0, new InventorySlot(3, 7));
 		slot.add(1, new InventorySlot(11, 2));
@@ -82,11 +82,6 @@ public class Inventory extends UIElement implements UIDrawContainer {
 				slot.get(7).empty();
 				break;
 		}
-	}
-
-	@Override
-	public String toAscii() {
-		return ascii;
 	}
 
 	public void visit(UIDrawContainer screen) {

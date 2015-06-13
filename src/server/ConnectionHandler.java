@@ -125,6 +125,7 @@ public class ConnectionHandler implements Runnable {
                         break;
                     case QUIT:
                         running = false;
+                        break;
                 }
 
             } catch (RuntimeException e) {

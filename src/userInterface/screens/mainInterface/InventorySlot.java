@@ -21,12 +21,6 @@ public class InventorySlot extends UIElement {
 		fromFile("assets/inventory/disable.txt");
 	}
 
-
-	@Override
-	public String toAscii() {
-		return ascii;
-	}
-
 	@Override
 	public void visit(UIDrawContainer inventory) {
 		inventory.drawOver(this.toAscii().split("\r\n"), posX, posY);

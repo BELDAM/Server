@@ -65,21 +65,4 @@ public class Screens {
         }
         return emptyScreen;
     }
-
-    public static String mainScreen() {
-        String screen = "";
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("assets/screens/mainExample.txt"));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                screen += line + "\r\n";
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(Screens.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return screen;
-    }
 }

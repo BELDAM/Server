@@ -5,24 +5,22 @@ import userInterface.screens.Screens;
 import userInterface.screens.UIElement;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MainScreen implements Screen {
-	private ArrayList<UIElement> pannels = new ArrayList<>();
+	private ArrayList<UIElement> panels = new ArrayList<>();
 	private String ascii = "";
 
 	public MainScreen() {
 		ascii = Screens.emptyScreen();
 
-		pannels.add(new Inventory(92, 0));
-		// pannels.add(new Stats());
-		// pannels.add(new Companions());
+		panels.add(new Inventory(92, 0));
+		panels.add(new Stats(92, 21));
+		panels.add(new Companions(79, 0));
 	}
 
 	@Override
 	public String toASCII() {
-		for (UIElement pannel: pannels) {
+		for (UIElement pannel: panels) {
 			accept(pannel);
 		}
 
