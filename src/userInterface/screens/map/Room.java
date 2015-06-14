@@ -150,7 +150,7 @@ public class Room {
         char character;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (players.size() < (i + 1) * (j + 1)) {
+                if (players.size() < (i * 3) + j + 1) {
                     character = ' ';
                 } else {
                     character = players.get(j + (3 * i)).getAvatar();
