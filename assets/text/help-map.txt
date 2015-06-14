@@ -1,0 +1,3 @@
+help                   # Show this help
+say <message>          # Send a message to your companions
+quit                   # Quit the map
