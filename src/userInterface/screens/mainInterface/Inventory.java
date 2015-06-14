@@ -89,7 +89,7 @@ public class Inventory extends UIElement implements UIDrawContainer {
 			accept(child);
 		}
 
-		screen.drawOver(toAscii().split("\r\n"), posX, posY);
+		screen.drawOver(toAscii(), posX, posY);
 	}
 
 	public void accept(UIElement slot) {
@@ -98,37 +98,16 @@ public class Inventory extends UIElement implements UIDrawContainer {
 
 	@Override
 	public void drawOver(String[] block, int posX, int posY) {
-		String[] lines = ascii.split("\r\n");
-
 		for (int i = 0; i < block.length; i++) {
 			char[] chars;
 
-			if (posY >= 0) {
-				chars = lines[i + posY].toCharArray();
-			} else {
-				chars = lines[(lines.length - 1) - i + posY].toCharArray();
-			}
+			chars = ascii.get(i + posY).toCharArray();
 
 			for (int j = 0; j < block[i].length(); j++) {
-				if (posX >= 0) {
 					chars[j + posX] = block[i].toCharArray()[j];
-				} else {
-					if (posY >= 0) {
-						chars[(chars.length - 1) - j + posX] = block[(block.length - 1) - i].toCharArray()[j];
-					} else {
-						char[] newChars = block[(block.length - 1) - i].toCharArray();
-						chars[(chars.length - 1) - j + posX] = newChars[(newChars.length - 1) - j];
-					}
-				}
 			}
 
-			if (posY >= 0) {
-				lines[i + posY] = new String(chars);
-			} else {
-				lines[(lines.length - 1) - i + posY] = new String(chars);
-			}
+			ascii.set(i + posY, new String(chars));
 		}
-
-		ascii = String.join("\r\n", lines);
 	}
 }

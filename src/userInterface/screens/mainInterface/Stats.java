@@ -11,6 +11,6 @@ public class Stats extends UIElement {
 	@Override
 	public void visit(UIDrawContainer screen) {
 		// TODO Add Stats
-		screen.drawOver(toAscii().split("\r\n"), posX, posY);
+		screen.drawOver(toAscii(), posX, posY);
 	}
 }

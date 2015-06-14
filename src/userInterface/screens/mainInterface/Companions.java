@@ -6,15 +6,15 @@ import userInterface.screens.UIDrawContainer;
 import userInterface.screens.UIElement;
 
 public class Companions extends UIElement {
-
 	public Companions(int posX, int posY) {
 		super(posX, posY);
+		update();
+	}
 
-		ascii =
-			"+------------+\r\n" +
-			"| Companions |\r\n" +
-			"+------------+\r\n"
-		;
+	public void update() {
+		ascii.add("+------------+");
+		ascii.add("| Companions |");
+		ascii.add("+------------+");
 
 		for (characters.Character c: GameManager.getInstance().getPlayers()) {
 			String name = c.getName();
@@ -28,15 +28,14 @@ public class Companions extends UIElement {
 				}
 			}
 
-			ascii += "| " + name + " " + c.getSymbol() + " |\r\n";
+			ascii.add("| " + name + " " + c.getSymbol() + " |");
 		}
 
-		ascii += "+------------+\r\n";
+		ascii.add("+------------+");
 	}
 
 	@Override
 	public void visit(UIDrawContainer screen) {
-
-		screen.drawOver(toAscii().split("\r\n"), posX, posY);
+		screen.drawOver(toAscii(), posX, posY);
 	}
 }

@@ -16,6 +16,7 @@ public class MainScreen implements Screen {
 		panels.add(new Inventory(92, 0));
 		panels.add(new Stats(92, 21));
 		panels.add(new Companions(79, 0));
+		panels.add(new Messages(0, 0));
 	}
 
 	@Override

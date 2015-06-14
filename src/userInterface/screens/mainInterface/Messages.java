@@ -1,7 +1,15 @@
 package userInterface.screens.mainInterface;
 
-/**
- * Created by sacha on 14.06.15.
- */
-public class Messages {
+import userInterface.screens.UIDrawContainer;
+import userInterface.screens.UIElement;
+
+public class Messages extends UIElement {
+	public Messages(int posX, int posY) {
+		super(posX, posY);
+	}
+
+	@Override
+	public void visit(UIDrawContainer screen) {
+		screen.drawOver(toAscii(), posX, posY);
+	}
 }

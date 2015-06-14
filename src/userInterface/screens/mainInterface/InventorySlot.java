@@ -23,6 +23,6 @@ public class InventorySlot extends UIElement {
 
 	@Override
 	public void visit(UIDrawContainer inventory) {
-		inventory.drawOver(this.toAscii().split("\r\n"), posX, posY);
+		inventory.drawOver(this.toAscii(), posX, posY);
 	}
 }
