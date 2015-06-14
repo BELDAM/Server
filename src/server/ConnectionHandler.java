@@ -17,14 +17,18 @@ import characters.CharacterFactory;
 import userInterface.screens.Screen;
 import userInterface.screens.map.Map;
 import userInterface.screens.mainInterface.MainScreen;
+import userInterface.screens.map.Room;
+import userInterface.utils.IllegalMoveException;
 
 public class ConnectionHandler implements Runnable {
+
     private Socket connection;
     private BufferedReader in;
     private BufferedWriter out;
 
     private Character player;
     private Map currentMap;
+    private Room currentRoom;
     private MainScreen mainScreen;
 
     private boolean running;
@@ -55,6 +59,8 @@ public class ConnectionHandler implements Runnable {
             clearScreen();
             out.write(mainScreen.toString());
             out.flush();
+
+            currentRoom = currentMap.getStartingRoom();
 
             mainLoop();
         } catch (IOException ex) {
@@ -102,19 +108,9 @@ public class ConnectionHandler implements Runnable {
             try {
                 switch (Command.valueOf(command[0].toUpperCase())) {
                     case MOVE:
-                        switch (Direction.valueOf(command[1].toUpperCase())) {
-                            case EAST:
-                                System.out.println("east");
-                                break;
-                            case WEST:
-                                System.out.println("west");
-                                break;
-                            case NORTH:
-                                System.out.println("north");
-                                break;
-                            case SOUTH:
-                                System.out.println("south");
-                        }
+                        Direction direction = Direction.valueOf(command[1].toUpperCase());
+                        currentMap.move(player, currentRoom, direction);
+                        currentRoom = currentRoom.getRoom(direction);
                         break;
                     case MAP:
                         currentScreen = currentMap;
@@ -129,7 +125,8 @@ public class ConnectionHandler implements Runnable {
                         printMessage("Salut!\r\nça va?");
                         break;
                 }
-
+            } catch (IllegalMoveException e) {
+                System.out.println("can't go in this direction");
             } catch (RuntimeException e) {
                 System.out.println("invalid command");
             } finally {

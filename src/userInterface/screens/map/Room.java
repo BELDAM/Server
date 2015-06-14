@@ -1,5 +1,11 @@
 package userInterface.screens.map;
 
+import java.util.ArrayList;
+import characters.Character;
+import server.Direction;
+import server.GameManager;
+import userInterface.utils.IllegalMoveException;
+
 public class Room {
 
     public static final int NORTH = 1;
@@ -11,6 +17,8 @@ public class Room {
     private Room south;
     private Room west;
     private Room east;
+
+    private ArrayList<Character> players;
 
     private String[] representation = new String[]{
         "+-------+  ",
@@ -26,10 +34,13 @@ public class Room {
         this.west = west;
         this.east = east;
 
+        players = new ArrayList<>();
+
         updateRepresentation();
     }
 
     public Room() {
+        players = new ArrayList<>();
     }
 
     public String[] toASCII() {
@@ -61,6 +72,59 @@ public class Room {
         }
     }
 
+    public void addPlayer(Character player) {
+        players.add(player);
+        updateRepresentation();
+    }
+
+    public void move(Character player, Direction direction) throws IllegalMoveException {
+        switch (direction) {
+            case NORTH:
+                if (north == null) {
+                    throw new IllegalMoveException("can't go north");
+                }
+                north.addPlayer(player);
+                north.updateRepresentation();
+                break;
+            case SOUTH:
+                if (south == null) {
+                    throw new IllegalMoveException("can't go south");
+                }
+                south.addPlayer(player);
+                south.updateRepresentation();
+                break;
+            case EAST:
+                if (east == null) {
+                    throw new IllegalMoveException("can't go east");
+                }
+                east.addPlayer(player);
+                east.updateRepresentation();
+                break;
+            case WEST:
+                if (west == null) {
+                    throw new IllegalMoveException("can't go west");
+                }
+                west.addPlayer(player);
+                west.updateRepresentation();
+        }
+        players.remove(player);
+        updateRepresentation();
+    }
+
+    public Room getRoom(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return north;
+            case SOUTH:
+                return south;
+            case EAST:
+                return east;
+            case WEST:
+                return west;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return String.join("\r\n", representation);
@@ -81,6 +145,18 @@ public class Room {
         }
         if (west != null) {
             representation[2] = " " + representation[2].substring(1, representation[2].length());
+        }
+
+        char character;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (players.size() < (i + 1) * (j + 1)) {
+                    character = ' ';
+                } else {
+                    character = players.get(j + (3 * i)).getAvatar();
+                }
+                representation[i + 1] = representation[i + 1].substring(0, (j + 1) * 2) + character + representation[i + 1].substring((j + 1) * 2 + 1);
+            }
         }
     }
 }

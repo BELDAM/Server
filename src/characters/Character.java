@@ -10,6 +10,7 @@ import java.util.LinkedList;
  * Created by bastiangardel on 25.05.15.
  */
 public abstract class Character implements FightInterface {
+
     private String name;
     private char symbol;
     private int life;
@@ -47,6 +48,10 @@ public abstract class Character implements FightInterface {
         this.name = name;
     }
 
+    public char getAvatar() {
+        return symbol;
+    }
+
     public int getStrength() {
         return strength;
     }
@@ -71,16 +76,15 @@ public abstract class Character implements FightInterface {
         this.intelligence = intelligence;
     }
 
-    public void addItem(Item newItem){
+    public void addItem(Item newItem) {
         BodyPart newPart = newItem.getBodyPart();
 
         // Check if the slot is empty so the character can carry the new item
         for (Item item : items) {
             BodyPart usedPart = item.getBodyPart();
-            if (newPart == usedPart ||
-                ((newPart == BodyPart.RIGHT_HAND || newPart == BodyPart.LEFT_HAND) && usedPart == BodyPart.BOTH_HANDS) ||
-                ((usedPart == BodyPart.RIGHT_HAND || usedPart == BodyPart.LEFT_HAND) && newPart == BodyPart.BOTH_HANDS)
-                ) {
+            if (newPart == usedPart
+                    || ((newPart == BodyPart.RIGHT_HAND || newPart == BodyPart.LEFT_HAND) && usedPart == BodyPart.BOTH_HANDS)
+                    || ((usedPart == BodyPart.RIGHT_HAND || usedPart == BodyPart.LEFT_HAND) && newPart == BodyPart.BOTH_HANDS)) {
                 // TODO Send error to the player (Slot "Right hand" already used by item.toString())
                 System.out.println("Slot '" + newPart + "' already used by " + item.toString());
             }
@@ -89,7 +93,7 @@ public abstract class Character implements FightInterface {
         items.add(newItem);
     }
 
-    public void removeItems(Item item){
+    public void removeItems(Item item) {
         items.remove(item);
     }
 
@@ -101,12 +105,13 @@ public abstract class Character implements FightInterface {
 
     public abstract void attack(FightInterface character);
 
-
     @Override
     public String toString() {
         return name + ": life[" + life + "], Strength[" + strength + "], Symbol[" + symbol + "]";
     }
 
-
-    public boolean isDead(){return dead;};
+    public boolean isDead() {
+        return dead;
+    }
+;
 }

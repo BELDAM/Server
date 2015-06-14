@@ -1,12 +1,13 @@
 package userInterface.screens.map;
 
 import utils.ConfigParser;
-import characters.Character;
-import java.util.ArrayList;
 import userInterface.screens.Screen;
 import userInterface.screens.UIElement;
+import characters.Character;
+import server.Direction;
+import userInterface.utils.IllegalMoveException;
 
-public class Map implements Screen{
+public class Map implements Screen {
 
     private static String TOP_BOTTOM_BORDER = "+------------------------------------------------------"
             + "--------------------------------------------------------++-----+";
@@ -16,16 +17,15 @@ public class Map implements Screen{
 
     private Room[][] rooms;
     private String name;
+    private Room startingRoom;
 
     private String[] representation;
-
-    private ArrayList<Character> players;
 
     public Map(String name) {
         this.name = name;
         rooms = new Room[NUMBER_OF_ROOMS_X][NUMBER_OF_ROOMS_Y];
+
         representation = new String[37];
-        players = new ArrayList<>();
 
         for (String line : ConfigParser.csv("assets/coordinates.csv")) {
             String[] tokens = line.split(";");
@@ -52,12 +52,22 @@ public class Map implements Screen{
                 }
             }
         }
-
+        startingRoom = rooms[0][0];
         updateRepresentation();
     }
 
+    public void addPlayer(Character player) {
+        startingRoom.addPlayer(player);
+        updateRepresentation();
+    }
+
+    public Room getStartingRoom() {
+        return startingRoom;
+    }
+
+    @Override
     public String toASCII() {
-        return String.join("\r\n", representation);
+        return String.join("\r\n", representation) + "\r\n";
     }
 
     @Override
@@ -97,8 +107,9 @@ public class Map implements Screen{
         representation[36] = TOP_BOTTOM_BORDER;
     }
 
-    public void addPlayer(Character player) {
-        players.add(player);
+    public void move(Character player, Room room, Direction direction) throws IllegalMoveException {
+        room.move(player, direction);
+        updateRepresentation();
     }
 
     @Override
