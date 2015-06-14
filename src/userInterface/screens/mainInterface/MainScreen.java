@@ -10,13 +10,34 @@ public class MainScreen implements Screen {
 	private ArrayList<UIElement> panels = new ArrayList<>();
 	private String ascii = "";
 
+	private Inventory inventory = new Inventory(92, 0);
+	private Stats stats = new Stats(92, 21);
+	private Companions companions = new Companions(79, 0);
+	private Messages messages = new Messages(2, 1);
+
+	public Stats getStats() {
+		return stats;
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public Messages getMessages() {
+		return messages;
+	}
+
+	public Companions getCompanions() {
+		return companions;
+	}
+	
 	public MainScreen() {
 		ascii = Screens.emptyScreen();
 
-		panels.add(new Inventory(92, 0));
-		panels.add(new Stats(92, 21));
-		panels.add(new Companions(79, 0));
-		panels.add(new Messages(2, 1));
+		panels.add(inventory);
+		panels.add(stats);
+		panels.add(companions);
+		panels.add(messages);
 	}
 
 	@Override
