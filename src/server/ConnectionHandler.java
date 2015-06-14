@@ -19,7 +19,6 @@ import userInterface.screens.map.Map;
 import userInterface.screens.mainInterface.MainScreen;
 
 public class ConnectionHandler implements Runnable {
-
     private Socket connection;
     private BufferedReader in;
     private BufferedWriter out;
@@ -126,6 +125,9 @@ public class ConnectionHandler implements Runnable {
                     case QUIT:
                         running = false;
                         break;
+                    case HELP:
+                        printMessage("Salut!\r\nça va?");
+                        break;
                 }
 
             } catch (RuntimeException e) {
@@ -136,6 +138,10 @@ public class ConnectionHandler implements Runnable {
                 out.flush();
             }
         }
+    }
+
+    private void printMessage(String msg) {
+        // TODO implement me
     }
 
     private void clearScreen() throws IOException {
