@@ -40,4 +40,14 @@ public class Dragon extends Monster{
     public void accept(IVisitor visitor) {
         visitor.visit(this);
     }
+
+    @Override
+    public int getXp() {
+        return 0;
+    }
+
+    @Override
+    public void setXp(int xp) {
+
+    }
 }

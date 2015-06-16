@@ -6,9 +6,9 @@ import Visitors.IVisitor;
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public class Hunter extends ElfDecorator {
+public class MageElf extends ElfDecorator {
 
-    public Hunter(ElfInterface elfInterface) {
+    public MageElf(ElfInterface elfInterface) {
         elf = elfInterface;
     }
 
@@ -47,15 +47,7 @@ public class Hunter extends ElfDecorator {
     @Override
     public void attack(FightInterface character) {
         if (!isDead()) {
-            if(!character.isDead()){
-                character.takeDmg(getStrength());
-                if(character.isDead())
-                {
-                    setXp(character.getGiveXP());
-                }
-            }
-            else System.out.println("Your Ennemi is dead");
-
+            character.takeDmg(getStrength());
         } else {
             System.out.println("you are dead");
         }
@@ -71,17 +63,17 @@ public class Hunter extends ElfDecorator {
 
     @Override
     public void accept(IVisitor visitor) {
-        visitor.visit(this);
+        //visitor.visit(this);
     }
 
     @Override
     public int getXp() {
-        return elf.getXp();
+        return 0;
     }
 
     @Override
     public void setXp(int xp) {
-        elf.setXp(xp);
+
     }
 
     @Override

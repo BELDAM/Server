@@ -34,9 +34,20 @@ public class Troll extends Monster {
             this.physicalDefence += items.get(i).getDefense();
         }
 
+        setGiveXP(100);
+
     }
     @Override
     public void accept(IVisitor visitor) {
         visitor.visit(this);
+    }
+
+    @Override
+    public int getXp() {
+        return 0;
+    }
+
+    @Override
+    public void setXp(int xp) {
     }
 }

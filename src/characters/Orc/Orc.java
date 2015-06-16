@@ -37,6 +37,11 @@ public class Orc extends characters.Character implements OrcInterface {
     }
 
     @Override
+    public int getGiveXP() {
+        return 0;
+    }
+
+    @Override
     public void attack(FightInterface character) {
         //TODO implementation
     }

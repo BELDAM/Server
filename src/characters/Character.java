@@ -11,9 +11,31 @@ import java.util.LinkedList;
  */
 public abstract class Character implements FightInterface {
 
+    private int level;
+    private int xp;
+    private static final int XPtoLevel = 100;
     private String name;
     private char symbol;
-    private int life;
+    private int HP;
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    @Override
+    public int getLevel() {
+        return level;
+    }
+
+    @Override
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     private static final int LIFE = 10;
     private boolean dead;
     private int strength;
@@ -21,23 +43,52 @@ public abstract class Character implements FightInterface {
     private int intelligence;
     private static final int INTELLIGENCE = 10;
 
+    protected int physicalDefence;
+    private static final int PHYSICAL_DEFENCE = 10;
+
+    protected int magicalDefence;
+    private static final int MAGICAL_DEFENCE = 10;
+
     private LinkedList<Item> items;
 
     protected Character(String name, char symbol) {
         this.name = name;
         this.symbol = symbol;
-
+        dead = false;
+        xp = 0;
         items = new LinkedList<>();
-        life = LIFE;
+        HP = LIFE;
         strength = STRENGTH;
+        physicalDefence = PHYSICAL_DEFENCE;
+        magicalDefence = MAGICAL_DEFENCE;
     }
 
-    public int getLife() {
-        return life;
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 
-    public void setLife(int life) {
-        this.life = life;
+    public int getMagicalDefence() {
+        return magicalDefence;
+    }
+
+    public void setMagicalDefence(int magicalDefence) {
+        this.magicalDefence = magicalDefence;
+    }
+
+    public int getPhysicalDefence() {
+        return physicalDefence;
+    }
+
+    public void setPhysicalDefence(int physicalDefence) {
+        this.physicalDefence = physicalDefence;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
     }
 
     public String getName() {
@@ -107,7 +158,7 @@ public abstract class Character implements FightInterface {
 
     @Override
     public String toString() {
-        return name + ": life[" + life + "], Strength[" + strength + "], Symbol[" + symbol + "]";
+        return name + ": HP[" + HP + "], Strength[" + strength + "], Symbol[" + symbol + "]";
     }
 
     public boolean isDead() {
