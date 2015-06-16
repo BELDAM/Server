@@ -2,11 +2,14 @@ package characters.Elf;
 
 import Interface.FightInterface;
 import Visitors.IVisitor;
+import Visitors.LevelUP;
 
 /**
  * Created by bastiangardel on 25.05.15.
  */
 public class Hunter extends ElfDecorator {
+
+    private static final int XPtoLevel = 100;
 
     public Hunter(ElfInterface elfInterface) {
         elf = elfInterface;
@@ -51,6 +54,7 @@ public class Hunter extends ElfDecorator {
                 character.takeDmg(getStrength());
                 if(character.isDead())
                 {
+                    System.out.println("setXP");
                     setXp(character.getGiveXP());
                 }
             }
@@ -63,7 +67,16 @@ public class Hunter extends ElfDecorator {
     @Override
     public void magicAttack(FightInterface character) {
         if (!isDead()) {
-            character.takeDmg(getIntelligence());
+            if(!character.isDead()){
+                character.takeMagicDmg(getStrength());
+                if(character.isDead())
+                {
+                    System.out.println("setXP");
+                    setXp(character.getGiveXP());
+                }
+            }
+            else System.out.println("Your Ennemi is dead");
+
         } else {
             System.out.println("you are dead");
         }
@@ -82,6 +95,15 @@ public class Hunter extends ElfDecorator {
     @Override
     public void setXp(int xp) {
         elf.setXp(xp);
+
+        elf.setXp(elf.getXp() + xp);
+
+        System.out.println("setXPChar");
+        if(elf.getXp() >= XPtoLevel*elf.getLevel()) {
+            System.out.println("levelUPChar");
+            accept(new LevelUP());
+            elf.setXp(elf.getXp() - (XPtoLevel*elf.getLevel()));
+        }
     }
 
     @Override

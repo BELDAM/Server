@@ -1,6 +1,7 @@
 package characters;
 
 import Interface.FightInterface;
+import Visitors.LevelUP;
 import items.BodyPart;
 import items.Item;
 
@@ -23,7 +24,13 @@ public abstract class Character implements FightInterface {
     }
 
     public void setXp(int xp) {
+
         this.xp = xp;
+
+    }
+
+    public static int getXPtoLevel() {
+        return XPtoLevel;
     }
 
     @Override
@@ -59,8 +66,10 @@ public abstract class Character implements FightInterface {
         items = new LinkedList<>();
         HP = LIFE;
         strength = STRENGTH;
+        intelligence = INTELLIGENCE;
         physicalDefence = PHYSICAL_DEFENCE;
         magicalDefence = MAGICAL_DEFENCE;
+        level = 1;
     }
 
     public void setDead(boolean dead) {

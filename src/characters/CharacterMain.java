@@ -26,6 +26,9 @@ public class CharacterMain {
         hunter.attack(troll);
 
 
+        hunter.setXp(120);
+
+
 
 
 
