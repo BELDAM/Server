@@ -26,10 +26,6 @@ public class MonsterFactory {
         return new Dragon(level);
     }
 
-    public Manwe createManwe() {
-        return new Manwe(100);
-    }
-
     public BlackElf createBlackElf(int groupeLevel, int groupeSize) {
         int level;
         level = rand.nextInt((groupeLevel + groupeSize - 2) + 1) + 2;
