@@ -35,8 +35,8 @@ public class MainScreen implements Screen {
     public MainScreen() {
 		panels.add(inventory);
 		panels.add(stats);
-		panels.add(companions);
 		panels.add(messages);
+        panels.add(companions);
 
 		update();
     }
