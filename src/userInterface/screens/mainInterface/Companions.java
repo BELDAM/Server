@@ -12,6 +12,8 @@ public class Companions extends UIElement {
 	}
 
 	public void update() {
+		ascii.clear();
+
 		ascii.add("+------------+");
 		ascii.add("| Companions |");
 		ascii.add("+------------+");

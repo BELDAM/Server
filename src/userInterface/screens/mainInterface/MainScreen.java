@@ -33,13 +33,19 @@ public class MainScreen implements Screen {
     }
 
     public MainScreen() {
-        ascii = Screens.emptyScreen();
+		panels.add(inventory);
+		panels.add(stats);
+		panels.add(companions);
+		panels.add(messages);
 
-        panels.add(inventory);
-        panels.add(stats);
-        panels.add(companions);
-        panels.add(messages);
+		update();
     }
+
+	public void update() {
+		ascii = Screens.emptyScreen();
+
+		getCompanions().update();
+	}
 
     @Override
     public String toASCII() {
