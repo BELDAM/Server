@@ -7,75 +7,75 @@ import userInterface.screens.UIElement;
 import java.util.ArrayList;
 
 public class MainScreen implements Screen {
-	private ArrayList<UIElement> panels = new ArrayList<>();
-	private String ascii = "";
 
-	private Inventory inventory = new Inventory(92, 0);
-	private Stats stats = new Stats(92, 21);
-	private Companions companions = new Companions(79, 0);
-	private Messages messages = new Messages(2, 1);
+    private ArrayList<UIElement> panels = new ArrayList<>();
+    private String ascii = "";
 
-	public Stats getStats() {
-		return stats;
-	}
+    private Inventory inventory = new Inventory(92, 0);
+    private Stats stats = new Stats(92, 21);
+    private Companions companions = new Companions(79, 0);
+    private Messages messages = new Messages(2, 1);
 
-	public Inventory getInventory() {
-		return inventory;
-	}
+    public Stats getStats() {
+        return stats;
+    }
 
-	public Messages getMessages() {
-		return messages;
-	}
+    public Inventory getInventory() {
+        return inventory;
+    }
 
-	public Companions getCompanions() {
-		return companions;
-	}
-	
-	public MainScreen() {
-		ascii = Screens.emptyScreen();
+    public Messages getMessages() {
+        return messages;
+    }
 
-		panels.add(inventory);
-		panels.add(stats);
-		panels.add(companions);
-		panels.add(messages);
-	}
+    public Companions getCompanions() {
+        return companions;
+    }
 
-	@Override
-	public String toASCII() {
-		for (UIElement pannel: panels) {
-			accept(pannel);
-		}
+    public MainScreen() {
+        ascii = Screens.emptyScreen();
 
-		return ascii;
-	}
+        panels.add(inventory);
+        panels.add(stats);
+        panels.add(companions);
+        panels.add(messages);
+    }
 
-	@Override
-	public void drawOver(String[] block, int posX, int posY) {
-		String[] lines = ascii.split("\r\n");
+    @Override
+    public String toASCII() {
+        for (UIElement pannel : panels) {
+            accept(pannel);
+        }
 
-		for (int i = 0; i < block.length; i++) {
-			char[] chars;
+        return ascii + "\r\n";
+    }
 
-			chars = lines[i + posY].toCharArray();
+    @Override
+    public void drawOver(String[] block, int posX, int posY) {
+        String[] lines = ascii.split("\r\n");
 
-			for (int j = 0; j < block[i].length(); j++) {
-				chars[j + posX] = block[i].toCharArray()[j];
-			}
+        for (int i = 0; i < block.length; i++) {
+            char[] chars;
 
-			lines[i + posY] = new String(chars);
-		}
+            chars = lines[i + posY].toCharArray();
 
-		ascii = String.join("\r\n", lines);
-	}
+            for (int j = 0; j < block[i].length(); j++) {
+                chars[j + posX] = block[i].toCharArray()[j];
+            }
 
-	@Override
-	public void accept(UIElement inventory) {
-		inventory.visit(this);
-	}
+            lines[i + posY] = new String(chars);
+        }
 
-	@Override
-	public String toString()
-	{
-		return this.toASCII();
-	}
+        ascii = String.join("\r\n", lines);
+    }
+
+    @Override
+    public void accept(UIElement inventory) {
+        inventory.visit(this);
+    }
+
+    @Override
+    public String toString() {
+        return this.toASCII();
+    }
 }

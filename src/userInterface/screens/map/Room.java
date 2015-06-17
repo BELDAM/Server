@@ -2,8 +2,8 @@ package userInterface.screens.map;
 
 import java.util.ArrayList;
 import characters.Character;
+import monsters.Monster;
 import server.Direction;
-import server.GameManager;
 import userInterface.utils.IllegalMoveException;
 
 public class Room {
@@ -19,6 +19,7 @@ public class Room {
     private Room east;
 
     private ArrayList<Character> players;
+    private ArrayList<Monster> monsters;
 
     private String[] representation = new String[]{
         "+-------+  ",
@@ -35,6 +36,7 @@ public class Room {
         this.east = east;
 
         players = new ArrayList<>();
+        monsters = new ArrayList<>();
 
         updateRepresentation();
     }
@@ -133,6 +135,14 @@ public class Room {
     @Override
     public String toString() {
         return String.join("\r\n", representation);
+    }
+
+    public void spawnMonsters() {
+        for (int i = 0; i < 4; i++) {
+            if (Math.random() < 0.5) {
+                monsters.add(null); //TODO
+            }
+        }
     }
 
     private void updateRepresentation() {
