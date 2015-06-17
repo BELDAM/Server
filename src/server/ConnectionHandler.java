@@ -1,14 +1,12 @@
 package server;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.Socket;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
-import java.util.Objects;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import userInterface.screens.Screens;
@@ -22,7 +20,6 @@ import userInterface.screens.map.Room;
 import userInterface.utils.IllegalMoveException;
 
 public class ConnectionHandler implements Runnable {
-
     private Socket connection;
     private BufferedReader in;
     private BufferedWriter out;
@@ -35,10 +32,15 @@ public class ConnectionHandler implements Runnable {
     private PlayerState state;
     private PlayerState previousState;
 
+    private java.util.Map<PlayerState, String> helpMessages = new HashMap<>();
+
     private boolean running;
 
     public ConnectionHandler(Socket socket) {
         state = PlayerState.MAIN;
+
+        initHelps(PlayerState.MAIN, "assets/text/help-main.txt");
+        initHelps(PlayerState.FIGHT, "assets/text/help-fight.txt");
 
         try {
             connection = socket;
@@ -124,6 +126,9 @@ public class ConnectionHandler implements Runnable {
                 continue;
             }
 
+            printMessage("");
+            printMessage("> " + input);
+
             String[] command = input.split(" ");
 
             try {
@@ -148,7 +153,7 @@ public class ConnectionHandler implements Runnable {
                             running = false;
                             break;
                         case HELP:
-                            printMessage("Salut!\r\nça va?");
+                            printMessage(helpMessages.get(state));
                             break;
                     }
                 } else if (state == PlayerState.MAP) {
@@ -175,7 +180,7 @@ public class ConnectionHandler implements Runnable {
                             running = false;
                             break;
                         case HELP:
-                            printMessage("Salut!\r\nça va?");
+                            printMessage(helpMessages.get(state));
                             break;
                     }
                 }
@@ -193,6 +198,16 @@ public class ConnectionHandler implements Runnable {
         mainScreen.update();
     }
 
+    private void initHelps(PlayerState state, String filename) {
+        try {
+            byte[] encoded = Files.readAllBytes(Paths.get(filename));
+
+            helpMessages.put(state, new String(encoded, "UTF-8"));
+        } catch (IOException ex) {
+            Logger.getLogger(Screens.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void printScreen() throws IOException {
         clearScreen();
 
@@ -207,14 +222,14 @@ public class ConnectionHandler implements Runnable {
                 currentScreen = currentMap;
                 break;
         }
-        out.write(currentScreen.toString());
 
+        out.write(currentScreen.toString());
 
         out.flush();
     }
 
     private void printMessage(String msg) {
-        // TODO implement me
+        mainScreen.getMessages().addMessage(msg.split("\r?\n"));
     }
 
     private void clearScreen() throws IOException {

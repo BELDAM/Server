@@ -17,12 +17,7 @@ public class Messages extends UIElement {
 		}
 	}
 
-	/**
-	 * Print a message one the main interface. Also handles line wrap and very long words.
-	 * @param message
-	 */
-	public void addMessage(String message) {
-		System.out.println(message);
+	private void addMessage(String message) {
 		String line = "";
 
 		ArrayList<String> words = new ArrayList<>(Arrays.asList(message.split(" ")));
@@ -59,9 +54,13 @@ public class Messages extends UIElement {
 		ascii.add(line);
 	}
 
-	public void addMessage(String[] msg) {
-		for(String m: msg) {
-			addMessage(m);
+	/**
+	 * Print a message one the main interface. Also handles line wrap and very long words.
+	 * @param message
+	 */
+	public void addMessage(String[] message) {
+		for(String line: message) {
+			addMessage(line);
 		}
 	}
 
