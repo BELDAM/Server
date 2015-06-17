@@ -1,4 +1,4 @@
-package characters.Orc;
+package characters;
 
 import characters.Character;
 

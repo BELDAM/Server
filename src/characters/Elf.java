@@ -1,4 +1,4 @@
-package characters.Elf;
+package characters;
 
 import characters.Character;
 

@@ -1,9 +1,5 @@
 package characters;
 
-import characters.Elf.Elf;
-import characters.Humain.Human;
-import characters.Orc.Orc;
-
 public class CharacterFactory {
 
     public Character createCharacter(String name, char avatar, String race) {

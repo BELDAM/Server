@@ -1,4 +1,4 @@
-package characters.Humain;
+package characters;
 
 import characters.Character;
 

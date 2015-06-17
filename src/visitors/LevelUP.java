@@ -1,8 +1,8 @@
-package Visitors;
+package visitors;
 
-import characters.Elf.Elf;
-import characters.Humain.Human;
-import characters.Orc.Orc;
+import characters.Elf;
+import characters.Human;
+import characters.Orc;
 
 public class LevelUP implements IVisitor {
     @Override
