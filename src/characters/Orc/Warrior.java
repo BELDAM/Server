@@ -2,6 +2,8 @@ package characters.Orc;
 
 import Interface.FightInterface;
 import Visitors.IVisitor;
+import Visitors.LevelUP;
+import characters.Character;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -79,9 +81,17 @@ public class Warrior extends OrcDecorator {
         return orc.getXp();
     }
 
-    @Override
     public void setXp(int xp) {
         orc.setXp(xp);
+
+        orc.setXp(orc.getXp() + xp);
+
+        System.out.println("setXPChar");
+        if(orc.getXp() >= Character.XPtoLevel*orc.getLevel()) {
+            System.out.println("levelUPChar");
+            accept(new LevelUP());
+            orc.setXp(orc.getXp() - (Character.XPtoLevel*orc.getLevel()));
+        }
     }
 
     @Override
