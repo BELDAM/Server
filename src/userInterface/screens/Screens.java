@@ -11,6 +11,7 @@ public class Screens {
     private static String titleScreen;
     private static String characterCreationScreen;
     private static String emptyScreen;
+    private static String mapScreen;
 
     private Screens() {
     }
@@ -31,7 +32,24 @@ public class Screens {
         }
         return titleScreen;
     }
-    
+
+    public static String mapScreen() {
+        if (mapScreen == null) {
+            mapScreen = "";
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader("assets/screens/map.txt"));
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    mapScreen += line + "\r\n";
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Screens.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return mapScreen;
+    }
+
     public static String characterCreationScreen() {
         if (characterCreationScreen == null) {
             characterCreationScreen = "";
@@ -48,7 +66,7 @@ public class Screens {
         }
         return characterCreationScreen;
     }
-    
+
     public static String emptyScreen() {
         if (emptyScreen == null) {
             emptyScreen = "";

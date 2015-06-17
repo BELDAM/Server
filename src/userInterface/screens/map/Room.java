@@ -7,8 +7,10 @@ import userInterface.utils.IllegalMoveException;
 import monsters.Monster;
 import monsters.MonsterFactory;
 import server.GameManager;
+import userInterface.screens.UIDrawContainer;
+import userInterface.screens.UIElement;
 
-public class Room {
+public class Room extends UIElement {
 
     public static final int NORTH = 1;
     public static final int SOUTH = 2;
@@ -31,20 +33,10 @@ public class Room {
         "+-------+  ",
         "           "};
 
-    public Room(Room north, Room south, Room west, Room east) {
-        this.north = north;
-        this.south = south;
-        this.west = west;
-        this.east = east;
-
+    public Room(int posX, int posY) {
+        super(posX, posY);
         players = new ArrayList<>();
         monsters = new ArrayList<>();
-
-        updateRepresentation();
-    }
-
-    public Room() {
-        players = new ArrayList<>();
     }
 
     public String[] toASCII() {
@@ -176,5 +168,10 @@ public class Room {
                 representation[i + 1] = representation[i + 1].substring(0, (j + 1) * 2) + character + representation[i + 1].substring((j + 1) * 2 + 1);
             }
         }
+    }
+
+    @Override
+    public void visit(UIDrawContainer drawable) {
+        drawable.drawOver(representation, posX, posY);
     }
 }

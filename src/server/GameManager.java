@@ -13,7 +13,7 @@ public class GameManager {
     private static GameManager instance;
 
     private GameManager() {
-        players = new ArrayList<>();
+        players = new ArrayList<>();        
         worldMap = new Map("OVERWORLD");
     }
 

@@ -5,34 +5,37 @@ import userInterface.screens.Screen;
 import userInterface.screens.UIElement;
 import characters.Character;
 import server.Direction;
+import userInterface.screens.Screens;
 import userInterface.utils.IllegalMoveException;
 
 public class Map implements Screen {
-
-    private static String TOP_BOTTOM_BORDER = "+------------------------------------------------------"
-            + "--------------------------------------------------------++-----+";
 
     private static int NUMBER_OF_ROOMS_X = 10;
     private static int NUMBER_OF_ROOMS_Y = 6;
 
     private Room[][] rooms;
-    private String name;
     private Room startingRoom;
 
     private String[] representation;
 
     public Map(String name) {
-        this.name = name;
         rooms = new Room[NUMBER_OF_ROOMS_X][NUMBER_OF_ROOMS_Y];
 
-        representation = new String[37];
+        representation = Screens.mapScreen().split("\r\n");
+        for (int i = 0; i < representation.length; i++) {
+            if (i < name.length()) {
+                representation[i + 1] = representation[i + 1].substring(0, 115) + name.charAt(i) + representation[i + 1].substring(116);
+            } else if (i == name.length()) {
+                representation[i + 1] = representation[i + 1].substring(0, 113) + "-----|";
+            }
+        }
 
         for (String line : ConfigParser.csv("assets/coordinates.csv")) {
             String[] tokens = line.split(";");
 
             int x = Integer.parseInt(tokens[0]);
             int y = Integer.parseInt(tokens[1]);
-            Room room = new Room();
+            Room room = new Room(x, y);
             rooms[x][y] = room;
 
             for (int i = 2; i < tokens.length; i++) {
@@ -53,7 +56,6 @@ public class Map implements Screen {
             }
         }
         startingRoom = rooms[0][0];
-        updateRepresentation();
     }
 
     public void addPlayer(Character player) {
@@ -77,35 +79,13 @@ public class Map implements Screen {
     }
 
     private void updateRepresentation() {
-        String result = "";
-        int l = 1;
-        int m = 0;
-        for (int i = 0; i < NUMBER_OF_ROOMS_Y; i++) {
-            for (int k = 0; k < 6; k++) {
-                for (int j = 0; j < NUMBER_OF_ROOMS_X; j++) {
-                    if (rooms[j][i] != null) {
-                        result += rooms[j][i].toASCII()[k];
-                    } else {
-                        result += "           ";
-                    }
+        for (int i = 0; i < NUMBER_OF_ROOMS_X; i++) {
+            for (int j = 0; j < NUMBER_OF_ROOMS_Y; j++) {
+                if (rooms[i][j] != null) {
+                    accept(rooms[i][j]);
                 }
-                representation[l] = "| " + result.substring(0, result.length() - 2) + " ||";
-                if (m < name.length()) {
-                    representation[l] += "  " + name.charAt(m) + "  ";
-                    m++;
-                } else if (m == name.length()) {
-                    representation[l] += "-----";
-                    m++;
-                } else {
-                    representation[l] += "     ";
-                }
-                representation[l] += "|";
-                result = "";
-                l++;
             }
         }
-        representation[0] = TOP_BOTTOM_BORDER;
-        representation[36] = TOP_BOTTOM_BORDER;
     }
 
     public void move(Character player, Room room, Direction direction) throws IllegalMoveException {
@@ -114,8 +94,8 @@ public class Map implements Screen {
     }
 
     public void spawnMonsters() {
-        for (int i = 0; i < rooms.length; i++) {
-            for (int j = 0; j < rooms.length; j++) {
+        for (int i = 0; i < NUMBER_OF_ROOMS_X; i++) {
+            for (int j = 0; j < NUMBER_OF_ROOMS_Y; j++) {
                 if (rooms[i][j] != null || rooms[i][j] != startingRoom) {
                     rooms[i][j].spawnMonsters();
                 }
@@ -125,11 +105,24 @@ public class Map implements Screen {
 
     @Override
     public void accept(UIElement element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        element.visit(this);
     }
 
     @Override
     public void drawOver(String[] block, int posX, int posY) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String firstPart;
+        String lastPart;
+        for (int i = 0; i < block.length; i++) {
+            if (posX == NUMBER_OF_ROOMS_X - 1) {
+                block[i] = block[i].substring(0, block[i].length() - 1) + "|";
+            }
+            if (posY == NUMBER_OF_ROOMS_Y - 1 && i == block.length - 1) {
+                block[i] = block[i].replace(' ', '-');
+            }
+
+            firstPart = representation[i + posY * block.length + 1].substring(0, posX * block[0].length() + 2);
+            lastPart = representation[i + posY * block.length + 1].substring(2 + (posX + 1) * block[0].length());
+            representation[i + posY * block.length + 1] = firstPart + block[i] + lastPart;
+        }
     }
 }
