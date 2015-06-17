@@ -3,13 +3,14 @@ package characters.Elf;
 import Interface.FightInterface;
 import Visitors.IVisitor;
 import Visitors.LevelUP;
+import characters.*;
+import characters.Character;
 
 /**
  * Created by bastiangardel on 25.05.15.
  */
 public class Hunter extends ElfDecorator {
 
-    private static final int XPtoLevel = 100;
 
     public Hunter(ElfInterface elfInterface) {
         elf = elfInterface;
@@ -99,10 +100,10 @@ public class Hunter extends ElfDecorator {
         elf.setXp(elf.getXp() + xp);
 
         System.out.println("setXPChar");
-        if(elf.getXp() >= XPtoLevel*elf.getLevel()) {
+        if(elf.getXp() >= Character.XPtoLevel*elf.getLevel()) {
             System.out.println("levelUPChar");
             accept(new LevelUP());
-            elf.setXp(elf.getXp() - (XPtoLevel*elf.getLevel()));
+            elf.setXp(elf.getXp() - (Character.XPtoLevel*elf.getLevel()));
         }
     }
 

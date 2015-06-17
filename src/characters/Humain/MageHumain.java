@@ -2,58 +2,103 @@ package characters.Humain;
 
 import Interface.FightInterface;
 import Visitors.IVisitor;
+import Visitors.LevelUP;
+import characters.*;
+import characters.Character;
 
 /**
  * Created by bastiangardel on 25.05.15.
  */
 public class MageHumain extends HumainDecorator{
 
-    private int mana;
-    private static final int MANA = 3;
 
     public MageHumain(HumainInterface humainInterface) {
         humain = humainInterface;
     }
 
     @Override
-    public void attack(FightInterface character) {
-
-        //TODO implementation
+    public void takeDmg(int dmg) {
+        int dmgTaken = dmg - humain.getPhysicalDefence();
+        if(dmgTaken <= 0)
+            dmgTaken = 0;
+        setHP(getHP()-dmgTaken);
+        if (getHP() <= 0) {
+            setHP(0);
+            setDead(true);
+        }
+    }
+    public void takeMagicDmg(int dmg){
+        int dmgTaken = dmg - humain.getMagicalDefence();
+        if(dmgTaken <= 0)
+            dmgTaken = 0;
+        setHP(getHP()-dmgTaken);
+        if (getHP() <= 0) {
+            setHP(0);
+            setDead(true);
+        }
     }
 
+    @Override
+    public void attack(FightInterface character) {
+        if (!isDead()) {
+            if(!character.isDead()){
+                character.takeDmg(getStrength());
+                if(character.isDead())
+                {
+                    System.out.println("setXP");
+                    setXp(character.getGiveXP());
+                }
+            }
+            else System.out.println("Your Ennemi is dead");
+
+        } else {
+            System.out.println("you are dead");
+        }
+    }
     @Override
     public void magicAttack(FightInterface character) {
-        //TODO implementation
-    }
+        if (!isDead()) {
+            if(!character.isDead()){
+                character.takeMagicDmg(getStrength());
+                if(character.isDead())
+                {
+                    System.out.println("setXP");
+                    setXp(character.getGiveXP());
+                }
+            }
+            else System.out.println("Your Ennemi is dead");
 
-    @Override
-    public void takeMagicDmg(int dmg) {
-        //TODO implementation
-    }
-
-    @Override
-    public void takeDmg(int dmg) {
-        //TODO implementation
+        } else {
+            System.out.println("you are dead");
+        }
     }
 
     @Override
     public void accept(IVisitor visitor) {
-        //TODO implementation
+        visitor.visit(this);
     }
 
     @Override
     public int getXp() {
-        return 0;
+        return humain.getXp();
     }
 
-    @Override
     public void setXp(int xp) {
+        humain.setXp(xp);
 
+        humain.setXp(humain.getXp() + xp);
+
+        System.out.println("setXPChar");
+        if(humain.getXp() >= characters.Character.XPtoLevel*humain.getLevel()) {
+            System.out.println("levelUPChar");
+            accept(new LevelUP());
+            humain.setXp(humain.getXp() - (Character.XPtoLevel*humain.getLevel()));
+        }
     }
 
     @Override
     public int getGiveXP() {
-        return 0;
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
@@ -63,74 +108,66 @@ public class MageHumain extends HumainDecorator{
 
     @Override
     public int getHP() {
-        return 0;
+        return humain.getHP();
     }
 
     @Override
     public void setHP(int HP) {
-
+        humain.setHP(HP);
     }
 
     @Override
     public int getLevel() {
-        return 0;
+        return humain.getLevel();
     }
 
     @Override
     public void setLevel(int level) {
-
+        humain.setLevel(level);
     }
 
     @Override
     public void setDead(boolean dead) {
-
+        humain.setDead(dead);
     }
 
     @Override
     public int getStrength() {
-        return 0;
+        return humain.getStrength();
     }
 
     @Override
     public void setStrength(int strength) {
-
+        humain.setStrength(strength);
     }
 
     @Override
     public int getIntelligence() {
-        return 0;
+        return humain.getIntelligence();
     }
 
     @Override
     public void setIntelligence(int intelligence) {
-
+        humain.setIntelligence(intelligence);
     }
 
     @Override
     public int getPhysicalDefence() {
-        return 0;
+        return humain.getPhysicalDefence();
     }
 
     @Override
     public void setPhysicalDefence(int physicalDefence) {
-
+        humain.setPhysicalDefence(physicalDefence);
     }
 
     @Override
     public int getMagicalDefence() {
-        return 0;
+        return humain.getMagicalDefence();
     }
 
     @Override
     public void setMagicalDefence(int magicalDefence) {
-
-    }
-
-    public int getMana() {
-        return mana;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
+        humain.setMagicalDefence(magicalDefence);
     }
 }

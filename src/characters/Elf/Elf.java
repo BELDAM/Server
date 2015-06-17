@@ -3,6 +3,8 @@ package characters.Elf;
 import Interface.FightInterface;
 import Visitors.IVisitor;
 
+import java.lang.reflect.UndeclaredThrowableException;
+
 /**
  * Created by bastiangardel on 21.05.15.
  */
@@ -18,33 +20,33 @@ public class Elf extends characters.Character implements ElfInterface {
 
     @Override
     public void takeDmg(int dmg) {
-        //TODO implementation
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
     public void accept(IVisitor visitor) {
-        //TODO implementation
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
     public int getGiveXP() {
-        return 0;
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
 
     @Override
     public void attack(FightInterface character) {
-        //TODO implementation
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
     public void magicAttack(FightInterface character) {
-        //TODO implementation
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
     public void takeMagicDmg(int dmg) {
-        //TODO implementation
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override

@@ -10,24 +10,20 @@ import java.util.Random;
  *
  * @author Simon
  */
-public class MonsterFactory {
+class MonsterFactory {
     private Object rand;
 
     public MonsterFactory() {
     }
-    public Troll createTroll()
+    public Troll createTroll(int groupeLevel, int groupeSize)
     {
-        int groupeLevel = 5;
-        int groupeSize = 5;
         int level;
         Random rand = new Random();
         level = rand.nextInt((groupeLevel+groupeSize - 2) + 1) + 2;
         return new Troll(level);
     }
-    public Dragon createDragon()
+    public Dragon createDragon(int groupeLevel, int groupeSize)
     {
-        int groupeLevel = 5;
-        int groupeSize = 5;
         int level;
         Random rand = new Random();
         level = rand.nextInt((groupeLevel+groupeSize - 3) + 2) + 3;
@@ -35,11 +31,15 @@ public class MonsterFactory {
     }
     public Manwe createManwe()
     {
-        int groupeLevel = 5;
-        int groupeSize = 5;
-        int level;
-        Random rand = new Random();
         return new Manwe(100);
     }
+    public BlackElf createBlackElf(int groupeLevel, int groupeSize)
+    {
+        int level;
+        Random rand = new Random();
+        level = rand.nextInt((groupeLevel+groupeSize - 2) + 1) + 2;
+        return new BlackElf(level);
+    }
+
     
 }

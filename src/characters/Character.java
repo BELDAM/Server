@@ -14,7 +14,7 @@ public abstract class Character implements FightInterface {
 
     private int level;
     private int xp;
-    private static final int XPtoLevel = 100;
+    public static final int XPtoLevel = 100;
     private String name;
     private char symbol;
     private int HP;

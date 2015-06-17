@@ -17,16 +17,16 @@ public class Troll extends Monster {
 
     public Troll(int level) {
         super(level);
-        accept(new init());
+        init initialisation = new init();
+        accept(initialisation);
 
         int maxN = 5;
         int t = 1 << (maxN); // 2^maxN
         int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)
-        System.out.println("n=" + n);
         ItemManager itemManager = new ItemManager();
-        //while (items.size() < n + 2) {
-        addItem(itemManager.getRandomItem());
-        //}
+        while (items.size() < n + 1) {
+            addItem(itemManager.getRandomItem());
+        }
 
         for(int i = 0; i < items.size(); i++)
         {
@@ -34,20 +34,10 @@ public class Troll extends Monster {
             this.physicalDefence += items.get(i).getDefense();
         }
 
-        setGiveXP(100);
-
     }
     @Override
     public void accept(IVisitor visitor) {
         visitor.visit(this);
     }
 
-    @Override
-    public int getXp() {
-        return 0;
-    }
-
-    @Override
-    public void setXp(int xp) {
-    }
 }

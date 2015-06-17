@@ -3,7 +3,7 @@ package characters;
 
 import characters.Elf.Elf;
 import characters.Elf.Hunter;
-import monsters.ElfNoir;
+import monsters.BlackElf;
 import monsters.Troll;
 
 /**
@@ -24,7 +24,6 @@ public class CharacterMain {
         hunter.attack(troll);
         hunter.attack(troll);
         hunter.attack(troll);
-
 
         hunter.setXp(120);
 

@@ -10,6 +10,7 @@ import Visitors.IVisitor;
 import Visitors.init;
 import items.ItemManager;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -19,15 +20,16 @@ import java.util.Random;
 public class Manwe extends Monster{
     public Manwe(int level) {
         super(level);
-        accept(new init());
+        init initialisation = new init();
+        accept(initialisation);
         int maxN = 5;
         int t = 1 << (maxN); // 2^maxN
         int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)
         System.out.println("n=" + n);
         ItemManager itemManager = new ItemManager();
-        //while (items.size() < n + 2) {
-        addItem(itemManager.getRandomItem());
-        //}
+        while (items.size() < n + 2) {
+            addItem(itemManager.getRandomItem());
+        }
 
         for(int i = 0; i < items.size(); i++)
         {
@@ -41,31 +43,22 @@ public class Manwe extends Monster{
         visitor.visit(this);
     }
 
-    @Override
-    public int getXp() {
-        return 0;
-    }
-
-    @Override
-    public void setXp(int xp) {
-
-    }
 
     @Override
     public void attack(FightInterface character) {
         if (!isDead()) {
             Random rand = new Random();
             int attack = rand.nextInt(100);
-            if(attack > 90) {
+            if(attack > 95) {
                 character.takeDmg(strength);
                 if(character.isDead())
                 {
-                    System.out.println("Manwe slained someone.");
+                    System.out.println("Manwe slain someone.");
                 }
             }
             else
             {
-                System.out.println(this.name + " : J'attaquerai demain.");
+                System.out.println(this.name + " : Bah, i will attack tomorrow, time to 9gag or WebComics");
             }
         } else {
             System.out.println("you are dead");
@@ -76,19 +69,31 @@ public class Manwe extends Monster{
         if (!isDead()) {
             Random rand = new Random();
             int attack = rand.nextInt(100);
-            if(attack > 90) {
+            if(attack > 95) {
                 character.takeMagicDmg(intelligence);
                 if(character.isDead())
                 {
-                    System.out.println("Manwe slained someone.");
+                    System.out.println("Manwe slain someone.");
                 }
             }
             else
             {
-                System.out.println(this.name + " : J'attaquerai demain.");
+                System.out.println(this.name + " :  Bah, i will attack tomorrow, time to 9gag or WebComics");
             }
         } else {
             System.out.println("you are dead");
         }
+    }
+
+    @Override
+    public LinkedList dropItem() {
+        Random rand = new Random();
+        float note ;
+        LinkedList testMCR = new LinkedList();
+        for(int i = 0 ; i < 29; i++) {
+            note = rand.nextInt(51) + 10;
+            testMCR.add("L eleve" + i + " a obtenu " + note/10);
+        }
+        return testMCR;
     }
 }

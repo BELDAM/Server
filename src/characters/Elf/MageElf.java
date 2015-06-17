@@ -2,6 +2,9 @@ package characters.Elf;
 
 import Interface.FightInterface;
 import Visitors.IVisitor;
+import Visitors.LevelUP;
+import characters.*;
+import characters.Character;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -47,7 +50,16 @@ public class MageElf extends ElfDecorator {
     @Override
     public void attack(FightInterface character) {
         if (!isDead()) {
-            character.takeDmg(getStrength());
+            if(!character.isDead()){
+                character.takeDmg(getStrength());
+                if(character.isDead())
+                {
+                    System.out.println("setXP");
+                    setXp(character.getGiveXP());
+                }
+            }
+            else System.out.println("Your Ennemi is dead");
+
         } else {
             System.out.println("you are dead");
         }
@@ -55,7 +67,16 @@ public class MageElf extends ElfDecorator {
     @Override
     public void magicAttack(FightInterface character) {
         if (!isDead()) {
-            character.takeDmg(getIntelligence());
+            if(!character.isDead()){
+                character.takeMagicDmg(getStrength());
+                if(character.isDead())
+                {
+                    System.out.println("setXP");
+                    setXp(character.getGiveXP());
+                }
+            }
+            else System.out.println("Your Ennemi is dead");
+
         } else {
             System.out.println("you are dead");
         }
@@ -63,22 +84,30 @@ public class MageElf extends ElfDecorator {
 
     @Override
     public void accept(IVisitor visitor) {
-        //visitor.visit(this);
+        visitor.visit(this);
     }
 
     @Override
     public int getXp() {
-        return 0;
+        return elf.getXp();
     }
 
-    @Override
     public void setXp(int xp) {
+        elf.setXp(xp);
 
+        elf.setXp(elf.getXp() + xp);
+
+        System.out.println("setXPChar");
+        if(elf.getXp() >= Character.XPtoLevel*elf.getLevel()) {
+            System.out.println("levelUPChar");
+            accept(new LevelUP());
+            elf.setXp(elf.getXp() - (Character.XPtoLevel*elf.getLevel()));
+        }
     }
 
     @Override
     public int getGiveXP() {
-        return 0;
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
