@@ -47,8 +47,6 @@ public class LevelUP implements IVisitor {
         o.setLevel(o.getLevel() + 1);
 
         o.setSpeed(o.getSpeed() + 1);
-
-        System.out.println("ElfMage LevelUP");
     }
 
     @Override
@@ -62,8 +60,6 @@ public class LevelUP implements IVisitor {
         o.setLevel(o.getLevel() + 1);
 
         o.setSpeed(o.getSpeed() + 1);
-
-        System.out.println("ElfHunter LevelUP");
     }
 
     @Override
