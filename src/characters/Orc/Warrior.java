@@ -17,19 +17,20 @@ public class Warrior extends OrcDecorator {
     @Override
     public void takeDmg(int dmg) {
         int dmgTaken = dmg - orc.getPhysicalDefence();
-        if(dmgTaken <= 0)
+        if (dmgTaken <= 0)
             dmgTaken = 0;
-        setHP(getHP()-dmgTaken);
+        setHP(getHP() - dmgTaken);
         if (getHP() <= 0) {
             setHP(0);
             setDead(true);
         }
     }
-    public void takeMagicDmg(int dmg){
+
+    public void takeMagicDmg(int dmg) {
         int dmgTaken = dmg - orc.getMagicalDefence();
-        if(dmgTaken <= 0)
+        if (dmgTaken <= 0)
             dmgTaken = 0;
-        setHP(getHP()-dmgTaken);
+        setHP(getHP() - dmgTaken);
         if (getHP() <= 0) {
             setHP(0);
             setDead(true);
@@ -39,32 +40,29 @@ public class Warrior extends OrcDecorator {
     @Override
     public void attack(FightInterface character) {
         if (!isDead()) {
-            if(!character.isDead()){
+            if (!character.isDead()) {
                 character.takeDmg(getStrength());
-                if(character.isDead())
-                {
+                if (character.isDead()) {
                     System.out.println("setXP");
                     setXp(character.getGiveXP());
                 }
-            }
-            else System.out.println("Your Ennemi is dead");
+            } else System.out.println("Your Ennemi is dead");
 
         } else {
             System.out.println("you are dead");
         }
     }
+
     @Override
     public void magicAttack(FightInterface character) {
         if (!isDead()) {
-            if(!character.isDead()){
+            if (!character.isDead()) {
                 character.takeMagicDmg(getStrength());
-                if(character.isDead())
-                {
+                if (character.isDead()) {
                     System.out.println("setXP");
                     setXp(character.getGiveXP());
                 }
-            }
-            else System.out.println("Your Ennemi is dead");
+            } else System.out.println("Your Ennemi is dead");
 
         } else {
             System.out.println("you are dead");
@@ -87,10 +85,10 @@ public class Warrior extends OrcDecorator {
         orc.setXp(orc.getXp() + xp);
 
         System.out.println("setXPChar");
-        if(orc.getXp() >= Character.XPtoLevel*orc.getLevel()) {
+        if (orc.getXp() >= Character.XPtoLevel * orc.getLevel()) {
             System.out.println("levelUPChar");
             accept(new LevelUP());
-            orc.setXp(orc.getXp() - (Character.XPtoLevel*orc.getLevel()));
+            orc.setXp(orc.getXp() - (Character.XPtoLevel * orc.getLevel()));
         }
     }
 
@@ -102,6 +100,11 @@ public class Warrior extends OrcDecorator {
     @Override
     public boolean isDead() {
         return orc.isDead();
+    }
+
+    @Override
+    public void setDead(boolean dead) {
+        orc.setDead(dead);
     }
 
     @Override
@@ -122,11 +125,6 @@ public class Warrior extends OrcDecorator {
     @Override
     public void setLevel(int level) {
         orc.setLevel(level);
-    }
-
-    @Override
-    public void setDead(boolean dead) {
-        orc.setDead(dead);
     }
 
     @Override

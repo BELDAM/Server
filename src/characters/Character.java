@@ -18,31 +18,6 @@ public abstract class Character implements FightInterface {
     private String name;
     private char symbol;
     private int HP;
-
-    public int getXp() {
-        return xp;
-    }
-
-    public void setXp(int xp) {
-
-        this.xp = xp;
-
-    }
-
-    public static int getXPtoLevel() {
-        return XPtoLevel;
-    }
-
-    @Override
-    public int getLevel() {
-        return level;
-    }
-
-    @Override
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     private static final int LIFE = 10;
     private boolean dead;
     private int strength;
@@ -57,6 +32,26 @@ public abstract class Character implements FightInterface {
     private static final int MAGICAL_DEFENCE = 10;
 
     private LinkedList<Item> items;
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+
+        this.xp = xp;
+
+    }
+
+    @Override
+    public int getLevel() {
+        return level;
+    }
+
+    @Override
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     protected Character(String name, char symbol) {
         this.name = name;
