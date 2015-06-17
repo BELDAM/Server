@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Monster {
+
     private int hp;
     private int level;
     private int strength;

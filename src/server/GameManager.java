@@ -17,6 +17,7 @@ public class GameManager {
         players = new ArrayList<>();
         connections = new ArrayList<>();
         worldMap = new Map("OVERWORLD");
+        worldMap.spawnMonsters();
     }
 
     public static synchronized GameManager getInstance() {
@@ -58,9 +59,5 @@ public class GameManager {
 
     public int getPartySize() {
         return players.size();
-    }
-
-    private void spawnMonsters() {
-        worldMap.spawnMonsters();
     }
 }

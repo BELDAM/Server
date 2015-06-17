@@ -96,7 +96,7 @@ public class Map implements Screen {
     public void spawnMonsters() {
         for (int i = 0; i < NUMBER_OF_ROOMS_X; i++) {
             for (int j = 0; j < NUMBER_OF_ROOMS_Y; j++) {
-                if (rooms[i][j] != null || rooms[i][j] != startingRoom) {
+                if (rooms[i][j] != null && rooms[i][j] != startingRoom) {
                     rooms[i][j].spawnMonsters();
                 }
             }

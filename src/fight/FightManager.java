@@ -7,56 +7,50 @@ import java.util.Map;
 import java.util.Random;
 
 public class FightManager implements Runnable {
-	private ArrayList<Character> characters;
-	private ArrayList<Monster> monsters;
-	private Map<Character, CharacterAction> actions;
 
-	private Random randomGenerator;
-	private boolean charactersTurn;
+    private ArrayList<Character> players;
+    private ArrayList<Monster> monsters;
+    private Map<Character, CharacterAction> actions;
 
-	public FightManager(Map<Character, CharacterAction> actions) {
-		this.actions = actions;
-		characters = new ArrayList<>();
-		monsters = new ArrayList<>();
-		randomGenerator = new Random();
-		charactersTurn = false;
-	}
+    private Random randomGenerator;
+    private boolean playersTurn;
 
-	@Override
-	public void run() {
-		while (!isOver()) {
-			if (charactersTurn) {
-				playersTurn();
-			} else {
-				monstersTurn();
-			}
+    public FightManager() {
+        players = new ArrayList<>();
+        monsters = new ArrayList<>();
+        randomGenerator = new Random();
+        playersTurn = false;
+    }
 
-			charactersTurn = !charactersTurn;
-		}
-	}
+    @Override
+    public void run() {
+        while (!isOver()) {
+            if (playersTurn) {
+                playersTurn();
+            } else {
+                monstersTurn();
+            }
 
-	private boolean isOver() {
-		return monsters.isEmpty() || characters.isEmpty();
-	}
+            playersTurn = !playersTurn;
+        }
+    }
 
-	private boolean isAllCharactersReady() {
-		for (Character character: characters) {
-			if (actions.get(character) == CharacterAction.UNDEFINED) {
-				return false;
-			}
-		}
+    private boolean isOver() {
+        return monsters.isEmpty() || players.isEmpty();
+    }
 
-		return true;
-	}
+    private boolean areAllCharactersReady() {
+        return players.stream().noneMatch((character) -> (actions.get(character) == CharacterAction.UNDEFINED));
+    }
 
-	private void playersTurn() {
+    private void playersTurn() {
 
-	}
+    }
 
-	private void monstersTurn() {
-		for (Monster monster: monsters) {
-			// Attack a random character
-			monster.attack(characters.get(randomGenerator.nextInt(characters.size())));
-		}
-	}
+    private void monstersTurn() {
+        for (Monster monster : monsters) {
+            // Attack a random character
+            monster.attack(players.get(randomGenerator.nextInt(players.size())));
+        }
+    }
 }
