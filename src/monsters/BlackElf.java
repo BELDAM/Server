@@ -14,10 +14,7 @@ import items.ItemManager;
  * @author Simon
  */
 public class BlackElf extends Monster{
-    @Override
-    public int getGiveXP() {
-        return 200 * getLevel();
-    }
+
 
     public BlackElf(int level) {
         super(level);

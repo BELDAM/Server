@@ -14,10 +14,7 @@ import items.ItemManager;
  * @author Simon
  */
 public class Dragon extends Monster{
-    @Override
-    public int getGiveXP() {
-        return 200 * getLevel();
-    }
+
 
     public Dragon(int level) {
         super(level);

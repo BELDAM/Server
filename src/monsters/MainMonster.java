@@ -1,6 +1,8 @@
 package monsters;
 
 
+import java.util.LinkedList;
+
 /**
  * Created by Simon on 04.06.2015.
  */
@@ -20,5 +22,10 @@ public class MainMonster {
         System.out.println(m1.toString());
         m1.attack(t1);
         m1.magicAttack(t1);
+        LinkedList drop = m1.dropItem();
+        for(int i = 0 ; i < drop.size(); i++)
+        {
+            System.out.println(drop.get(i));
+        }
     }
 }

@@ -21,7 +21,6 @@ public class init implements IVisitor{
         o.setPhysicalDefence(2);
         o.setIntelligence(3);
         o.setName("Troll");
-        o.setGiveXP(10);
 
         o.setHP(o.getHP() + o.getHP() * level/3);
         o.setStrength(o.getStrength() + o.getStrength() * level / 2);
@@ -29,6 +28,7 @@ public class init implements IVisitor{
         o.setMagicalDefence(o.getMagicalDefence() + level / 2);
         o.setIntelligence(o.getIntelligence() + level / 5);
         o.setGiveXP(o.getGiveXP() + level * 5);
+        o.setGiveXP(15* o.getLevel());
     }
 
     @Override
@@ -40,7 +40,6 @@ public class init implements IVisitor{
         o.setPhysicalDefence(10);
         o.setIntelligence(10);
         o.setName("Dragon");
-        o.setGiveXP(100);
 
         o.setHP(o.getHP() + o.getHP() * level/2);
         o.setStrength(o.getStrength() + o.getStrength() * level / 2);
@@ -48,6 +47,7 @@ public class init implements IVisitor{
         o.setMagicalDefence(o.getMagicalDefence() + level / 2);
         o.setIntelligence(o.getIntelligence() + level / 2);
         o.setGiveXP(o.getGiveXP() + level * 5);
+        o.setGiveXP(100* o.getLevel());
     }
 
     @Override
@@ -59,14 +59,12 @@ public class init implements IVisitor{
         o.setPhysicalDefence(2);
         o.setIntelligence(10);
         o.setName("Black Elf");
-        o.setGiveXP(10);
-
         o.setHP(o.getHP() + o.getHP() * level/4);
         o.setStrength(o.getStrength() + o.getStrength() * level / 5);
         o.setPhysicalDefence(o.getPhysicalDefence() + level);
         o.setMagicalDefence(o.getMagicalDefence() + level / 2);
         o.setIntelligence(o.getIntelligence() + level);
-        o.setGiveXP(o.getGiveXP() + level * 5);
+        o.setGiveXP(15 + level * 5);
     }
 
     @Override

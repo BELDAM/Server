@@ -10,6 +10,7 @@ import Visitors.IVisitor;
 import Visitors.init;
 import items.ItemManager;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -47,7 +48,7 @@ public class Manwe extends Monster{
         if (!isDead()) {
             Random rand = new Random();
             int attack = rand.nextInt(100);
-            if(attack > 90) {
+            if(attack > 95) {
                 character.takeDmg(strength);
                 if(character.isDead())
                 {
@@ -67,7 +68,7 @@ public class Manwe extends Monster{
         if (!isDead()) {
             Random rand = new Random();
             int attack = rand.nextInt(100);
-            if(attack > 90) {
+            if(attack > 95) {
                 character.takeMagicDmg(intelligence);
                 if(character.isDead())
                 {
@@ -81,5 +82,17 @@ public class Manwe extends Monster{
         } else {
             System.out.println("you are dead");
         }
+    }
+
+    @Override
+    public LinkedList dropItem() {
+        Random rand = new Random();
+        float note ;
+        LinkedList testMCR = new LinkedList();
+        for(int i = 0 ; i < 29; i++) {
+            note = rand.nextInt(51) + 10;
+            testMCR.add("L eleve" + i + " a obtenu " + note/10);
+        }
+        return testMCR;
     }
 }
