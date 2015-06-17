@@ -13,13 +13,13 @@ import items.ItemManager;
  *
  * @author Simon
  */
-public class Dragon extends Monster{
+public class BlackElf extends Monster{
     @Override
     public int getGiveXP() {
         return 200 * getLevel();
     }
 
-    public Dragon(int level) {
+    public BlackElf(int level) {
         super(level);
         //http://stackoverflow.com/questions/3745760/java-generating-a-random-numbers-with-a-logarithmic-distribution
         accept(new init());
@@ -38,6 +38,7 @@ public class Dragon extends Monster{
             this.physicalDefence += items.get(i).getDefense();
         }
     }
+
 
     @Override
     public void accept(IVisitor visitor) {

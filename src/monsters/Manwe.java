@@ -41,15 +41,6 @@ public class Manwe extends Monster{
         visitor.visit(this);
     }
 
-    @Override
-    public int getXp() {
-        return 0;
-    }
-
-    @Override
-    public void setXp(int xp) {
-
-    }
 
     @Override
     public void attack(FightInterface character) {
@@ -60,12 +51,12 @@ public class Manwe extends Monster{
                 character.takeDmg(strength);
                 if(character.isDead())
                 {
-                    System.out.println("Manwe slained someone.");
+                    System.out.println("Manwe slain someone.");
                 }
             }
             else
             {
-                System.out.println(this.name + " : J'attaquerai demain.");
+                System.out.println(this.name + " : Bah, i will attack tomorrow, time to 9gag or WebComics");
             }
         } else {
             System.out.println("you are dead");
@@ -80,12 +71,12 @@ public class Manwe extends Monster{
                 character.takeMagicDmg(intelligence);
                 if(character.isDead())
                 {
-                    System.out.println("Manwe slained someone.");
+                    System.out.println("Manwe slain someone.");
                 }
             }
             else
             {
-                System.out.println(this.name + " : J'attaquerai demain.");
+                System.out.println(this.name + " :  Bah, i will attack tomorrow, time to 9gag or WebComics");
             }
         } else {
             System.out.println("you are dead");

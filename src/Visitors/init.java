@@ -2,8 +2,9 @@ package Visitors;
 
 import characters.Elf.Hunter;
 import characters.Elf.MageElf;
+import monsters.BlackElf;
 import monsters.Dragon;
-import monsters.ElfNoir;
+import monsters.BlackElf;
 import monsters.Manwe;
 import monsters.Troll;
 
@@ -50,14 +51,14 @@ public class init implements IVisitor{
     }
 
     @Override
-    public void visit(ElfNoir o) {
+    public void visit(BlackElf o) {
         int level = o.getLevel();
         o.setHP(8);
         o.setStrength(4);
         o.setMagicalDefence(2);
         o.setPhysicalDefence(2);
         o.setIntelligence(10);
-        o.setName("Elf noir");
+        o.setName("Black Elf");
         o.setGiveXP(10);
 
         o.setHP(o.getHP() + o.getHP() * level/4);

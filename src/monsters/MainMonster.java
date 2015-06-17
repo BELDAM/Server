@@ -7,11 +7,14 @@ package monsters;
 public class MainMonster {
     public static void main(String[] args){
 
+        System.out.println("yolloo");
         MonsterFactory mf = new MonsterFactory();
         Troll t1= mf.createTroll();
+        System.out.println("yolloo");
         Dragon d1 = mf.createDragon();
         Manwe m1 = mf.createManwe();
 
+        System.out.println("yolloo");
         System.out.println(t1.toString());
         System.out.println(d1.toString());
         System.out.println(m1.toString());

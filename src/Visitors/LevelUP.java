@@ -3,7 +3,7 @@ package Visitors;
 import characters.Elf.Hunter;
 import characters.Elf.MageElf;
 import monsters.Dragon;
-import monsters.ElfNoir;
+import monsters.BlackElf;
 import monsters.Manwe;
 import monsters.Troll;
 
@@ -20,7 +20,7 @@ public class LevelUP implements IVisitor {
     }
 
     @Override
-    public void visit(ElfNoir o) {
+    public void visit(BlackElf o) {
     }
 
     @Override

@@ -95,13 +95,17 @@ public abstract class Monster implements FightInterface{
         this.magicalDefence = magicalDefence;
     }
 
-    public int getGiveXP() {
+    public int getXp() {
         return giveXP;
     }
 
-    public void setGiveXP(int giveXP) {
+    public void setXp(int giveXP) {
         this.giveXP = giveXP;
     }
+
+    public int getGiveXP() { return giveXP;}
+
+    public void setGiveXP(int xp) { this.giveXP = xp;}
 
     public LinkedList<Item> getItems() {
         return items;
