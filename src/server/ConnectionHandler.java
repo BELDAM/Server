@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import userInterface.screens.Screens;
@@ -53,6 +54,8 @@ public class ConnectionHandler implements Runnable {
             in.readLine();
             createCharacter();
 
+            GameManager.getInstance().registerConnection(this);
+
             currentMap = GameManager.getInstance().getWorldMap();
             mainScreen = new MainScreen();
 
@@ -70,7 +73,7 @@ public class ConnectionHandler implements Runnable {
                 in.close();
                 out.close();
                 connection.close();
-                GameManager.getInstance().disconnect(player);
+                GameManager.getInstance().disconnect(this, player);
                 currentRoom.removePlayer(player);
             } catch (IOException ex) {
                 Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,7 +109,17 @@ public class ConnectionHandler implements Runnable {
     private void mainLoop() throws IOException {
         Screen currentScreen = mainScreen;
         while (running) {
-            String[] command = in.readLine().split(" ");
+            String input = in.readLine();
+
+            if (input.equals("")) {
+                clearScreen();
+                out.write(currentScreen.toString());
+                out.flush();
+
+                continue;
+            }
+
+            String[] command = input.split(" ");
             try {
                 switch (Command.valueOf(command[0].toUpperCase())) {
                     case MOVE:
@@ -137,6 +150,10 @@ public class ConnectionHandler implements Runnable {
                 out.flush();
             }
         }
+    }
+
+    public void refreshMainScreen() {
+        mainScreen.update();
     }
 
     private void printMessage(String msg) {
