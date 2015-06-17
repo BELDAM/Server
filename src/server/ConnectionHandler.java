@@ -32,9 +32,14 @@ public class ConnectionHandler implements Runnable {
     private Room currentRoom;
     private MainScreen mainScreen;
 
+    private PlayerState state;
+    private PlayerState previousState;
+
     private boolean running;
 
     public ConnectionHandler(Socket socket) {
+        state = PlayerState.MAIN;
+
         try {
             connection = socket;
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -110,53 +115,102 @@ public class ConnectionHandler implements Runnable {
     }
 
     private void mainLoop() throws IOException {
-        Screen currentScreen = mainScreen;
         while (running) {
             String input = in.readLine();
 
             if (input.equals("")) {
-                clearScreen();
-                out.write(currentScreen.toString());
-                out.flush();
+                printScreen();
 
                 continue;
             }
 
             String[] command = input.split(" ");
+
             try {
-                switch (Command.valueOf(command[0].toUpperCase())) {
-                    case MOVE:
-                        Direction direction = Direction.valueOf(command[1].toUpperCase());
-                        currentMap.move(player, currentRoom, direction);
-                        currentRoom = currentRoom.getRoom(direction);
-                        break;
-                    case MAP:
-                        currentScreen = currentMap;
-                        break;
-                    case MAIN:
-                        currentScreen = mainScreen;
-                        break;
-                    case QUIT:
-                        running = false;
-                        break;
-                    case HELP:
-                        printMessage("Salut!\r\nça va?");
-                        break;
+                if (state == PlayerState.MAIN) {
+                    switch (Command.valueOf(command[0].toUpperCase())) {
+                        case MOVE:
+                            Direction direction = Direction.valueOf(command[1].toUpperCase());
+                            currentMap.move(player, currentRoom, direction);
+                            currentRoom = currentRoom.getRoom(direction);
+                            break;
+                        case MAP:
+                            previousState = state;
+                            state = PlayerState.MAP;
+                            break;
+                        case TAKE:
+                            // TODO take an item with id command[2]
+                            break;
+                        case DROP:
+                            // TODO drop an item with id command[2]
+                            break;
+                        case QUIT:
+                            running = false;
+                            break;
+                        case HELP:
+                            printMessage("Salut!\r\nça va?");
+                            break;
+                    }
+                } else if (state == PlayerState.MAP) {
+                    switch (command[0].toUpperCase()) {
+                        case "MOVE":
+                            Direction direction = Direction.valueOf(command[1].toUpperCase());
+                            currentMap.move(player, currentRoom, direction);
+                            currentRoom = currentRoom.getRoom(direction);
+                            break;
+                        default:
+                            state = previousState;
+                            break;
+                    }
+                } else if (state == PlayerState.FIGHT) {
+                    switch (Command.valueOf(command[0].toUpperCase())) {
+                        case ATTACK:
+                            // TODO Attack a monster
+                            break;
+                        case MAP:
+                            previousState = state;
+                            state = PlayerState.MAP;
+                            break;
+                        case QUIT:
+                            running = false;
+                            break;
+                        case HELP:
+                            printMessage("Salut!\r\nça va?");
+                            break;
+                    }
                 }
             } catch (IllegalMoveException e) {
                 System.out.println("can't go in this direction");
             } catch (RuntimeException e) {
                 System.out.println("invalid command");
             } finally {
-                clearScreen();
-                out.write(currentScreen.toString());
-                out.flush();
+                printScreen();
             }
         }
     }
 
     public void refreshMainScreen() {
         mainScreen.update();
+    }
+
+    private void printScreen() throws IOException {
+        clearScreen();
+
+        Screen currentScreen = mainScreen;
+
+        switch (state) {
+            case MAIN:
+            case FIGHT:
+                currentScreen = mainScreen;
+                break;
+            case MAP:
+                currentScreen = currentMap;
+                break;
+        }
+        out.write(currentScreen.toString());
+
+
+        out.flush();
     }
 
     private void printMessage(String msg) {

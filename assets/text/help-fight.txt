@@ -1,5 +1,4 @@
 help                   # Show this help
-say <message>          # Send a message to your companions
 attack <id>            # Attack a given monster
 map                    # Show the map
 quit                   # Quit the game
