@@ -72,6 +72,7 @@ public class Map implements Screen {
 
     @Override
     public String toString() {
+        updateRepresentation();
         return String.join("\r\n", representation) + "\r\n";
     }
 

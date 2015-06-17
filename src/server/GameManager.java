@@ -32,6 +32,10 @@ public class GameManager {
         players.add(player);
         worldMap.addPlayer(player);
     }
+    
+    public void disconnect(Character player){
+        players.remove(player);
+    }
 
     public ArrayList<Character> getPlayers() {
         return players;
