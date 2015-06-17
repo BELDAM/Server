@@ -70,6 +70,8 @@ public class ConnectionHandler implements Runnable {
                 in.close();
                 out.close();
                 connection.close();
+                GameManager.getInstance().disconnect(player);
+                currentRoom.removePlayer(player);
             } catch (IOException ex) {
                 Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
             }

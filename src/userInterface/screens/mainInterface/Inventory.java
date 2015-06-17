@@ -73,7 +73,7 @@ public class Inventory extends UIElement implements UIDrawContainer {
 				break;
 			case BOTH_HANDS:
 				slot.get(4).empty();
-				slot.get(6).disable();
+				slot.get(6).empty();
 				break;
 			case LEGS:
 				slot.get(5).empty();

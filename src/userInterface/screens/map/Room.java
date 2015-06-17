@@ -77,6 +77,11 @@ public class Room {
         updateRepresentation();
     }
 
+    public void removePlayer(Character player) {
+        players.remove(player);
+        updateRepresentation();
+    }
+
     public void move(Character player, Direction direction) throws IllegalMoveException {
         switch (direction) {
             case NORTH:
