@@ -3,7 +3,7 @@ package characters.Humain;
 import Interface.FightInterface;
 import Visitors.IVisitor;
 import Visitors.LevelUP;
-import characters.*;
+import characters.Character;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -87,10 +87,10 @@ public class Paladin extends HumainDecorator {
         humain.setXp(humain.getXp() + xp);
 
         System.out.println("setXPChar");
-        if(humain.getXp() >= characters.Character.XPtoLevel*humain.getLevel()) {
+        if(humain.getXp() >= Character.XPtoLevel*humain.getLevel()) {
             System.out.println("levelUPChar");
             accept(new LevelUP());
-            humain.setXp(humain.getXp() - (characters.Character.XPtoLevel*humain.getLevel()));
+            humain.setXp(humain.getXp() - (Character.XPtoLevel*humain.getLevel()));
         }
     }
 

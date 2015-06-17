@@ -65,20 +65,51 @@ public class LevelUP implements IVisitor {
     @Override
     public void visit(MageHumain o) {
 
+        o.setIntelligence(o.getIntelligence() + 8);
+        o.setStrength(o.getStrength() + 2);
+        o.setMagicalDefence(o.getMagicalDefence() + 5);
+        o.setPhysicalDefence(o.getPhysicalDefence() + 2);
+
+        o.setHP(o.getHP()+ 3);
+        o.setLevel(o.getLevel() + 1);
+
     }
 
     @Override
     public void visit(Paladin o) {
 
+        o.setIntelligence(o.getIntelligence() + 4);
+        o.setStrength(o.getStrength() + 8);
+        o.setMagicalDefence(o.getMagicalDefence() + 4);
+        o.setPhysicalDefence(o.getPhysicalDefence() + 5);
+
+        o.setHP(o.getHP()+ 4);
+        o.setLevel(o.getLevel() + 1);
     }
 
     @Override
     public void visit(Chaman o) {
 
+        o.setIntelligence(o.getIntelligence() + 8);
+        o.setStrength(o.getStrength() + 4);
+        o.setMagicalDefence(o.getMagicalDefence() + 5);
+        o.setPhysicalDefence(o.getPhysicalDefence() + 3);
+
+        o.setHP(o.getHP()+ 3);
+        o.setLevel(o.getLevel() + 1);
+
     }
 
     @Override
     public void visit(Warrior o) {
+
+        o.setIntelligence(o.getIntelligence() + 2);
+        o.setStrength(o.getStrength() +10);
+        o.setMagicalDefence(o.getMagicalDefence() + 2);
+        o.setPhysicalDefence(o.getPhysicalDefence() + 6);
+
+        o.setHP(o.getHP()+ 4);
+        o.setLevel(o.getLevel() + 1);
 
     }
 }

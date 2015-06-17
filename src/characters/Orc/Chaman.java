@@ -3,7 +3,7 @@ package characters.Orc;
 import Interface.FightInterface;
 import Visitors.IVisitor;
 import Visitors.LevelUP;
-import characters.*;
+import characters.Character;
 
 /**
  * Created by bastiangardel on 25.05.15.
@@ -88,10 +88,10 @@ public class Chaman extends OrcDecorator {
         orc.setXp(orc.getXp() + xp);
 
         System.out.println("setXPChar");
-        if(orc.getXp() >= characters.Character.XPtoLevel*orc.getLevel()) {
+        if(orc.getXp() >= Character.XPtoLevel*orc.getLevel()) {
             System.out.println("levelUPChar");
             accept(new LevelUP());
-            orc.setXp(orc.getXp() - (characters.Character.XPtoLevel*orc.getLevel()));
+            orc.setXp(orc.getXp() - (Character.XPtoLevel*orc.getLevel()));
         }
     }
 
