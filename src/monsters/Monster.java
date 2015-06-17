@@ -16,7 +16,7 @@ import java.util.Random;
  *
  * @author Simon
  */
-abstract class Monster implements FightInterface{
+public abstract class Monster implements FightInterface{
     private int HP;
     private int level;
     private boolean dead;

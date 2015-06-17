@@ -6,6 +6,7 @@ import server.Direction;
 import userInterface.utils.IllegalMoveException;
 import monsters.Monster;
 import monsters.MonsterFactory;
+import server.GameManager;
 
 public class Room {
 
@@ -139,9 +140,10 @@ public class Room {
     }
 
     public void spawnMonsters() {
+        MonsterFactory factory = new MonsterFactory();
         for (int i = 0; i < 4; i++) {
             if (Math.random() < 0.5) {
-                monsters.add(null); //TODO
+                monsters.add(factory.createRandomMonster(GameManager.getInstance().getPartyLevel(), GameManager.getInstance().getPartySize()));
             }
         }
     }

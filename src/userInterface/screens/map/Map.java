@@ -113,6 +113,16 @@ public class Map implements Screen {
         updateRepresentation();
     }
 
+    public void spawnMonsters() {
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms.length; j++) {
+                if (rooms[i][j] != null || rooms[i][j] != startingRoom) {
+                    rooms[i][j].spawnMonsters();
+                }
+            }
+        }
+    }
+
     @Override
     public void accept(UIElement element) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

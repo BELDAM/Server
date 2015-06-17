@@ -32,12 +32,26 @@ public class GameManager {
         players.add(player);
         worldMap.addPlayer(player);
     }
-    
-    public void disconnect(Character player){
+
+    public void disconnect(Character player) {
         players.remove(player);
     }
 
     public ArrayList<Character> getPlayers() {
         return players;
+    }
+
+    public int getPartyLevel() {
+        int level = 0;
+        level = players.stream().map((c) -> c.getLevel()).reduce(level, Integer::sum);
+        return level;
+    }
+
+    public int getPartySize() {
+        return players.size();
+    }
+
+    private void spawnMonsters() {
+        worldMap.spawnMonsters();
     }
 }
