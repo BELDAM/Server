@@ -2,16 +2,13 @@ package characters.Elf;
 
 import Interface.FightInterface;
 import Visitors.IVisitor;
-import Visitors.LevelUP;
 
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public class Hunter extends ElfDecorator {
+public class MageElf extends ElfDecorator {
 
-    private static final int XPtoLevel = 100;
-
-    public Hunter(ElfInterface elfInterface) {
+    public MageElf(ElfInterface elfInterface) {
         elf = elfInterface;
     }
 
@@ -50,16 +47,7 @@ public class Hunter extends ElfDecorator {
     @Override
     public void attack(FightInterface character) {
         if (!isDead()) {
-            if(!character.isDead()){
-                character.takeDmg(getStrength());
-                if(character.isDead())
-                {
-                    System.out.println("setXP");
-                    setXp(character.getGiveXP());
-                }
-            }
-            else System.out.println("Your Ennemi is dead");
-
+            character.takeDmg(getStrength());
         } else {
             System.out.println("you are dead");
         }
@@ -67,16 +55,7 @@ public class Hunter extends ElfDecorator {
     @Override
     public void magicAttack(FightInterface character) {
         if (!isDead()) {
-            if(!character.isDead()){
-                character.takeMagicDmg(getStrength());
-                if(character.isDead())
-                {
-                    System.out.println("setXP");
-                    setXp(character.getGiveXP());
-                }
-            }
-            else System.out.println("Your Ennemi is dead");
-
+            character.takeDmg(getIntelligence());
         } else {
             System.out.println("you are dead");
         }
@@ -84,26 +63,17 @@ public class Hunter extends ElfDecorator {
 
     @Override
     public void accept(IVisitor visitor) {
-        visitor.visit(this);
+        //visitor.visit(this);
     }
 
     @Override
     public int getXp() {
-        return elf.getXp();
+        return 0;
     }
 
     @Override
     public void setXp(int xp) {
-        elf.setXp(xp);
 
-        elf.setXp(elf.getXp() + xp);
-
-        System.out.println("setXPChar");
-        if(elf.getXp() >= XPtoLevel*elf.getLevel()) {
-            System.out.println("levelUPChar");
-            accept(new LevelUP());
-            elf.setXp(elf.getXp() - (XPtoLevel*elf.getLevel()));
-        }
     }
 
     @Override

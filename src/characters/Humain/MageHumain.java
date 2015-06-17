@@ -1,4 +1,4 @@
-package characters.Orc;
+package characters.Humain;
 
 import Interface.FightInterface;
 import Visitors.IVisitor;
@@ -6,17 +6,18 @@ import Visitors.IVisitor;
 /**
  * Created by bastiangardel on 25.05.15.
  */
-public class Chaman extends OrcDecorator {
+public class MageHumain extends HumainDecorator{
 
     private int mana;
     private static final int MANA = 3;
 
-    public Chaman(OrcInterface orcInterface) {
-        orc = orcInterface;
+    public MageHumain(HumainInterface humainInterface) {
+        humain = humainInterface;
     }
 
     @Override
     public void attack(FightInterface character) {
+
         //TODO implementation
     }
 
@@ -57,7 +58,7 @@ public class Chaman extends OrcDecorator {
 
     @Override
     public boolean isDead() {
-        return orc.isDead();
+        return humain.isDead();
     }
 
     @Override
@@ -123,16 +124,6 @@ public class Chaman extends OrcDecorator {
     @Override
     public void setMagicalDefence(int magicalDefence) {
 
-    }
-
-    @Override
-    public int getRage() {
-        return orc.getRage();
-    }
-
-    @Override
-    public void setRage(int rage) {
-        orc.setRage(rage);
     }
 
     public int getMana() {

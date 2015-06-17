@@ -1,5 +1,7 @@
 package Visitors;
 
+import characters.Elf.Hunter;
+import characters.Elf.MageElf;
 import monsters.*;
 
 /**
@@ -10,4 +12,6 @@ public interface IVisitor {
     void visit(Dragon o);
     void visit(ElfNoir o);
     void visit(Manwe o);
+    void visit(MageElf o);
+    void visit(Hunter o);
 }

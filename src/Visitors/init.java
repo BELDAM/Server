@@ -1,5 +1,7 @@
 package Visitors;
 
+import characters.Elf.Hunter;
+import characters.Elf.MageElf;
 import monsters.Dragon;
 import monsters.ElfNoir;
 import monsters.Manwe;
@@ -76,5 +78,15 @@ public class init implements IVisitor{
         o.setIntelligence(100);
         o.setName("Manwe");
         o.setGiveXP(1000);
+    }
+
+    @Override
+    public void visit(MageElf o) {
+
+    }
+
+    @Override
+    public void visit(Hunter o) {
+
     }
 }

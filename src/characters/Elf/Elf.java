@@ -27,6 +27,12 @@ public class Elf extends characters.Character implements ElfInterface {
     }
 
     @Override
+    public int getGiveXP() {
+        return 0;
+    }
+
+
+    @Override
     public void attack(FightInterface character) {
         //TODO implementation
     }

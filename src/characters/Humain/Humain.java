@@ -23,6 +23,11 @@ public class Humain extends characters.Character implements HumainInterface {
     }
 
     @Override
+    public int getGiveXP() {
+        return 0;
+    }
+
+    @Override
     public void attack(FightInterface character) {
 
         //TODO implementation
