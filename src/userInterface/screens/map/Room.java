@@ -2,9 +2,10 @@ package userInterface.screens.map;
 
 import java.util.ArrayList;
 import characters.Character;
-import monsters.Monster;
 import server.Direction;
 import userInterface.utils.IllegalMoveException;
+import monsters.Monster;
+import monsters.MonsterFactory;
 
 public class Room {
 

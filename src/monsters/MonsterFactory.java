@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author Simon
  */
-class MonsterFactory {
+public class MonsterFactory {
     private Object rand;
 
     public MonsterFactory() {
