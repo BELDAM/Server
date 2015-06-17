@@ -43,8 +43,8 @@ public class MainScreen implements Screen {
 
     @Override
     public String toASCII() {
-        for (UIElement pannel : panels) {
-            accept(pannel);
+        for (UIElement panel : panels) {
+            accept(panel);
         }
 
         return ascii + "\r\n";
