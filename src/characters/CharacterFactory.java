@@ -1,7 +1,7 @@
 package characters;
 
 import characters.Elf.Elf;
-import characters.Humain.Humain;
+import characters.Humain.Human;
 import characters.Orc.Orc;
 
 public class CharacterFactory {
@@ -13,7 +13,7 @@ public class CharacterFactory {
                 character = new Elf(name, avatar);
                 break;
             case "human":
-                character = new Humain(name, avatar);
+                character = new Human(name, avatar);
                 break;
             case "orc":
                 character = new Orc(name, avatar);

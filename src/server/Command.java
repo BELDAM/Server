@@ -4,6 +4,8 @@ public enum Command {
     HELP,
     MOVE,
     QUIT,
-    MAIN,
+    TAKE,
+    DROP,
+    ATTACK,
     MAP
 }

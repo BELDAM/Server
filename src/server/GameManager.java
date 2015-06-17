@@ -7,13 +7,15 @@ import characters.Character;
 public class GameManager {
 
     private ArrayList<Character> players;
+    private ArrayList<ConnectionHandler> connections;
 
     private Map worldMap;
 
     private static GameManager instance;
 
     private GameManager() {
-        players = new ArrayList<>();        
+        players = new ArrayList<>();
+        connections = new ArrayList<>();
         worldMap = new Map("OVERWORLD");
     }
 
@@ -33,8 +35,15 @@ public class GameManager {
         worldMap.addPlayer(player);
     }
 
-    public void disconnect(Character player) {
+    public void registerConnection(ConnectionHandler connection) {
+        connections.forEach(ConnectionHandler::refreshMainScreen);
+        connections.add(connection);
+    }
+
+    public void disconnect(ConnectionHandler connection, Character player) {
         players.remove(player);
+        connections.remove(connection);
+        connections.forEach(ConnectionHandler::refreshMainScreen);
     }
 
     public ArrayList<Character> getPlayers() {

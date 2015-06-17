@@ -1,48 +1,18 @@
 package characters;
 
-import Interface.FightInterface;
-import Visitors.LevelUP;
 import items.BodyPart;
 import items.Item;
+import monsters.Monster;
 
 import java.util.LinkedList;
 
-/**
- * Created by bastiangardel on 25.05.15.
- */
-public abstract class Character implements FightInterface {
-
+public abstract class Character {
     private int level;
     private int xp;
     public static final int XPtoLevel = 100;
     private String name;
     private char symbol;
-    private int HP;
-
-    public int getXp() {
-        return xp;
-    }
-
-    public void setXp(int xp) {
-
-        this.xp = xp;
-
-    }
-
-    public static int getXPtoLevel() {
-        return XPtoLevel;
-    }
-
-    @Override
-    public int getLevel() {
-        return level;
-    }
-
-    @Override
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
+    private int hp;
     private static final int LIFE = 10;
     private boolean dead;
     private int strength;
@@ -58,13 +28,31 @@ public abstract class Character implements FightInterface {
 
     private LinkedList<Item> items;
 
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+
+        this.xp = xp;
+
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     protected Character(String name, char symbol) {
         this.name = name;
         this.symbol = symbol;
         dead = false;
         xp = 0;
         items = new LinkedList<>();
-        HP = LIFE;
+        hp = LIFE;
         strength = STRENGTH;
         intelligence = INTELLIGENCE;
         physicalDefence = PHYSICAL_DEFENCE;
@@ -92,12 +80,12 @@ public abstract class Character implements FightInterface {
         this.physicalDefence = physicalDefence;
     }
 
-    public int getHP() {
-        return HP;
+    public int getHp() {
+        return hp;
     }
 
-    public void setHP(int HP) {
-        this.HP = HP;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public String getName() {
@@ -161,13 +149,54 @@ public abstract class Character implements FightInterface {
         return items;
     }
 
-    public abstract void takeDmg(int dmg);
+    public void takeDmg(int dmg) {
+        hp -= dmg;
 
-    public abstract void attack(FightInterface character);
+        if (hp <= 0) {
+            hp = 0;
+        }
+
+        if (hp == 0) {
+            dead = true;
+        }
+    }
+
+    public void attack(Monster monster) {
+        if (!isDead()) {
+            if(!monster.isDead()){
+                monster.takeDmg(getStrength());
+                if(monster.isDead())
+                {
+                    System.out.println("setXP");
+                    setXp(5); // TODO change it
+                }
+            }
+            else System.out.println("Your Ennemi is dead");
+
+        } else {
+            System.out.println("you are dead");
+        }
+    }
+
+    public void magicAttack(Monster character) {
+        if (!isDead()) {
+            if(!character.isDead()){
+                // character.takeMagicDmg(getStrength());
+                if(character.isDead())
+                {
+                    System.out.println("setXP");
+                }
+            }
+            else System.out.println("Your Ennemi is dead");
+
+        } else {
+            System.out.println("you are dead");
+        }
+    }
 
     @Override
     public String toString() {
-        return name + ": HP[" + HP + "], Strength[" + strength + "], Symbol[" + symbol + "]";
+        return name + ": hp[" + hp + "], Strength[" + strength + "], Symbol[" + symbol + "]";
     }
 
     public boolean isDead() {
