@@ -11,4 +11,8 @@ public interface OrcInterface extends FightInterface {
 
     public void setRage(int rage);
 
+    public char getSymbol();
+
+    public String getName();
+
 }

@@ -8,4 +8,7 @@ import characters.*;
  */
 public interface HumainInterface extends FightInterface {
 
+    public char getSymbol();
+
+    public String getName();
 }

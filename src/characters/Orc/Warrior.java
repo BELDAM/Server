@@ -178,4 +178,14 @@ public class Warrior extends OrcDecorator {
     public void setRage(int rage) {
         orc.setRage(rage);
     }
+
+    @Override
+    public char getSymbol() {
+        return orc.getSymbol();
+    }
+
+    @Override
+    public String getName() {
+        return orc.getName();
+    }
 }

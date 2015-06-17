@@ -26,6 +26,16 @@ public class MageElf extends ElfDecorator {
     }
 
     @Override
+    public char getSymbol() {
+        return elf.getSymbol();
+    }
+
+    @Override
+    public String getName() {
+        return elf.getName();
+    }
+
+    @Override
     public void takeDmg(int dmg) {
         int dmgTaken = dmg - elf.getPhysicalDefence();
         if(dmgTaken <= 0)

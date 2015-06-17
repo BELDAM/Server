@@ -170,4 +170,14 @@ public class MageHumain extends HumainDecorator{
     public void setMagicalDefence(int magicalDefence) {
         humain.setMagicalDefence(magicalDefence);
     }
+
+    @Override
+    public char getSymbol() {
+        return humain.getSymbol();
+    }
+
+    @Override
+    public String getName() {
+        return humain.getName();
+    }
 }

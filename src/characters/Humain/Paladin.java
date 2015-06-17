@@ -169,4 +169,13 @@ public class Paladin extends HumainDecorator {
         humain.setMagicalDefence(magicalDefence);
     }
 
+    @Override
+    public char getSymbol() {
+        return humain.getSymbol();
+    }
+
+    @Override
+    public String getName() {
+        return humain.getName();
+    }
 }

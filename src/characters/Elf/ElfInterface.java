@@ -11,4 +11,8 @@ public abstract interface ElfInterface extends FightInterface {
 
     public void setSpeed(int speed);
 
+    public char getSymbol();
+
+    public String getName();
+
 }
