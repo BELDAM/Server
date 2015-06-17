@@ -20,7 +20,8 @@ import java.util.Random;
 public class Manwe extends Monster{
     public Manwe(int level) {
         super(level);
-        accept(new init());
+        init initialisation = new init();
+        accept(initialisation);
         int maxN = 5;
         int t = 1 << (maxN); // 2^maxN
         int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)

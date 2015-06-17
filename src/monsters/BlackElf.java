@@ -19,7 +19,8 @@ public class BlackElf extends Monster{
     public BlackElf(int level) {
         super(level);
         //http://stackoverflow.com/questions/3745760/java-generating-a-random-numbers-with-a-logarithmic-distribution
-        accept(new init());
+        init initialisation = new init();
+        accept(initialisation);
         int maxN = 5;
         int t = 1 << (maxN); // 2^maxN
         int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)

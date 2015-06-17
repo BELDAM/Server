@@ -17,7 +17,8 @@ public class Troll extends Monster {
 
     public Troll(int level) {
         super(level);
-        accept(new init());
+        init initialisation = new init();
+        accept(initialisation);
 
         int maxN = 5;
         int t = 1 << (maxN); // 2^maxN
