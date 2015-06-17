@@ -43,7 +43,7 @@ public class MainScreen implements Screen {
 
 	public void update() {
 		ascii = Screens.emptyScreen();
-		
+
 		getCompanions().update();
 	}
 

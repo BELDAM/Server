@@ -70,9 +70,12 @@ public class ConnectionHandler implements Runnable {
             Logger.getLogger(ConnectionHandler.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
+                clearScreen();
+
                 in.close();
                 out.close();
                 connection.close();
+
                 GameManager.getInstance().disconnect(this, player);
                 currentRoom.removePlayer(player);
             } catch (IOException ex) {
