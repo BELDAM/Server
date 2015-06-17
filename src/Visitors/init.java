@@ -2,6 +2,10 @@ package Visitors;
 
 import characters.Elf.Hunter;
 import characters.Elf.MageElf;
+import characters.Humain.MageHumain;
+import characters.Humain.Paladin;
+import characters.Orc.Chaman;
+import characters.Orc.Warrior;
 import monsters.BlackElf;
 import monsters.Dragon;
 import monsters.BlackElf;
@@ -81,11 +85,31 @@ public class init implements IVisitor{
 
     @Override
     public void visit(MageElf o) {
-
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
     public void visit(Hunter o) {
+        throw new UnsupportedOperationException("Pas disponible");
+    }
 
+    @Override
+    public void visit(MageHumain o) {
+        throw new UnsupportedOperationException("Pas disponible");
+    }
+
+    @Override
+    public void visit(Paladin o) {
+        throw new UnsupportedOperationException("Pas disponible");
+    }
+
+    @Override
+    public void visit(Chaman o) {
+        throw new UnsupportedOperationException("Pas disponible");
+    }
+
+    @Override
+    public void visit(Warrior o) {
+        throw new UnsupportedOperationException("Pas disponible");
     }
 }

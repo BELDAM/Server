@@ -2,6 +2,10 @@ package Visitors;
 
 import characters.Elf.Hunter;
 import characters.Elf.MageElf;
+import characters.Humain.MageHumain;
+import characters.Humain.Paladin;
+import characters.Orc.Chaman;
+import characters.Orc.Warrior;
 import monsters.Dragon;
 import monsters.BlackElf;
 import monsters.Manwe;
@@ -13,18 +17,22 @@ import monsters.Troll;
 public class LevelUP implements IVisitor {
     @Override
     public void visit(Troll o) {
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
     public void visit(Dragon o) {
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
     public void visit(BlackElf o) {
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
     public void visit(Manwe o) {
+        throw new UnsupportedOperationException("Pas disponible");
     }
 
     @Override
@@ -56,5 +64,25 @@ public class LevelUP implements IVisitor {
         o.setSpeed(o.getSpeed() + 1);
 
         System.out.println("ElfHunter LevelUP");
+    }
+
+    @Override
+    public void visit(MageHumain o) {
+
+    }
+
+    @Override
+    public void visit(Paladin o) {
+
+    }
+
+    @Override
+    public void visit(Chaman o) {
+
+    }
+
+    @Override
+    public void visit(Warrior o) {
+
     }
 }
