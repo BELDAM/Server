@@ -16,19 +16,19 @@ import java.util.Random;
  *
  * @author Simon
  */
-public abstract class Monster implements FightInterface{
+abstract class Monster implements FightInterface{
     private int HP;
     private int level;
     private boolean dead;
-    protected String name;
-    protected int strength;
-    protected int intelligence;
-    protected int physicalDefence;
-    protected int magicalDefence;
-    protected int giveXP;
+    String name;
+    int strength;
+    int intelligence;
+    int physicalDefence;
+    private int magicalDefence;
+    private int giveXP;
     LinkedList<Item> items;
 
-    public Monster(int level) {
+    Monster(int level) {
         this.dead = false;
         this.level = level;
         items = new LinkedList();
@@ -170,7 +170,7 @@ public abstract class Monster implements FightInterface{
     public boolean isDead() {
         return HP == 0;
     }
-    public void addItem(Item newItem) {
+    void addItem(Item newItem) {
         BodyPart newPart = newItem.getBodyPart();
 
         // Check if the slot is empty so the character can carry the new item
@@ -189,7 +189,7 @@ public abstract class Monster implements FightInterface{
     public String toString() {
         return name + ": ,level[" + level + "] ,life[" + HP + "], Strength[" + strength + "], intelligence[" + intelligence + "]" + "\r\n" + toStringItems();
     }
-    public String toStringItems()
+    String toStringItems()
     {
         String tmp = "";
         for(int i = 0 ; i < items.size() ; i++)

@@ -26,9 +26,9 @@ public class Manwe extends Monster{
         int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)
         System.out.println("n=" + n);
         ItemManager itemManager = new ItemManager();
-        //while (items.size() < n + 2) {
-        addItem(itemManager.getRandomItem());
-        //}
+        while (items.size() < n + 2) {
+            addItem(itemManager.getRandomItem());
+        }
 
         for(int i = 0; i < items.size(); i++)
         {

@@ -9,14 +9,12 @@ import java.util.LinkedList;
 public class MainMonster {
     public static void main(String[] args){
 
-        System.out.println("yolloo");
+        int groupLevel = 5;
+        int nbrPlayerGroupe = 5;
         MonsterFactory mf = new MonsterFactory();
-        Troll t1= mf.createTroll();
-        System.out.println("yolloo");
-        Dragon d1 = mf.createDragon();
+        Troll t1= mf.createTroll(groupLevel, nbrPlayerGroupe);
+        Dragon d1 = mf.createDragon(groupLevel, nbrPlayerGroupe);
         Manwe m1 = mf.createManwe();
-
-        System.out.println("yolloo");
         System.out.println(t1.toString());
         System.out.println(d1.toString());
         System.out.println(m1.toString());
