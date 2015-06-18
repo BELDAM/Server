@@ -7,6 +7,7 @@ import monsters.Monster;
 import java.util.LinkedList;
 
 public abstract class Character {
+
     private int level;
     private int xp;
     public static final int XPtoLevel = 100;
@@ -101,7 +102,11 @@ public abstract class Character {
     }
 
     public int getStrength() {
-        return strength;
+        int str = strength;
+        for (Item i : items) {
+            str += i.getAttack();
+        }
+        return str;
     }
 
     public void setStrength(int strength) {
@@ -139,6 +144,7 @@ public abstract class Character {
         }
 
         items.add(newItem);
+        hp += newItem.getDefense();
     }
 
     public void removeItems(Item item) {
@@ -163,15 +169,14 @@ public abstract class Character {
 
     public void attack(Monster monster) {
         if (!isDead()) {
-            if(!monster.isDead()){
+            if (!monster.isDead()) {
                 monster.takeDmg(getStrength());
-                if(monster.isDead())
-                {
-                    System.out.println("setXP");
-                    setXp(5); // TODO change it
+                if (monster.isDead()) {
+                    setXp(5);
                 }
+            } else {
+                System.out.println("Your Ennemi is dead");
             }
-            else System.out.println("Your Ennemi is dead");
 
         } else {
             System.out.println("you are dead");
@@ -180,14 +185,14 @@ public abstract class Character {
 
     public void magicAttack(Monster character) {
         if (!isDead()) {
-            if(!character.isDead()){
+            if (!character.isDead()) {
                 // character.takeMagicDmg(getStrength());
-                if(character.isDead())
-                {
+                if (character.isDead()) {
                     System.out.println("setXP");
                 }
+            } else {
+                System.out.println("Your Ennemi is dead");
             }
-            else System.out.println("Your Ennemi is dead");
 
         } else {
             System.out.println("you are dead");
