@@ -2,6 +2,8 @@ package fight;
 
 import monsters.Monster;
 import characters.Character;
+import utils.IllegalTargetException;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
@@ -11,33 +13,48 @@ public class FightManager {
     private ArrayList<Character> players;
     private ArrayList<Monster> monsters;
     private Map<Character, CharacterAction> actions;
+    private Map<Character, Monster> focuses;
 
     private Random randomGenerator;
-    private boolean playersTurn;
 
     public FightManager() {
         players = new ArrayList<>();
         monsters = new ArrayList<>();
         randomGenerator = new Random();
-        playersTurn = false;
     }
 
-    public void setAction(Character player, CharacterAction action) {
-        actions.replace(player, action);
+    public void attackMonster(Character player, int monsterId) throws IllegalTargetException {
+        if (monsterId > 0 && monsters.size() <= monsterId) {
+            focuses.put(player, monsters.get(monsterId));
+        } else {
+            throw new IllegalTargetException();
+        }
+
+        actions.replace(player, CharacterAction.ATTACK);
 
         if (areAllCharactersReady()) {
             fight();
         }
     }
 
-    private void fight() {
-        if (playersTurn) {
-            playersTurn();
-        } else {
-            monstersTurn();
-        }
+    /*
+    public void defend(Character player) {
+        actions.replace(player, CharacterAction.DEFENCE);
 
-        playersTurn = !playersTurn;
+        if (areAllCharactersReady()) {
+            fight();
+        }
+    }
+    */
+
+    public void joinFight(Character player) {
+        players.add(player);
+        actions.put(player, CharacterAction.UNDEFINED);
+    }
+
+    private void fight() {
+        playersTurn();
+        monstersTurn();
 
         if (isOver()) {
             endFight();
