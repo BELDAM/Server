@@ -10,7 +10,7 @@ import java.util.Random;
 
 public abstract class Monster {
 
-    private int hp;
+    protected int hp;
     private int level;
     private int strength;
     protected LinkedList<Item> items;

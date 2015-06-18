@@ -13,7 +13,7 @@ public abstract class Character {
     private String name;
     private char symbol;
     private int hp;
-    private static final int LIFE = 10;
+    private static final int LIFE = 100;
     private boolean dead;
     private int strength;
     private static final int STRENGTH = 10;

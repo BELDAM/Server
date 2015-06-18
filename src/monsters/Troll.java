@@ -1,5 +1,7 @@
 package monsters;
 
+import items.Item;
+
 public class Troll extends Monster {
 
     public Troll(int level) {
@@ -7,6 +9,9 @@ public class Troll extends Monster {
 
         while (items.size() < random.nextInt(2) + 1) {
             addItem(itemManager.getRandomItem());
+        }
+        for (Item i : items) {
+            hp += i.getDefense();
         }
     }
 }
