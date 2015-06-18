@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import items.Item;
 import userInterface.screens.Screens;
 import userInterface.utils.Writer;
 import characters.Character;
@@ -148,10 +150,10 @@ public class ConnectionHandler implements Runnable {
                             state = PlayerState.MAP;
                             break;
                         case TAKE:
-                            // TODO take an item with id command[2]
+                            takeItem(command[1]);
                             break;
                         case DROP:
-                            // TODO drop an item with id command[2]
+                            // TODO drop an item with id command[1]
                             break;
                         case QUIT:
                             running = false;
@@ -159,6 +161,8 @@ public class ConnectionHandler implements Runnable {
                         case HELP:
                             printMessage(helpMessages.get(state));
                             break;
+                        default:
+                            throw new IllegalArgumentException();
                     }
                 } else if (state == PlayerState.MAP) {
                     switch (command[0].toUpperCase()) {
@@ -192,12 +196,17 @@ public class ConnectionHandler implements Runnable {
                         case HELP:
                             printMessage(helpMessages.get(state));
                             break;
+                        default:
+                            throw new IllegalArgumentException();
                     }
                 }
             } catch (IllegalMoveException e) {
                 printMessage("You can't go in this direction!");
             } catch (IllegalArgumentException e) {
                 printMessage("Invalid command " + command[0]);
+            } catch (IllegalTargetException e) {
+                printMessage("There is no item #" + command[1]);
+                printMessage(currentRoom.getItems().toString());
             } finally {
                 printScreen();
             }
@@ -228,6 +237,23 @@ public class ConnectionHandler implements Runnable {
             helpMessages.put(state, new String(encoded, "UTF-8"));
         } catch (IOException ex) {
             Logger.getLogger(Screens.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void takeItem(String itemId) throws IllegalTargetException {
+        try {
+            int id = Integer.parseInt(itemId);
+
+            if (id > 0 && id <= currentRoom.getItems().size()) {
+                Item item = currentRoom.getItems().get(id-1);
+                player.addItem(item);
+                mainScreen.getInventory().addItem(item.getBodyPart());
+                currentRoom.getItems().remove(id-1);
+            } else {
+                throw new IllegalTargetException();
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalTargetException();
         }
     }
 
