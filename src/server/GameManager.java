@@ -83,4 +83,8 @@ public class GameManager {
     public FightManager getFight(Room room) {
         return fights.get(room);
     }
+
+    public void removeFight(Room room) {
+        fights.remove(room);
+    }
 }

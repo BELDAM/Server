@@ -1,11 +1,11 @@
 package fight;
 
-import items.Item;
 import monsters.Monster;
 import characters.Character;
 import monsters.MonsterFactory;
 import server.ConnectionHandler;
 import server.GameManager;
+import server.PlayerState;
 import utils.IllegalTargetException;
 
 import java.util.ArrayList;
@@ -79,6 +79,8 @@ public class FightManager {
         playersTurn();
         monstersTurn();
 
+        broadcastMessage(monstersToString());
+
         if (isOver()) {
             endFight();
         }
@@ -99,7 +101,11 @@ public class FightManager {
     }
 
     private void endFight() {
-        // TODO implement me
+        for (Character player: players) {
+            GameManager.getInstance().getConnectionForPlayer(player).setState(PlayerState.MAIN);
+        }
+
+        GameManager.getInstance().removeFight(room);
     }
 
     private void playersTurn() {
@@ -115,19 +121,9 @@ public class FightManager {
 
         for (Monster monster: monsters) {
             if (monster.isDead()) {
+                room.addItems(monster.dropItems());
                 broadcastMessage("The " + monster.getClass().getSimpleName() + " is dead.");
-
-                if (room.getItems().size() != 0) {
-                    broadcastMessage("There is some items on the floor.");
-
-                    String str = "";
-
-                    for (int i = 0; i < room.getItems().size(); i++) {
-                        str += (i + 1) + ") " + room.getItems().get(i);
-                    }
-
-                    broadcastMessage(str);
-                }
+                printItems();
             } else {
                 aliveMonsters.add(monster);
             }
@@ -144,6 +140,20 @@ public class FightManager {
             broadcastMessage("Monster #" + (i+1) + "(" + monsters.get(i).getClass().getSimpleName() + ") attacks " + target.getName() + "!");
             monsters.get(i).attack(target);
         }
+
+        ArrayList<Character> alivePlayers = new ArrayList<>();
+
+        for (Character player: players) {
+            if (player.isDead()) {
+                room.addItems(player.getItems());
+                broadcastMessage(player.getName() + " is dead! ='(");
+                printItems();
+            } else {
+                alivePlayers.add(player);
+            }
+        }
+
+        players = alivePlayers;
     }
 
     private String monstersToString() {
@@ -156,13 +166,23 @@ public class FightManager {
         return str;
     }
 
+    private void printItems() {
+        if (room.getItems().size() != 0) {
+            broadcastMessage("There is some items on the floor.");
+            String str = "";
+
+            for (int i = 0; i < room.getItems().size(); i++) {
+                str += (i + 1) + ") " + room.getItems().get(i) + "\r\n";
+            }
+
+            broadcastMessage(str);
+        }
+    }
+
     public void broadcastMessage(String message) {
         for (Character player : players) {
-            System.out.println(player);
             ConnectionHandler connection = GameManager.getInstance().getConnectionForPlayer(player);
-
-            System.out.println(connection);
-            connection.printMessage(message);
+            connection.printMessage(message + "\r\n ");
         }
     }
 }

@@ -257,6 +257,10 @@ public class ConnectionHandler implements Runnable {
         mainScreen.getMessages().addMessage(msg.split("\r?\n"));
     }
 
+    public void setState(PlayerState s) {
+        state = s;
+    }
+
     private void clearScreen() throws IOException {
         out.write("\033[2J");
         out.flush();

@@ -52,19 +52,8 @@ public abstract class Monster {
         character.takeDmg(str);
     }
 
-    public List<Item> dropItem() {
-        Random rand = new Random();
-        int idDrop;
-        int max = items.size();
-        int nbrDrop = rand.nextInt(max);
-        LinkedList<Item> drop = new LinkedList<>();
-
-        for (int i = 0; i < nbrDrop; i++) {
-            idDrop = rand.nextInt(max + 1);
-            drop.add(items.get(idDrop));
-        }
-
-        return drop;
+    public List<Item> dropItems() {
+        return items;
     }
 
     public boolean isDead() {
