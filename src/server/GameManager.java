@@ -77,7 +77,7 @@ public class GameManager {
     }
 
     public synchronized void startAFight(Room room) {
-        fights.put(room, new FightManager());
+        fights.put(room, new FightManager(room));
     }
 
     public FightManager getFight(Room room) {

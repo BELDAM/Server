@@ -22,10 +22,10 @@ public class MonsterFactory {
         return new Dragon(level);
     }
 
-    public BlackElf createBlackElf(int groupLevel, int groupSize) {
+    public DarkElf createBlackElf(int groupLevel, int groupSize) {
         int level;
         level = rand.nextInt(groupLevel + groupSize + 1) + 2;
-        return new BlackElf(level);
+        return new DarkElf(level);
     }
 
     public Monster createRandomMonster(int groupLevel, int groupSize) {

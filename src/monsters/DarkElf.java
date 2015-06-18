@@ -2,8 +2,8 @@ package monsters;
 
 import items.ItemManager;
 
-public class BlackElf extends Monster{
-    public BlackElf(int level) {
+public class DarkElf extends Monster{
+    public DarkElf(int level) {
         super(level, 1);
         int maxN = 5;
         int t = 1 << (maxN); // 2^maxN

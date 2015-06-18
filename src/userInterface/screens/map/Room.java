@@ -2,11 +2,10 @@ package userInterface.screens.map;
 
 import java.util.ArrayList;
 import characters.Character;
+import items.Item;
+import java.util.List;
 import server.Direction;
 import userInterface.utils.IllegalMoveException;
-import monsters.Monster;
-import monsters.MonsterFactory;
-import server.GameManager;
 import userInterface.screens.UIDrawContainer;
 import userInterface.screens.UIElement;
 
@@ -23,6 +22,7 @@ public class Room extends UIElement {
     private Room east;
 
     private ArrayList<Character> players;
+    private ArrayList<Item> items;
 
     private String[] representation = new String[]{
         "+-------+  ",
@@ -35,6 +35,7 @@ public class Room extends UIElement {
     public Room(int posX, int posY) {
         super(posX, posY);
         players = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     public String[] toASCII() {
@@ -74,6 +75,14 @@ public class Room extends UIElement {
     public void removePlayer(Character player) {
         players.remove(player);
         updateRepresentation();
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void addItems(List<Item> items) {
+        this.items.addAll(items);
     }
 
     public void move(Character player, Direction direction) throws IllegalMoveException {

@@ -4,9 +4,10 @@ import characters.Character;
 import items.Item;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
-public class Monster {
+public abstract class Monster {
 
     private int hp;
     private int level;
@@ -19,20 +20,11 @@ public class Monster {
 
         for (Item item : items) {
             this.strength += item.getAttack();
-            // this.physicalDefence += item.getDefense();
         }
     }
 
     public int getHp() {
         return hp;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public LinkedList<Item> getItems() {
-        return items;
     }
 
     public void takeDmg(int dmg) {
@@ -53,7 +45,7 @@ public class Monster {
         character.takeDmg(strength);
     }
 
-    public LinkedList dropItem() {
+    public List<Item> dropItem() {
         Random rand = new Random();
         int idDrop;
         int max = items.size();
@@ -76,6 +68,7 @@ public class Monster {
         items.add(newItem);
     }
 
+    @Override
     public String toString() {
         return "level: " + level + ", life: " + hp + ", strength: " + strength + "\r\n" + toStringItems();
     }

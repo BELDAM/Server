@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import userInterface.screens.map.Room;
 
 public class FightManager {
 
@@ -18,10 +19,12 @@ public class FightManager {
     private ArrayList<Monster> monsters;
     private Map<Character, CharacterAction> actions;
     private Map<Character, Monster> focuses;
+    private Room room;
 
     private Random randomGenerator;
 
-    public FightManager() {
+    public FightManager(Room room) {
+        this.room = room;
         players = new ArrayList<>();
         monsters = new ArrayList<>();
         randomGenerator = new Random();
@@ -55,15 +58,14 @@ public class FightManager {
     }
 
     /*
-    public void defend(Character player) {
-        actions.replace(player, CharacterAction.DEFENCE);
+     public void defend(Character player) {
+     actions.replace(player, CharacterAction.DEFENCE);
 
-        if (areAllCharactersReady()) {
-            fight();
-        }
-    }
-    */
-
+     if (areAllCharactersReady()) {
+     fight();
+     }
+     }
+     */
     public void joinFight(Character player) {
         players.add(player);
         actions.put(player, CharacterAction.UNDEFINED);
@@ -89,7 +91,7 @@ public class FightManager {
     }
 
     private void resetActions() {
-        for (Character player: players) {
+        for (Character player : players) {
             actions.replace(player, CharacterAction.UNDEFINED);
         }
     }
@@ -99,7 +101,7 @@ public class FightManager {
     }
 
     private void playersTurn() {
-        for (Character player: players) {
+        for (Character player : players) {
             Monster target = focuses.get(player);
 
             if (target != null) {
@@ -128,7 +130,7 @@ public class FightManager {
     }
 
     public void broadcastMessage(String message) {
-        for (Character player: players) {
+        for (Character player : players) {
             System.out.println(player);
             ConnectionHandler connection = GameManager.getInstance().getConnectionForPlayer(player);
 

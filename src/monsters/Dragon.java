@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package monsters;
 
 import items.ItemManager;
 
-public class Dragon extends Monster{
+public class Dragon extends Monster {
+
     public Dragon(int level) {
         super(level, 1);
         int maxN = 5;
@@ -15,7 +11,7 @@ public class Dragon extends Monster{
         int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)
         System.out.println("n=" + n);
         ItemManager itemManager = new ItemManager();
-        while(items.size() < n + 2) {
+        while (items.size() < n + 2) {
             addItem(itemManager.getRandomItem());
         }
     }
