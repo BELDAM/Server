@@ -164,7 +164,7 @@ public class Room extends UIElement {
         drawable.drawOver(representation, posX, posY);
     }
 
-    public boolean isEmpty() {
-        return players.isEmpty();
+    public int playerCount() {
+        return players.size();
     }
 }

@@ -140,15 +140,7 @@ public class ConnectionHandler implements Runnable {
                             Direction direction = Direction.valueOf(command[1].toUpperCase());
                             currentMap.move(player, currentRoom, direction);
                             currentRoom = currentRoom.getRoom(direction);
-                            
-                            if (GameManager.getInstance().roomHasAFight(currentRoom)) {
-                                GameManager.getInstance().getFight(currentRoom).joinFight(player);
-                                printMessage("You joined a fight!");
-                            } else if (Math.random() < 0.5 && currentRoom != currentMap.getStartingRoom() && currentRoom.isEmpty()) {
-                                GameManager.getInstance().startAFight(currentRoom);
-                                GameManager.getInstance().getFight(currentRoom).joinFight(player);
-                                printMessage("You encountered some ennemies!");
-                            }
+                            move();
                             break;
                         case MAP:
                             previousState = state;
@@ -173,6 +165,7 @@ public class ConnectionHandler implements Runnable {
                             Direction direction = Direction.valueOf(command[1].toUpperCase());
                             currentMap.move(player, currentRoom, direction);
                             currentRoom = currentRoom.getRoom(direction);
+                            move();
                             break;
                         default:
                             state = previousState;
@@ -202,6 +195,19 @@ public class ConnectionHandler implements Runnable {
             } finally {
                 printScreen();
             }
+        }
+    }
+
+    private void move() {
+        if (GameManager.getInstance().roomHasAFight(currentRoom)) {
+            GameManager.getInstance().getFight(currentRoom).joinFight(player);
+            state = PlayerState.FIGHT;
+            printMessage("You joined a fight!");
+        } else if (Math.random() < 0.5 && currentRoom != currentMap.getStartingRoom() && currentRoom.playerCount() == 1) {
+            GameManager.getInstance().startAFight(currentRoom);
+            GameManager.getInstance().getFight(currentRoom).joinFight(player);
+            printMessage("You encountered some ennemies!");
+            state = PlayerState.FIGHT;
         }
     }
 
