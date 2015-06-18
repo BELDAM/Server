@@ -1,5 +1,6 @@
 package userInterface.screens.mainInterface;
 
+import characters.Character;
 import userInterface.screens.Screen;
 import userInterface.screens.Screens;
 import userInterface.screens.UIElement;
@@ -38,14 +39,13 @@ public class MainScreen implements Screen {
 		panels.add(messages);
         panels.add(companions);
 
-		update();
+        ascii = Screens.emptyScreen();
     }
 
-	public void update() {
-		ascii = Screens.emptyScreen();
-
-		getCompanions().update();
-	}
+    public void update(Character player) {
+        stats.update(player);
+        companions.update();
+    }
 
     @Override
     public String toASCII() {

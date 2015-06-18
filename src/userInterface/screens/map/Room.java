@@ -135,7 +135,7 @@ public class Room extends UIElement {
         MonsterFactory factory = new MonsterFactory();
         for (int i = 0; i < 4; i++) {
             if (Math.random() < 0.5) {
-                monsters.add(factory.createRandomMonster(GameManager.getInstance().getPartyLevel(), GameManager.getInstance().getPartySize()));
+                // monsters.add(factory.createRandomMonster(GameManager.getInstance().getPartyLevel(), GameManager.getInstance().getPartySize()));
             }
         }
     }

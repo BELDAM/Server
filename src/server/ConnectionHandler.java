@@ -65,6 +65,7 @@ public class ConnectionHandler implements Runnable {
 
             currentMap = GameManager.getInstance().getWorldMap();
             mainScreen = new MainScreen();
+            mainScreen.update(player);
 
             clearScreen();
             out.write(mainScreen.toString());
@@ -195,7 +196,7 @@ public class ConnectionHandler implements Runnable {
     }
 
     public void refreshMainScreen() {
-        mainScreen.update();
+        mainScreen.update(player);
     }
 
     private void initHelps(PlayerState state, String filename) {
