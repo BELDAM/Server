@@ -39,8 +39,8 @@ public class FightManager {
 
         playersTurn = !playersTurn;
 
-        if (!isOver()) {
-            fight();
+        if (isOver()) {
+            endFight();
         }
     }
 
@@ -56,6 +56,10 @@ public class FightManager {
         for (Character player: players) {
             actions.replace(player, CharacterAction.UNDEFINED);
         }
+    }
+
+    private void endFight() {
+        // TODO implement me
     }
 
     private void playersTurn() {
