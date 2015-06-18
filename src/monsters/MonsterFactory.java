@@ -16,19 +16,19 @@ public class MonsterFactory {
 
     public Troll createTroll(int groupeLevel, int groupeSize) {
         int level;
-        level = rand.nextInt((groupeLevel + groupeSize - 2) + 1) + 2;
+        level = rand.nextInt(groupeLevel + groupeSize + 1) + 2;
         return new Troll(level);
     }
 
     public Dragon createDragon(int groupeLevel, int groupeSize) {
         int level;
-        level = rand.nextInt((groupeLevel + groupeSize - 3) + 2) + 3;
+        level = rand.nextInt(groupeLevel + groupeSize + 1) + 3;
         return new Dragon(level);
     }
 
     public BlackElf createBlackElf(int groupeLevel, int groupeSize) {
         int level;
-        level = rand.nextInt((groupeLevel + groupeSize - 2) + 1) + 2;
+        level = rand.nextInt(groupeLevel + groupeSize + 1) + 2;
         return new BlackElf(level);
     }
 

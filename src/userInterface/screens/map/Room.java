@@ -23,7 +23,6 @@ public class Room extends UIElement {
     private Room east;
 
     private ArrayList<Character> players;
-    private ArrayList<Monster> monsters;
 
     private String[] representation = new String[]{
         "+-------+  ",
@@ -36,7 +35,6 @@ public class Room extends UIElement {
     public Room(int posX, int posY) {
         super(posX, posY);
         players = new ArrayList<>();
-        monsters = new ArrayList<>();
     }
 
     public String[] toASCII() {
@@ -129,15 +127,6 @@ public class Room extends UIElement {
     @Override
     public String toString() {
         return String.join("\r\n", representation);
-    }
-
-    public void spawnMonsters() {
-        MonsterFactory factory = new MonsterFactory();
-        for (int i = 0; i < 4; i++) {
-            if (Math.random() < 0.5) {
-                monsters.add(factory.createRandomMonster(GameManager.getInstance().getPartyLevel(), GameManager.getInstance().getPartySize()));
-            }
-        }
     }
 
     private void updateRepresentation() {

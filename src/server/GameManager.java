@@ -3,11 +3,15 @@ package server;
 import java.util.ArrayList;
 import userInterface.screens.map.Map;
 import characters.Character;
+import fight.FightManager;
+import java.util.HashMap;
+import userInterface.screens.map.Room;
 
 public class GameManager {
 
     private ArrayList<Character> players;
     private ArrayList<ConnectionHandler> connections;
+    private HashMap<Room, FightManager> fights;
 
     private Map worldMap;
 
@@ -17,7 +21,6 @@ public class GameManager {
         players = new ArrayList<>();
         connections = new ArrayList<>();
         worldMap = new Map("OVERWORLD");
-        worldMap.spawnMonsters();
     }
 
     public static synchronized GameManager getInstance() {
@@ -59,5 +62,13 @@ public class GameManager {
 
     public int getPartySize() {
         return players.size();
+    }
+
+    public boolean roomHasAFight(Room room) {
+        return fights.containsKey(room);
+    }
+
+    public void startAFight(Room room) {
+        fights.put(room, new FightManager());
     }
 }

@@ -93,16 +93,6 @@ public class Map implements Screen {
         updateRepresentation();
     }
 
-    public void spawnMonsters() {
-        for (int i = 0; i < NUMBER_OF_ROOMS_X; i++) {
-            for (int j = 0; j < NUMBER_OF_ROOMS_Y; j++) {
-                if (rooms[i][j] != null && rooms[i][j] != startingRoom) {
-                    rooms[i][j].spawnMonsters();
-                }
-            }
-        }
-    }
-
     @Override
     public void accept(UIElement element) {
         element.visit(this);

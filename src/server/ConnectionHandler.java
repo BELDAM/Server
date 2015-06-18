@@ -20,6 +20,7 @@ import userInterface.screens.map.Room;
 import userInterface.utils.IllegalMoveException;
 
 public class ConnectionHandler implements Runnable {
+
     private Socket connection;
     private BufferedReader in;
     private BufferedWriter out;
@@ -138,6 +139,14 @@ public class ConnectionHandler implements Runnable {
                             Direction direction = Direction.valueOf(command[1].toUpperCase());
                             currentMap.move(player, currentRoom, direction);
                             currentRoom = currentRoom.getRoom(direction);
+                            if (GameManager.getInstance().roomHasAFight(currentRoom)) {
+                                
+                            }
+                            else if (Math.random() < 0.5 && currentRoom != currentMap.getStartingRoom()) {
+                                GameManager.getInstance().startAFight(currentRoom);
+                                printMessage("You encountered some ennemies!");
+                                
+                            }
                             break;
                         case MAP:
                             previousState = state;
