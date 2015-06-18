@@ -186,9 +186,9 @@ public class ConnectionHandler implements Runnable {
                     }
                 }
             } catch (IllegalMoveException e) {
-                System.out.println("can't go in this direction");
+                printMessage("You can't go in this direction!");
             } catch (RuntimeException e) {
-                System.out.println("invalid command");
+                printMessage("Invalid command " + command[0]);
             } finally {
                 printScreen();
             }
