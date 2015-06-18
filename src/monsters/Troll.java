@@ -1,21 +1,12 @@
 package monsters;
 
-import items.ItemManager;
-
 public class Troll extends Monster {
 
     public Troll(int level) {
-        super(level, 1);
+        super(level, 7, 12);
 
-        int maxN = 5;
-        int t = 1 << (maxN); // 2^maxN
-        int n = maxN - ((int) (Math.log((Math.random() * t)) / Math.log(2))); // maxN - log2(1..maxN)
-
-        ItemManager itemManager = new ItemManager();
-
-        while (items.size() < n + 1) {
+        while (items.size() < random.nextInt(2) + 1) {
             addItem(itemManager.getRandomItem());
         }
-
     }
 }

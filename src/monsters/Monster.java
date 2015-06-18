@@ -2,6 +2,7 @@ package monsters;
 
 import characters.Character;
 import items.Item;
+import items.ItemManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,15 +13,17 @@ public abstract class Monster {
     private int hp;
     private int level;
     private int strength;
-    LinkedList<Item> items = new LinkedList<>();
+    protected LinkedList<Item> items;
+    protected ItemManager itemManager;
+    protected Random random;
 
-    Monster(int level, int strength) {
-        this.level = level;
+    Monster(int level, int strength, int hp) {
+        this.hp = hp;
         this.strength = strength;
-
-        for (Item item : items) {
-            this.strength += item.getAttack();
-        }
+        this.level = level;
+        itemManager = new ItemManager();
+        items = new LinkedList<>();
+        random = new Random();
     }
 
     public int getHp() {
@@ -42,7 +45,11 @@ public abstract class Monster {
     }
 
     public void attack(Character character) {
-        character.takeDmg(strength);
+        int str = strength;
+        for (Item item : items) {
+            str += item.getAttack();
+        }
+        character.takeDmg(str);
     }
 
     public List<Item> dropItem() {
