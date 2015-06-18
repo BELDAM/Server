@@ -66,6 +66,7 @@ public class ConnectionHandler implements Runnable {
 
             currentMap = GameManager.getInstance().getWorldMap();
             mainScreen = new MainScreen();
+            mainScreen.update(player);
 
             clearScreen();
             out.write(mainScreen.toString());
@@ -194,9 +195,9 @@ public class ConnectionHandler implements Runnable {
                     }
                 }
             } catch (IllegalMoveException e) {
-                System.out.println("can't go in this direction");
+                printMessage("You can't go in this direction!");
             } catch (RuntimeException e) {
-                System.out.println("invalid command");
+                printMessage("Invalid command " + command[0]);
             } finally {
                 printScreen();
             }
@@ -204,7 +205,7 @@ public class ConnectionHandler implements Runnable {
     }
 
     public void refreshMainScreen() {
-        mainScreen.update();
+        mainScreen.update(player);
     }
 
     private void initHelps(PlayerState state, String filename) {
