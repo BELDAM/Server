@@ -1,3 +1,6 @@
 package server;
 
-public enum PlayerState { MAIN, MAP, FIGHT }
+public enum PlayerState {
+
+    MAIN, MAP, FIGHT
+}
