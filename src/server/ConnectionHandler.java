@@ -18,6 +18,7 @@ import userInterface.screens.map.Map;
 import userInterface.screens.mainInterface.MainScreen;
 import userInterface.screens.map.Room;
 import userInterface.utils.IllegalMoveException;
+import utils.IllegalTargetException;
 
 public class ConnectionHandler implements Runnable {
 
@@ -175,7 +176,11 @@ public class ConnectionHandler implements Runnable {
                 } else if (state == PlayerState.FIGHT) {
                     switch (Command.valueOf(command[0].toUpperCase())) {
                         case ATTACK:
-                            // TODO Attack a monster
+                            try {
+                                GameManager.getInstance().getFight(currentRoom).attackMonster(player, Integer.parseInt(command[1]));
+                            } catch (IllegalTargetException e) {
+                                printMessage("Monster #" + Integer.parseInt(command[1]) + " doesn't exist.");
+                            }
                             break;
                         case MAP:
                             previousState = state;
@@ -227,6 +232,8 @@ public class ConnectionHandler implements Runnable {
     }
 
     private void printScreen() throws IOException {
+        mainScreen.update(player);
+
         clearScreen();
 
         Screen currentScreen = mainScreen;

@@ -51,7 +51,7 @@ public class Messages extends UIElement {
 		}
 
 		ascii.remove(0);
-		ascii.add(completeString(line, lineLength));
+		ascii.add(addPadding(line, lineLength));
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Messages extends UIElement {
 		}
 	}
 
-	private String completeString(String str, int length) {
+	private String addPadding(String str, int length) {
 		String padding = "";
 
 		for (int i = str.length(); i < length; i++) {

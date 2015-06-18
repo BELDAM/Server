@@ -1,5 +1,6 @@
 package fight;
 
+import items.Item;
 import monsters.Monster;
 import characters.Character;
 import monsters.MonsterFactory;
@@ -29,6 +30,7 @@ public class FightManager {
         monsters = new ArrayList<>();
         randomGenerator = new Random();
         actions = new HashMap<>();
+        focuses = new HashMap<>();
 
         createMonsters();
     }
@@ -44,8 +46,8 @@ public class FightManager {
     }
 
     public void attackMonster(Character player, int monsterId) throws IllegalTargetException {
-        if (monsterId > 0 && monsters.size() <= monsterId) {
-            focuses.put(player, monsters.get(monsterId));
+        if (monsterId > 0 && monsterId <= monsters.size()) {
+            focuses.put(player, monsters.get(monsterId - 1));
         } else {
             throw new IllegalTargetException();
         }
@@ -109,13 +111,38 @@ public class FightManager {
             }
         }
 
+        ArrayList<Monster> aliveMonsters = new ArrayList<>();
+
+        for (Monster monster: monsters) {
+            if (monster.isDead()) {
+                broadcastMessage("The " + monster.getClass().getSimpleName() + " is dead.");
+
+                if (room.getItems().size() != 0) {
+                    broadcastMessage("There is some items on the floor.");
+
+                    String str = "";
+
+                    for (int i = 0; i < room.getItems().size(); i++) {
+                        str += (i + 1) + ") " + room.getItems().get(i);
+                    }
+
+                    broadcastMessage(str);
+                }
+            } else {
+                aliveMonsters.add(monster);
+            }
+        }
+
+        monsters = aliveMonsters;
+
         resetActions();
     }
 
     private void monstersTurn() {
-        for (Monster monster : monsters) {
-            // Attack a random character
-            monster.attack(players.get(randomGenerator.nextInt(players.size())));
+        for (int i = 0; i < monsters.size(); i++) {
+            Character target = players.get(randomGenerator.nextInt(players.size()));
+            broadcastMessage("Monster #" + (i+1) + "(" + monsters.get(i).getClass().getSimpleName() + ") attacks " + target.getName() + "!");
+            monsters.get(i).attack(target);
         }
     }
 

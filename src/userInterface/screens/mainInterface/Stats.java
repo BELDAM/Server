@@ -18,18 +18,29 @@ public class Stats extends UIElement {
 		ascii.add("+-------------------------+");
 
 		ascii.add("|                         ");
-		ascii.add("| Health Points: " + player.getHp());
-		ascii.add("| Level: " + player.getLevel());
-		ascii.add("| Experience: " + player.getXp());
-		ascii.add("| Strength: " + player.getStrength());
-		ascii.add("| Intelligence: " + player.getIntelligence());
-		ascii.add("| Defence: " + player.getPhysicalDefence());
+		ascii.add("| " + addPadding("Health Points: " + player.getHp(), 23));
+		ascii.add("| " + addPadding("Level: " + player.getLevel(), 23));
+		ascii.add("| " + addPadding("Experience: " + player.getXp(), 23));
+		ascii.add("| " + addPadding("Strength: " + player.getStrength(), 23));
+		ascii.add("| " + addPadding("Intelligence: " + player.getIntelligence(), 23));
+		ascii.add("| " + addPadding("Defence: " + player.getPhysicalDefence(), 23));
 		ascii.add("|                         ");
 		ascii.add("|                         ");
 		ascii.add("|                         ");
 		ascii.add("|                         ");
 		ascii.add("|                         ");
 		ascii.add("+-------------------------+");
+	}
+
+
+	private String addPadding(String str, int length) {
+		String padding = "";
+
+		for (int i = str.length(); i < length; i++) {
+			padding += " ";
+		}
+
+		return str + padding;
 	}
 
 	@Override
