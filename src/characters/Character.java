@@ -7,18 +7,17 @@ import monsters.Monster;
 import java.util.LinkedList;
 
 public abstract class Character {
-
     private int level;
     private int xp;
     public static final int XPtoLevel = 100;
     private String name;
     private char symbol;
-    private int hp;
+    protected int hp;
     private static final int LIFE = 100;
     private boolean dead;
-    private int strength;
+    protected int strength;
     private static final int STRENGTH = 10;
-    private int intelligence;
+    protected int intelligence;
     private static final int INTELLIGENCE = 10;
 
     protected int physicalDefence;
@@ -46,6 +45,8 @@ public abstract class Character {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public abstract void levelUp();
 
     protected Character(String name, char symbol) {
         this.name = name;
