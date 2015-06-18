@@ -22,7 +22,26 @@ public class ItemManager {
 	}
 
 	public Item getRandomItem() {
-		return items.get(new Random().nextInt(items.size()));
+		Item item = items.get(new Random().nextInt(items.size()));
+
+		SuffixManager suffixManager = new SuffixManager();
+
+		double chances = new Random().nextDouble();
+		int nbSuffices = 0;
+
+		if (chances < 0.03) {
+			nbSuffices = 3;
+		} else if (chances < 0.2) {
+			nbSuffices = 2;
+		} else if (chances < 0.6) {
+			nbSuffices = 1;
+		}
+
+		for (int i = 0; i < nbSuffices; i++) {
+			suffixManager.addRandomSuffix(item);
+		}
+
+		return item;
 	}
 
 	private void loadSufficesFromFile() throws IOException {

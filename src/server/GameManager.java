@@ -21,6 +21,7 @@ public class GameManager {
         players = new ArrayList<>();
         connections = new ArrayList<>();
         worldMap = new Map("OVERWORLD");
+        fights = new HashMap<>();
     }
 
     public static synchronized GameManager getInstance() {
