@@ -62,7 +62,7 @@ public class ConnectionHandler implements Runnable {
             in.readLine();
             createCharacter();
 
-            GameManager.getInstance().registerConnection(this);
+            GameManager.getInstance().registerConnection(this, player);
 
             currentMap = GameManager.getInstance().getWorldMap();
             mainScreen = new MainScreen();
@@ -162,6 +162,7 @@ public class ConnectionHandler implements Runnable {
                 } else if (state == PlayerState.MAP) {
                     switch (command[0].toUpperCase()) {
                         case "MOVE":
+                            // TODO not allow during fights
                             Direction direction = Direction.valueOf(command[1].toUpperCase());
                             currentMap.move(player, currentRoom, direction);
                             currentRoom = currentRoom.getRoom(direction);
@@ -190,7 +191,7 @@ public class ConnectionHandler implements Runnable {
                 }
             } catch (IllegalMoveException e) {
                 printMessage("You can't go in this direction!");
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 printMessage("Invalid command " + command[0]);
             } finally {
                 printScreen();
@@ -200,13 +201,13 @@ public class ConnectionHandler implements Runnable {
 
     private void move() {
         if (GameManager.getInstance().roomHasAFight(currentRoom)) {
+            printMessage("You joined a fight!");
             GameManager.getInstance().getFight(currentRoom).joinFight(player);
             state = PlayerState.FIGHT;
-            printMessage("You joined a fight!");
         } else if (Math.random() < 0.5 && currentRoom != currentMap.getStartingRoom() && currentRoom.playerCount() == 1) {
+            printMessage("You encountered some ennemies!");
             GameManager.getInstance().startAFight(currentRoom);
             GameManager.getInstance().getFight(currentRoom).joinFight(player);
-            printMessage("You encountered some ennemies!");
             state = PlayerState.FIGHT;
         }
     }
@@ -245,7 +246,7 @@ public class ConnectionHandler implements Runnable {
         out.flush();
     }
 
-    private void printMessage(String msg) {
+    public void printMessage(String msg) {
         mainScreen.getMessages().addMessage(msg.split("\r?\n"));
     }
 

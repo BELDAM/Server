@@ -11,6 +11,7 @@ public class GameManager {
 
     private ArrayList<Character> players;
     private ArrayList<ConnectionHandler> connections;
+    private HashMap<Character, ConnectionHandler> playerConnections;
     private HashMap<Room, FightManager> fights;
 
     private Map worldMap;
@@ -22,6 +23,7 @@ public class GameManager {
         connections = new ArrayList<>();
         worldMap = new Map("OVERWORLD");
         fights = new HashMap<>();
+        playerConnections = new HashMap<>();
     }
 
     public static synchronized GameManager getInstance() {
@@ -40,15 +42,20 @@ public class GameManager {
         worldMap.addPlayer(player);
     }
 
-    public void registerConnection(ConnectionHandler connection) {
+    public void registerConnection(ConnectionHandler connection, Character player) {
         connections.forEach(ConnectionHandler::refreshMainScreen);
         connections.add(connection);
+        playerConnections.put(player, connection);
     }
 
     public void disconnect(ConnectionHandler connection, Character player) {
         players.remove(player);
         connections.remove(connection);
         connections.forEach(ConnectionHandler::refreshMainScreen);
+    }
+
+    public ConnectionHandler getConnectionForPlayer(Character player) {
+        return playerConnections.get(player);
     }
 
     public ArrayList<Character> getPlayers() {

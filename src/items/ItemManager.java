@@ -29,11 +29,11 @@ public class ItemManager {
 		double chances = new Random().nextDouble();
 		int nbSuffices = 0;
 
-		if (chances < 0.03) {
+		if (chances < 0.01) {
 			nbSuffices = 3;
-		} else if (chances < 0.2) {
+		} else if (chances < 0.1) {
 			nbSuffices = 2;
-		} else if (chances < 0.6) {
+		} else if (chances < 0.2) {
 			nbSuffices = 1;
 		}
 
