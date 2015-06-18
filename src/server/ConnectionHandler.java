@@ -140,13 +140,14 @@ public class ConnectionHandler implements Runnable {
                             Direction direction = Direction.valueOf(command[1].toUpperCase());
                             currentMap.move(player, currentRoom, direction);
                             currentRoom = currentRoom.getRoom(direction);
+                            
                             if (GameManager.getInstance().roomHasAFight(currentRoom)) {
-                                
-                            }
-                            else if (Math.random() < 0.5 && currentRoom != currentMap.getStartingRoom()) {
+                                GameManager.getInstance().getFight(currentRoom).joinFight(player);
+                                printMessage("You joined a fight!");
+                            } else if (Math.random() < 0.5 && currentRoom != currentMap.getStartingRoom() && currentRoom.isEmpty()) {
                                 GameManager.getInstance().startAFight(currentRoom);
+                                GameManager.getInstance().getFight(currentRoom).joinFight(player);
                                 printMessage("You encountered some ennemies!");
-                                
                             }
                             break;
                         case MAP:

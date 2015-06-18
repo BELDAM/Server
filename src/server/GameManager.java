@@ -64,11 +64,15 @@ public class GameManager {
         return players.size();
     }
 
-    public boolean roomHasAFight(Room room) {
+    public synchronized boolean roomHasAFight(Room room) {
         return fights.containsKey(room);
     }
 
-    public void startAFight(Room room) {
+    public synchronized void startAFight(Room room) {
         fights.put(room, new FightManager());
+    }
+
+    public FightManager getFight(Room room) {
+        return fights.get(room);
     }
 }

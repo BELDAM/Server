@@ -163,4 +163,8 @@ public class Room extends UIElement {
     public void visit(UIDrawContainer drawable) {
         drawable.drawOver(representation, posX, posY);
     }
+
+    public boolean isEmpty() {
+        return players.isEmpty();
+    }
 }
