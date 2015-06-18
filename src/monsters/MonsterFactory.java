@@ -29,9 +29,10 @@ public class MonsterFactory {
     }
 
     public Monster createRandomMonster(int groupLevel, int groupSize) {
-        if (rand.nextDouble() < 0.1) {
+        double randomNumber = rand.nextDouble();
+        if (randomNumber < 0.01) {
             return createDragon(groupLevel, groupSize);
-        } else if (rand.nextDouble() < 0.3) {
+        } else if (randomNumber < 0.4) {
             return createBlackElf(groupLevel, groupSize);
         } else {
             return createTroll(groupLevel, groupSize);
