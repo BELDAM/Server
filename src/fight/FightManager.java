@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-public class FightManager implements Runnable {
+public class FightManager {
 
     private ArrayList<Character> players;
     private ArrayList<Monster> monsters;
@@ -22,16 +22,25 @@ public class FightManager implements Runnable {
         playersTurn = false;
     }
 
-    @Override
-    public void run() {
-        while (!isOver()) {
-            if (playersTurn) {
-                playersTurn();
-            } else {
-                monstersTurn();
-            }
+    public void setAction(Character player, CharacterAction action) {
+        actions.replace(player, action);
 
-            playersTurn = !playersTurn;
+        if (areAllCharactersReady()) {
+            fight();
+        }
+    }
+
+    private void fight() {
+        if (playersTurn) {
+            playersTurn();
+        } else {
+            monstersTurn();
+        }
+
+        playersTurn = !playersTurn;
+
+        if (!isOver()) {
+            fight();
         }
     }
 
@@ -43,8 +52,14 @@ public class FightManager implements Runnable {
         return players.stream().noneMatch((character) -> (actions.get(character) == CharacterAction.UNDEFINED));
     }
 
-    private void playersTurn() {
+    private void resetActions() {
+        for (Character player: players) {
+            actions.replace(player, CharacterAction.UNDEFINED);
+        }
+    }
 
+    private void playersTurn() {
+        resetActions();
     }
 
     private void monstersTurn() {
