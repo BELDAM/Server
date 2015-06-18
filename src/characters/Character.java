@@ -147,10 +147,6 @@ public abstract class Character {
         hp += newItem.getDefense();
     }
 
-    public void removeItems(Item item) {
-        items.remove(item);
-    }
-
     public LinkedList<Item> getItems() {
         return items;
     }
@@ -197,6 +193,16 @@ public abstract class Character {
         } else {
             System.out.println("you are dead");
         }
+    }
+
+    public boolean hasItem(BodyPart part) {
+        for (Item item: items) {
+            if (item.getBodyPart() == part) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override

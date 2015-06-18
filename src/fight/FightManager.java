@@ -168,8 +168,7 @@ public class FightManager {
 
     private void printItems() {
         if (room.getItems().size() != 0) {
-            broadcastMessage("There is some items on the floor.");
-            String str = "";
+            String str = "There is some items on the floor:\r\n";
 
             for (int i = 0; i < room.getItems().size(); i++) {
                 str += (i + 1) + ") " + room.getItems().get(i) + "\r\n";

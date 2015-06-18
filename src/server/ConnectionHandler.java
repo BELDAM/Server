@@ -6,10 +6,12 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import items.BodyPart;
 import items.Item;
 import userInterface.screens.Screens;
 import userInterface.utils.Writer;
@@ -153,7 +155,7 @@ public class ConnectionHandler implements Runnable {
                             takeItem(command[1]);
                             break;
                         case DROP:
-                            // TODO drop an item with id command[1]
+                            dropItem(command[1]);
                             break;
                         case QUIT:
                             running = false;
@@ -195,6 +197,11 @@ public class ConnectionHandler implements Runnable {
                             break;
                         case HELP:
                             printMessage(helpMessages.get(state));
+                            break;
+                        case TAKE:
+                        case DROP:
+                        case MOVE:
+                            printMessage("You can't do that during a fight!");
                             break;
                         default:
                             throw new IllegalArgumentException();
@@ -246,9 +253,74 @@ public class ConnectionHandler implements Runnable {
 
             if (id > 0 && id <= currentRoom.getItems().size()) {
                 Item item = currentRoom.getItems().get(id-1);
-                player.addItem(item);
-                mainScreen.getInventory().addItem(item.getBodyPart());
-                currentRoom.getItems().remove(id-1);
+                if (!player.hasItem(item.getBodyPart())) {
+                    player.addItem(item);
+                    mainScreen.getInventory().addItem(item.getBodyPart());
+                    currentRoom.getItems().remove(id - 1);
+                } else {
+                    printMessage("You cannot take this item, because you already have one.");
+                }
+            } else {
+                throw new IllegalTargetException();
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalTargetException();
+        }
+    }
+
+    private void dropItem(String itemId) throws IllegalTargetException {
+        try {
+            int id = Integer.parseInt(itemId);
+
+            if (id > 0 && id <= 7) {
+                BodyPart part = BodyPart.RIGHT_HAND;
+
+                switch (id) {
+                    case 1:
+                        part = BodyPart.HEAD;
+                        break;
+                    case 2:
+                        part = BodyPart.SHOULDERS;
+                        break;
+                    case 3:
+                        part = BodyPart.TORSO;
+                        break;
+                    case 4:
+                        if (player.hasItem(BodyPart.BOTH_HANDS)) {
+                            part = BodyPart.BOTH_HANDS;
+                        } else {
+                            part = BodyPart.RIGHT_HAND;
+                        }
+                        break;
+                    case 5:
+                        part = BodyPart.LEGS;
+                        break;
+                    case 6:
+                        part = BodyPart.LEFT_HAND;
+                        break;
+                    case 7:
+                        part = BodyPart.FEET;
+                        break;
+                }
+
+                Item item = null;
+
+                if (player.hasItem(part)) {
+                    for (int i = 0; i < player.getItems().size(); i++) {
+                        if (player.getItems().get(i).getBodyPart() == part) {
+                            item = player.getItems().get(i);
+                        }
+                    }
+
+                    System.out.println("part: " + part);
+                    System.out.println("item: " + item);
+
+                    currentRoom.getItems().add(item);
+                    player.getItems().remove(item);
+                    mainScreen.getInventory().removeItem(part);
+                } else {
+                    printMessage("You don't carry any item on this part of your body. Please refer to the little grid in your inventory.");
+                }
             } else {
                 throw new IllegalTargetException();
             }
